@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+        <title>设备管理系统</title>
+		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+{#        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>  #}
+		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+        <script src="/static/js/cordova-1.5.0.js"></script>
+
+{#        <script type="text/javascript">#}
+{#        $(document).ready(function () {#}
+{#            $("#dev_list").click(function(){#}
+{#                    cache: false,#}
+{#                    $.ajax({#}
+{#                      type: "GET",#}
+{#                      url: "/mobile_get_list/",#}
+                      {#data: $('#feedbackform').serialize(),#}
+{#                      success:function(ret){#}
+{#                            $.mobile.changePage("#devicelists");#}
+{#                            var cate = eval ("(" + ret + ")");#}
+{#                            $("#mb_cate_name").load(cate)#}
+{#                      }#}
+{#                });#}
+{#            });#}
+{##}
+{#        });#}
+{##}
+{#</script>#}
+
+        <script>
+            $(document).ready(function(){
+                $("#dev_list").click(function(){
+                      $.get("/mobile_get_list/",function(data,status){
+
+                            {#alert("Data: " + data + "\nStatus: " + status);#}
+                            {#alert(typeof data);#}
+
+                                if(status=='success'){
+                                    $.mobile.changePage("#devicelists", { transition:'slide' });
+
+                                    var cate= JSON.parse(data);
+                                    {#alert(cate.length)#}
+
+                                    for(var i=0;i<cate.length;i++){
+                                        {#alert(cate[i].fields.cate_name);#}
+                                        $("#mmm").append(
+
+                                            {#"<li>\n" +#}
+                                            {#"<a href=\"#\">\n" +#}
+                                            {#"<img src=\"/static/images/devicecontrol.png\" />\n" +#}
+                                            {#"<h3 id=\"mb_cate_name\">"+ cate[i].fields.cate_name +"</h3>\n" +#}
+                                            {#" <p>评论: PG</p>\n" +#}
+                                            {#" <p>时长: 95 min.</p>\n" +#}
+                                            {#" </a>\n" +#}
+                                            {#" </li>"#}
+
+                                            "<div class=\"ui-block-b\">\n" +
+                                            "                <a href=\"/message/?category=" + cate[i].fields.cate_name +
+                                            "                          \" rel=\"external\"><img src=\"/static/images/1.png\" width=\"80%\" /></a>\n" +
+                                            "                <div class=\"title\">\n" +
+                                            "                    <a href=\"/message/?category=" + cate[i].fields.cate_name +
+                                            "                           \" rel=\"external\"> " + cate[i].fields.cate_name + "</a>\n" +
+                                            "                </div>\n" +
+                                            "            </div>"
+
+                                        )
+                                    }
+
+                                    {#$("#mb_cate_name").val("1");#}
+
+                                    {#$.each(cate,function(i,item){#}
+                                    {#    if(i==0){#}
+                                    {#        return true;#}
+                                    {#    }#}
+                                    {#    var cate_item = item.fields;#}
+                                    {#    alert("cate: " + cate_item.cate_name);#}
+                                        {#$("#mb_cate_name").load("1")#}
+                                    {#}#}
+
+                                    {#for (var i=cate.length; i>=0; i-1){#}
+                                    {#    var cate_item = cate.fields#}
+                                    {#        $("#mb_cate_name").val(cate_item.id)#}
+
+                                }
+                          });
+                    });
+                });
+        </script>
+
+	</head>
+	
+	<body>
+
+        <script>
+    $(document).on("swipeleft", ".ui-page", function () {
+        var thePage = $(this),
+                next = thePage.jqmData("next");
+        if (next) {
+            $(":mobile-pagecontainer").pagecontainer("change", "#" + next, {transition: "slide"});
+        }
+    });
+    $(document).on("swiperight", ".ui-page", function () {
+        var thePage = $(this),
+                prev = thePage.jqmData("prev");
+        if (prev) {
+            $(":mobile-pagecontainer").pagecontainer("change", "#" + prev, {transition: "slide", reverse: true});
+        }
+    });
+</script>
+		
+{#		<div data-role="page" id="index" style="background-image: url(/static/images/beijing_.png);"> #}
+		<div class="ui-page" data-role="page" id="index" data-next="device">
+            <div data-role="header" data-position="fixed" data-theme="a" class="ui-mini ui-shadow">
+{#                <p>&nbsp设备管理系统&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp服务电话：<span>33333333</span></p>#}
+                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp设备管理系统 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>&nbsp</p>
+
+            </div>
+			
+			<div data-role="content" >
+				
+				<ul data-role="listview" >
+{#					<li><a data-transition="slide" id="dev_list"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>#}
+                    <li><a href="/list/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>
+                    <li><a href="#adddevice" data-transition="flip" ><img src="/static/images/plus_alt.png"  class="ui-li-icon">添加设备</a></li>
+					<li><a href="#rep_apply" data-transition="pop"><img src="/static/images/x_alt.png"  class="ui-li-icon">维护申请</a></li>
+{#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修派工</a></li>#}
+                    <li><a href="/mobile_rep_record/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备维护记录</a></li>
+					<li><a href="/mobile_outsource/" data-transition="slideup"><img src="/static/images/list_28.png"  class="ui-li-icon">设备委外记录</a></li>
+{#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修验证</a></li>#}
+					<li><a href="#plan_apply" data-transition="slidefade"><img src="/static/images/list_28.png"  class="ui-li-icon">计划申请</a></li>
+					<li><a href="/mobile_dev_query/" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon">部件列表</a></li>
+				</ul>
+				
+			</div> 
+			
+			
+			<div data-role="footer" data-position="fixed" data-theme="a">
+				<div data-role = "navbar">
+					<ul>
+						<li><a href="/mobile_pending/" data-icon="star" data-transition="pop">工单</a></li>
+{#						<li><a href="#" data-icon="gear">备件管理</a></li>#}
+						<li><a href="#" data-icon="grid" data-transition="slide">设备管理</a></li>
+						<li><a href="/mobile_plan/" data-icon="plus" data-transition="slide">购置计划</a></li>
+						<li><a href="/mobile_me/" data-icon="home" data-transition="slide">我的</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div> 
+		
+		
+		<div data-role="page" id="devicelists">
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="#index" data-transition="flow" >返回</a>
+				<h1>设备类别</h1>
+			</div> 
+			
+			<div data-role="content">	
+{#					<ul data-role="listview" >#}
+                <div class="ui-grid-b">
+						<div id="mmm">
+{#						  <a href="#">#}
+{#							<img src="/static/images/devicecontrol.png" />#}
+{#						  <h3 id="mb_cate_name"></h3>#}
+{#							<p>评论: PG</p>#}
+{#							<p>时长: 95 min.</p>#}
+{#						  </a>#}
+						</div>
+{#						<li>#}
+{#						  <a href="#">#}
+{#							<img src="/static/images/devicecontrol.png" />#}
+{#						  <h3>X战警</h3>#}
+{#							<p>评论: PG-13</p>#}
+{#							<p>时长: 137 min.</p>#}
+{#						  </a>#}
+{#						</li>	#}
+{#						<li>#}
+{#						  <a href="#">#}
+{#							<img src="/static/images/devicecontrol.png" />#}
+{#						  <h3>雷雨</h3>#}
+{#							<p>评论 PG-13</p>#}
+{#							<p>时长: 131 min.</p>#}
+{#						  </a>#}
+{#						</li>	#}
+{#						<li>#}
+{#						  <a href="#">#}
+{#							<img src="/static/images/devicecontrol.png" />#}
+{#						  <h3>小李飞刀</h3>#}
+{#							<p>评论: PG</p>#}
+{#							<p>时长: 95 min.</p>#}
+{#						  </a>#}
+{#						</li>													#}
+{#					</ul>#}
+			</div>
+			
+		</div>
+        </div>
+		
+
+		<div data-role="page" id="device" class="ui-page" data-prev="index" >
+			<div data-role="header" data-position="fixed" data-theme="a">
+				
+				<h1>设备检索</h1>
+				<a href="#index" data-transition="flow" >返回</a>
+			</div> 
+			
+			<div data-role="content">
+				<ul data-role="listview"  data-autodividers="true"  data-filter="true" data-insert = "true">
+{#					{% for dev in all_devs %}#}
+{#                        <li><a href="#" >{{ dev.device_name }}</a></li>#}
+{#                    {% endfor %}#}
+{#                   <li data-role="list-divider" >汽车</li>#}
+					<li><a href="#">BMW</a></li>
+					<li><a href="#">AFBC</a></li>
+					<li><a href="#">ASDSD</a></li>
+					<li><a href="#">BYD</a></li>
+                    <li><a href="#">benz</a></li>
+{#                    <li data-role="list-divider" >起重机械</li>#}
+					<li><a href="#">CA</a></li>
+					<li><a href="#">CD</a></li>
+					<li><a href="#">CBA</a></li>
+					<li><a href="#">D</a></li>
+					<li><a href="#">H</a></li>
+				</ul>	
+			</div> 
+		</div> 
+		
+		<div data-role="dialog" id="exit">
+			<div data-role="content" data-theme="b">
+				<span class="tittle">还未编辑完，你确定离开吗?</span>
+				
+				<a href="#index" data-role="button" data-theme="b">非常确定</a>
+				<a href="#" data-role="button" data-theme="c" data-rel="back">不离开了</a>
+			</div>
+		</div>
+		
+		
+		<div data-role="dialog" id="devicecategory">
+			<div data-role="content" data-theme="b">
+				<span class="tittle">设备类别</span>
+				
+				<a href="#adddevice" data-role="button" data-theme="a">A</a>
+				<a href="#adddevice" data-role="button" data-theme="a">B</a>
+				<a href="#adddevice" data-role="button" data-theme="a">B</a>
+				<a href="#adddevice" data-role="button" data-theme="a">D</a>
+				
+			</div>
+		</div>
+		
+		<div data-role="page" id="adddevice">
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="#exit" data-transition="flow" >返回</a>
+				<h1>添加设备</h1>
+			</div> 
+			
+			<div data-role="content">
+				<form id="add" action="/mobile_add/success/" method="post" data-ajax="false">
+
+                  <p>
+			    <label for="device_name">设备名称:</label>
+			    <input type="text" name="device_name" id="device_name" value="" data-theme="d"/>
+			    </p>
+                  <p>
+			    <label for="device_id">设备编号:</label>
+			    <input type="text" name="device_id" id="device_id" value="" data-theme="d"/>
+			    </p>
+				<p>
+				<label for="category">设备类别:</label>
+					<select name="category" id="category">
+					  <option value="lift_dev">起重机械</option>
+					  <option value="car">汽车</option>
+					</select>
+				</p>
+                  <p>
+				<label for="status">设备状态:</label>
+					<select name="status" id="status">
+					  <option value="normal">正常</option>
+					  <option value="repair">维修</option>
+                        <option value="check">检查</option>
+					</select>
+				</p>
+
+				<p>
+				<label for="device_model">设备型号:</label>
+		        <input type="text" name="device_model" id="device_model" value="" data-theme="d" />
+				</p>
+                  <p>
+				<label for="value">本币原值:</label>
+		        <input type="text" name="value" id="value" value="" data-theme="d" />
+				</p>
+
+                  <p>
+				<label for="delivery">所属部门编号:</label>
+					<select name="delivery" id="delivery">
+					  <option value="G0">G0</option>
+					  <option value="G1">G1</option>
+					</select>
+				</p>
+                  <p>
+				<label for="delivery">设备等级:</label>
+					<select name="delivery" id="delivery">
+					  <option value="barcode">特种设备</option>
+					  <option value="nfc">一般设备</option>
+					</select>
+				</p>
+				<p>
+				<label for="textarea">备注:</label>
+				<textarea cols="40" rows="8" name="textarea" id="textarea" placeholder="Textarea" data-theme="d"></textarea>
+				</p>
+                  <p>
+                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
+                  </p>
+                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+			  </form>
+			</div> 
+		
+		</div>
+
+
+        <div data-role="page" id="rep_apply" >
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="#exit" data-transition="flow" >返回</a>
+				<h1>维护申请</h1>
+			</div>
+
+			<div data-role="content">
+				<form id="apply" action="/mobile_rep_apply/success/" method="post" data-ajax="false">
+
+				<p>
+				<label for="apply_id">申请编号:</label>
+		        <input type="text" name="apply_id" id="apply_id" value="" data-theme="d" />
+				</p>
+
+                  <p>
+			    <label for="device_name">设备名称:</label>
+			    <input type="text" name="device_name" id="device_name" value="" data-theme="d"/>
+			    </p>
+                  <p>
+			    <label for="device_id">设备编号:</label>
+			    <input type="text" name="device_id" id="device_id" value="" data-theme="d"/>
+			    </p>
+				<p>
+				<label for="category">设备类别:</label>
+					<select name="category" id="category">
+					  <option value="lift_dev">起重机械</option>
+					  <option value="car">汽车</option>
+					</select>
+				</p>
+                  <p>
+				<label for="status">申请设备状态:</label>
+					<select name="status" id="status">
+					  <option value="normal">正常</option>
+					  <option value="repair">维修</option>
+                        <option value="check">检查</option>
+					</select>
+				</p>
+
+                  <p>
+				<label for="reason">申请原因:</label>
+		        <input type="text" name="reason" id="reason" value="" data-theme="d" />
+				</p>
+
+                  <p>
+				<label for="apply_unit">申请部门编号:</label>
+					<select name="apply_unit" id="apply_unit">
+					  <option value="G0">G0</option>
+					  <option value="G1">G1</option>
+					</select>
+				</p>
+{#                  <p>#}
+{#				<label for="delivery">设备等级:</label>#}
+{#					<select name="delivery" id="delivery">#}
+{#					  <option value="barcode">特种设备</option>#}
+{#					  <option value="nfc">一般设备</option>#}
+{#					</select>#}
+{#				</p>#}
+				<p>
+				<label for="textarea">备注:</label>
+				<textarea cols="40" rows="8" name="textarea" id="textarea" placeholder="Textarea" data-theme="d"></textarea>
+				</p>
+                  <p>
+                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
+                  </p>
+                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+			  </form>
+			</div>
+
+		</div>
+
+
+        <div data-role="page" id="plan_apply" >
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="#exit" data-transition="flow" >返回</a>
+				<h1>计划申请</h1>
+			</div>
+
+			<div data-role="content">
+				<form id="apply" action="/mobile_plan_apply/" method="post" data-ajax="false">
+
+                  <p>
+			    <label for="parts_name">部件名称:</label>
+			    <input type="text" name="parts_name" id="parts_name" value="" data-theme="d"/>
+			    </p>
+                  <p>
+			    <label for="plan_id">计划编号:</label>
+			    <input type="text" name="plan_id" id="plan_id" value="" data-theme="d"/>
+			    </p>
+				<p>
+				<label for="apply_unit">申请部门编号:</label>
+					<select name="apply_unit" id="apply_unit">
+					  <option value="G0">G0</option>
+					  <option value="G1">G1</option>
+					</select>
+				</p>
+                  <p>
+				<label for="num">数量:</label>
+		        <input type="text" name="num" id="num" value="" data-theme="d" />
+				</p>
+                    <p>
+				<label for="spec_model">规格型号:</label>
+		        <input type="text" name="spec_model" id="spec_model" value="" data-theme="d" />
+				</p>
+
+                    <p>
+				<label for="plan_class">申请计划类别:</label>
+					<select name="plan_class" id="plan_class">
+					  <option value="buy">购置</option>
+					  <option value="update">更新</option>
+                        <option value="recycle">回收</option>
+					</select>
+				</p>
+{#                  <p>#}
+{#				<label for="delivery">设备等级:</label>#}
+{#					<select name="delivery" id="delivery">#}
+{#					  <option value="barcode">特种设备</option>#}
+{#					  <option value="nfc">一般设备</option>#}
+{#					</select>#}
+{#				</p>#}
+				<p>
+				<label for="remark">备注:</label>
+				<textarea cols="40" rows="8" name="remark" id="remark" placeholder="Textarea" data-theme="d"></textarea>
+				</p>
+                  <p>
+                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
+                  </p>
+                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+			  </form>
+
+			</div>
+        </div>
+			
+		
+		<div data-role="page" id="comments"> 
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="#adddevice" data-transition="flow" >返回</a>
+				<h1>设备添加</h1>
+				
+			</div> 
+			
+			<div data-role="content">
+				<div data-role="content" id="comments">
+				<label for="comments">备注：</label>
+				<textarea cols="1" rows="1" name="comments" id="comments"></textarea>
+			</div>
+				
+			
+		</div>
+        </div>
+		
+
+	</body>
+</html>

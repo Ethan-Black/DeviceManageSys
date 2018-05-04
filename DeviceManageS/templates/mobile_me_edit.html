@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+		<style>
+		
+	</style>
+		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+	</head>
+	<body>
+		<div data-role="page" data-theme="a">
+			<div data-role="header">
+				<h1>修改个人信息</h1>
+			</div>
+
+			<div data-role="content">
+			  <form id="add" action="/mobile_me_edit/success/" method="post" data-ajax="false">
+
+                  <p>
+			    <label for="username">姓名:</label>
+			    <input type="text" name="username" id="username" value={{ user.username }} data-theme="d"/>
+			    </p>
+                  <p>
+			    <label for="gender">性别:</label>
+			    <input type="text" name="gender" id="gender" value={{ user.gender }} readonly="readonly" data-theme="d"/>
+			    </p>
+				<p>
+				<label for="flag">职位:</label>
+					<input type="text" name="flag" id="flag" value={{ user.flag }} data-theme="d"/>
+				</p>
+                  <p>
+				<label for="birthday">生日:</label>
+					<input type="date" name="birthday" id="birthday" value={{ user.birthday }} >
+				</p>
+
+				<p>
+				<label for="mobile">电话:</label>
+		        <input type="text" name="mobile" id="mobile" value={{ user.mobile }} >
+				</p>
+                  <p>
+				<label for="email">邮箱:</label>
+		        <input type="text" name="email" id="email" value={{ user.email }} data-theme="d" />
+				</p>
+                  <p>
+                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
+                  </p>
+                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+			  </form>	
+			</div>
+		</div>
+		
+	</body>
+</html>

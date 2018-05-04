@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+	
+	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+	<script src="/static/js/cordova-1.5.0.js"></script>
+
+    <script>
+            $(document).ready(function(){
+                $("#devd").click(function(){
+                    var devid=$("#get_param").text();
+                      $.get("/mobile_get_details/",{ "dev_id": devid },
+                          function(data,status){
+                                if(status=='success'){
+                                    $.mobile.changePage("#mobile_dev_msg", { transition:'slide' });
+                                    var user= JSON.parse(data);
+                                    {#alert(user)#}
+                                    {#alert(user[0].fields.device_name)#}
+                                    {#for(var i=0;i<cate.length;i++){#}
+                                        {#alert(cate[i].fields.cate_name);#}
+                                        $("#dev_img").append(
+                                            "<p>设备名称：" + user[0].fields.device_name +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "<p>设备编号：" + user[0].fields.device_id +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "<p>设备类别：" + user[0].fields.category_name +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "<p>设备型号：" + user[0].fields.device_model +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>设备状态：" + user[0].fields.device_status +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>所属部门编号：" + user[0].fields.belong_id +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>设备等级：" + user[0].fields.device_rank +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>备注：" + user[0].fields.ps +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "\n" +
+                                            "<br />"
+                                        )
+                                    }
+
+                          });
+                    });
+                });
+        </script>
+
+{#<script>#}
+{#    alert({{ user.image }})#}
+{#</script>#}
+
+{#    <script>#}
+{#            $(document).ready(function(){#}
+{#                $("#delbt").click(function(){#}
+{#                    var devid=$("#get_param").text();#}
+{#                    $.mobile.changePage("#mobile_delete", { data:devid,transition:'slide' })#}
+{#                    $("#title").append(#}
+{#                        "a href=\"/mobile_dev_del/?dev_id="+devid+"\" data-role=\"button\" data-theme=\"b\">确定</a>"#}
+{#                )#}
+{##}
+{#                });#}
+{#            });#}
+{#        </script>#}
+
+
+</head>
+<body>
+
+    <div data-role="page" id="mobile_dev_msg" >
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="/mobile_index/" data-transition="flow" >返回</a>
+				<h1>个人中心</h1>
+                <a href="/mobile_logout/" data-transition="pop" >退出</a>
+			</div>
+
+			<div data-role="content">
+                <p ><img width="120" height="120" src="/media/{{ user.image }}" width="80%" /></p>
+                <div id="dev_img"></div>
+                <p>姓名: {{ user.username }} </p>
+                <hr align="right" width="90%"/>
+                <p>性别: {{ user.gender }} </p>
+                <hr align="right" width="90%"/>
+                <p>职位: {{ user.flag }} </p>
+                <hr align="right" width="90%"/>
+                <p>生日: {{ user.birthday }} </p>
+                <hr align="right" width="90%"/>
+                <p>电话: {{ user.mobile }} </p>
+                <hr align="right" width="90%"/>
+                <p>邮箱: {{ user.email }} </p>
+                <hr align="right" width="90%"/>
+
+				<br />
+{#				<ul data-role="listview" >#}
+{#					<li><a href="#comments" >备注：</a></li>#}
+{##}
+{#				</ul>#}
+
+{#                {% ifequal '0' flag %}#}
+                    <a href="/mobile_me_edit/" data-transition="slide">
+                            <button>编辑</button>
+                        </a>
+{#            {% endifequal %}#}
+
+			</div>
+
+		</div>
+
+
+        <div data-role="dialog" id="mobile_delete">
+			<div data-role="content" data-theme="b">
+				<span class="tittle" id="title">确认删除此设备信息吗?</span>
+
+				<a href="/message/?dev_id={{ user.device_id }}" data-role="button" data-theme="b">确定</a>
+				<a href="#" data-role="button" data-theme="c" data-rel="back">取消</a>
+			</div>
+		</div>
+
+
+</body>
+</html>

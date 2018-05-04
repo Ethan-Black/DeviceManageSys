@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+{#        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>  #}
+    <link rel="stylesheet" type="text/css" href="/static/css/animations.css"/>
+	
+	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+	<script src="/static/js/cordova-1.5.0.js"></script>
+
+    <script>
+        $(".ss").click(function(){
+            $("#mlist").fadeToggle("slow");
+            var _this = $(this);
+            _this.slideToggle("slow",function(){
+                window.location.href = _this.attr("href");
+            });
+	return false;
+})
+    </script>
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/main.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/tupianqiehuan.css"> -->
+	<!-- <script type="text/javascript" src="/static/js/tupianqiehuan.js"></script> -->
+
+</head>
+<body>
+
+    <div data-role="page" id="mlist" style="background-image: url(img/beijing_.png);">
+    <div data-role="header" data-position="fixed" data-theme="a">
+    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
+			<h1>设备类别</h1>
+	</div>
+	<div data-role="content" id="main3Content" >
+		
+		<!-- <div class="ui-grid-c"> -->
+				<!-- <div class="ui-block-a">
+                    <div class="ui-body ui-body-d">
+                        <div class="pic"><a href="mobile_message.html" rel="external"><img src="/static/image/1.png"></a></div>
+                        <div class="title"><a href="mobile_message.html" rel="external">起重机械</a></div>
+                    </div>
+                </div>
+				<div class="ui-block-b">
+                    <div class="ui-body ui-body-d">
+                        <div class="pic"><a href="#"><img src="/static/image/1.png"></a></div>
+                        <div class="title"><a href="#">汽车</a></div>
+                    </div>
+                </div>
+                <div class="ui-block-c">
+                    <div class="ui-body ui-body-d">
+                        <div class="pic"><a href="#"><img src="/static/image/1.png"></a></div>
+                        <div class="title"><a href="#">起重机械</a></div>
+                    </div>
+                </div>
+                <div class="ui-block-d">
+                    <div class="ui-body ui-body-d">
+                        <div class="pic"><a href="#"><img src="/static/image/1.png"></a></div>
+                        <div class="title"><a href="#">起重机械</a></div>
+                    </div>
+                </div>
+
+
+                <div class="ui-block-a">
+                    <div class="ui-body ui-body-d">
+                        <div class="pic"><a href="#" ><img src="/static/image/1.png"></a></div>
+                        <div class="title"><a href="#">起重机械</a></div>
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <div class="ui-body ui-body-d">
+                        <div class="pic"><a href="#"><img src="/static/image/1.png"></a></div>
+                        <div class="title"><a href="#">起重机械</a></div>
+                    </div>
+                </div> -->
+			<!-- <li>
+				<a href="#">
+					<img src="/static/image/album-p.jpg" />
+					<h3>帮助</h3>
+					<p>查看系统帮助信息</p>
+				</a>
+				<a href="#" data-rel="dialog" data-transition="slideup">动作</a>
+			</li>
+			<li>
+				<a href="index.html"  rel="external">
+					<img src="/static/image/album-p.jpg" />
+					<h3>重新登录</h3>
+					<p>返回登录界面重新登录</p>
+				</a>
+				<a href="index.html" data-rel="dialog" data-transition="slideup"  rel="external">动作</a>
+			</li> -->
+	<!-- </div> -->
+
+		<div class="ui-grid-b">
+            {% for category in categories %}
+
+                <div class="ui-block-b">
+                    <a href="/message/?category={{ category.cate_name }}" rel="external" id="ss"><img src="/static/images/1.png" width="80%" /></a>
+                    <div class="title">
+{#                        <a href="/message/?category={{ category.cate_name }}" rel="external">{{ category.cate_name }}</a>#}
+                        <p>{{ category.cate_name }}</p>
+                    </div><!-- <p>起重机械</p> -->
+                </div>
+
+            {% endfor %}
+
+{#			<div class="ui-block-b"><img src="/static/images/1.png"  width="80%"/><div class="title"><a href="mobile_message.html" rel="external">汽车</a></div></div>#}
+
+{#			<div class="ui-block-c"><img src="/static/images/1.png"  width="80%"/><div class="title"><a href="mobile_message.html" rel="external">起重机械</a></div></div>#}
+
+		</div>
+{#		<br>#}
+{#		<div class="ui-grid-b">#}
+{#			<div class="ui-block-a"><img src="/static/images/1.png"  width="80%"/><div class="title"><a href="mobile_message.html" rel="external">起重机械</a></div></div>#}
+
+{#			<div class="ui-block-b"><img src="/static/images/1.png"  width="80%"/><div class="title"><a href="mobile_message.html" rel="external">起重机械</a></div></div>#}
+
+{#			<div class="ui-block-c"></div>#}
+{#		</div>#}
+{#		<div class="ui-grid-b">#}
+{#			<div class="ui-block-a"></div>#}
+{#			<div class="ui-block-b"></div>#}
+{#			<div class="ui-block-c"></div>#}
+{#		</div>#}
+
+</div>
+
+	<div data-role="footer" data-position="fixed" data-theme="a">
+				<div data-role = "navbar">
+					<ul>
+						<li><a href="/mobile_pending/" data-icon="star" data-transition="pop">工单</a></li>
+{#						<li><a href="#" data-icon="gear">备件管理</a></li>#}
+						<li><a href="/mobile_index/" data-icon="grid" data-transition="slide">设备管理</a></li>
+						<li><a href="/mobile_plan/" data-icon="plus" data-transition="slide">购置计划</a></li>
+						<li><a href="/mobile_me/" data-icon="home" data-transition="slide">我的</a></li>
+					</ul>
+				</div>
+			</div>
+    </div>
+
+</body>
+</html>

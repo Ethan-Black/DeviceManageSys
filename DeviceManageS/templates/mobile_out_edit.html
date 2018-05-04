@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+		<style>
+		
+	</style>
+		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+	</head>
+	<body>
+		<div data-role="page" data-theme="a">
+			<div data-role="header">
+				<h1>修改信息</h1>
+			</div>
+
+			<div data-role="content">
+			  <form id="add" action="/mobile_out_edit/success/" method="post" data-ajax="false">
+
+                  <p>
+			    <label for="parts_name">配件名称:</label>
+			    <input type="text" name="parts_name" id="parts_name" value={{ dev_detail.parts_name }} data-theme="d"/>
+			    </p>
+                  <p>
+			    <label for="change_id">变更编号:</label>
+			    <input type="text" name="change_id" id="change_id" value={{ dev_detail.change_id }} readonly="readonly" data-theme="d"/>
+			    </p>
+				<p>
+				<label for="num">数量:</label>
+					<input type="text" name="num" id="num" value={{ dev_detail.num }} data-theme="d"/>
+				</p>
+                  <p>
+				<label for="spec_model">规格型号:</label>
+					<input type="text" name="spec_model" id="spec_model" value={{ dev_detail.spec_model }} >
+				</p>
+
+				<p>
+				<label for="tax_price">含税价格:</label>
+		        <input type="text" name="tax_price" id="tax_price" value={{ dev_detail.tax_price }} >
+				</p>
+                  <p>
+				<label for="tax_rate">税率:</label>
+		        <input type="text" name="tax_rate" id="tax_rate" value={{ dev_detail.tax_rate }} data-theme="d" />
+				</p>
+
+                  <p>
+				<label for="no_tax_price">不含税价格:</label>
+					<input type="text" name="no_tax_price" id="no_tax_price" value={{ dev_detail.no_tax_price }} >
+				</p>
+
+				<p>				 
+				<label for="remark">备注:</label>
+				<textarea cols="40" rows="8" name="remark" id="remark" placeholder="" data-theme="d"></textarea>
+				</p>
+                  <p>
+                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
+                  </p>
+                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+			  </form>	
+			</div>
+		</div>
+		
+	</body>
+</html>

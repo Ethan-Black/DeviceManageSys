@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
+    <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+	<script src="/static/js/cordova-1.5.0.js"></script>
+
+    <script>
+            $(document).ready(function(){
+                $("a.devd").click(function(){
+                    var apply_id=$("#get_param").text();
+                      $.get("/mobile_get_rep_details/",{ "apply_id": apply_id },
+                          function(data,status){
+                                if(status=='success'){
+                                    $.mobile.changePage("#mobile_rep_msg", { transition:'slide' });
+                                    var dev_detail= JSON.parse(data);
+                                    {#alert(dev_detail)#}
+                                    {#alert(dev_detail[0].fields.device_name)#}
+                                    {#for(var i=0;i<cate.length;i++){#}
+                                        {#alert(cate[i].fields.cate_name);#}
+                                        $("#dev_img").append(
+                                            "<p>设备名称：" + dev_detail[0].fields.device_name +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "<p>设备编号：" + dev_detail[0].fields.device_id +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "<p>设备类别：" + dev_detail[0].fields.category_name +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "<p>申请原因：" + dev_detail[0].fields.reason +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>设备状态：" + dev_detail[0].fields.device_status +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>申请部门编号：" + dev_detail[0].fields.apply_unit +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>申请编号：" + dev_detail[0].fields.apply_id +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "                <p>申请时间：" + dev_detail[0].fields.apply_time +"</p>\n" +
+                                            "<hr align=\"right\" width=\"60%\"/>\n" +
+                                            "\n" +
+                                            "<br />"
+                                        )
+                                    }
+
+                          });
+                    });
+                });
+        </script>
+
+</head>
+<body>
+
+    <div data-role="page" id="pending" style="background-image: url(img/beijing_.png);">
+    <div data-role="header" data-position="fixed" data-theme="a">
+    	<a href="main2.html" rel="external" data-role="button" data-icon="home" data-transition="fade">首页</a>
+			<h1>维护记录</h1>
+        <div data-role="navbar">
+            <ul>
+              <li><a href="/mobile_rep_record/" data-transition="flip" data-icon="home">待维护</a></li>
+              <li><a href="/mobile_rep_record_ok/" data-transition="flip" class="ui-btn-active ui-state-persist" data-icon="home">已完成</a></li>
+            </ul>
+      </div>
+	</div>
+	<div data-role="content" id="main3Content" >
+		
+		<ul data-role="listview" data-inset="true">
+
+            {% for dev_rep in rep_records %}
+{#                {% ifequal dev_rep.rep_status 'ok' %}#}
+              <li data-role="list-divider">{{ dev_rep.apply_time }}<span class="ui-li-count">{{ dev_rep.apply_id }}</span></li>
+              <li><a href="/mobile_rep_msg/?apply_id={{ dev_rep.apply_id }}" rel="external">
+                <h2>{{ dev_rep.device_name }}</h2>
+                <p><b>{{ dev_rep.reason }}</b></p>
+                <br>
+                <p>维修状态: {{ dev_rep.rep_status }}</p>
+{#                  <p id="get_param">{{ dev_rep.device_id }}</p>#}
+{#                <p>申请设备状态: {{ dev_rep.device_status }}</p>#}
+                <p class="ui-li-aside">申请部门: {{ dev_rep.apply_unit }}</p></a>
+
+              </li>
+                    <br>
+{#                {% endifequal %}#}
+            {% endfor %}
+
+{#      <li><a href="#">#}
+{#        <h2>设备A</h2>#}
+{#        <p><b>齿轮松动</b></p>#}
+{#        <br>#}
+{#        <p>Well, Mr. Griffin, I've looked into physical results.</p>#}
+{#        <p>Ah, Mr. Griffin, I'm not quite sure how to say this. Kim Bassinger? Bass singer? Bassinger?</p>#}
+{#        <p class="ui-li-aside">申请人: xxx</p></a>#}
+{#      </li>#}
+
+    </ul>
+			<!-- <li>
+				<a href="#">
+					<img src="/static/image/album-p.jpg" />
+					<h3>帮助</h3>
+					<p>查看系统帮助信息</p>
+				</a>
+				<a href="#" data-rel="dialog" data-transition="slideup">动作</a>
+			</li>
+			<li>
+				<a href="index.html"  rel="external">
+					<img src="/static/image/album-p.jpg" />
+					<h3>重新登录</h3>
+					<p>返回登录界面重新登录</p>
+				</a>
+				<a href="index.html" data-rel="dialog" data-transition="slideup"  rel="external">动作</a>
+			</li> -->
+		<!-- </ul> -->
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="a">
+				<div data-role = "navbar">
+					<ul>
+						<li><a href="/mobile_pending/" data-icon="star" data-transition="slide">工单</a></li>
+{#						<li><a href="#" data-icon="gear">备件管理</a></li>#}
+						<li><a href="/mobile_index/" data-icon="grid" data-transition="slide">设备管理</a></li>
+						<li><a href="/mobile_plan/" data-icon="plus" data-transition="slide">购置计划</a></li>
+						<li><a href="/mobile_me/" data-icon="home" data-transition="slide">我的</a></li>
+					</ul>
+				</div>
+			</div>
+    </div>
+
+
+    <div data-role="page" id="mobile_rep_msg" >
+			<div data-role="header" data-position="fixed" data-theme="a">
+				<a href="#pending" data-transition="flow" >返回</a>
+				<h1>申请详情</h1>
+			</div>
+
+			<div data-role="content">
+                <p >设备图片：<img src=/static/images/1.png" width="80%" /></p>
+                <div id="dev_img"></div>
+
+
+				<br />
+{#				<ul data-role="listview" >#}
+{#					<li><a href="#comments" >备注：</a></li>#}
+{##}
+{#				</ul>#}
+
+{#                {% ifequal '0' flag %}#}
+{#                    <a href="/mobile_pending/?dev_id={{ .device_id }}">#}
+{#                            <button>已修好</button>#}
+{#                        </a>#}
+
+{#                    <a>#}
+{#                        <button id="delbt" ></button>#}
+{#                        </a>#}
+{#                    <a href="/repair_apply/?dev_id={{ dev_detail.device_id }}">#}
+{#                        <button>设备维护申请</button>#}
+{#                        </a>#}
+{#            {% endifequal %}#}
+
+			</div>
+
+		</div>
+
+
+</body>
+</html>
