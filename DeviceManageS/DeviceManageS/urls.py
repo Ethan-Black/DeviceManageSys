@@ -29,7 +29,7 @@ from devices.views import device_message, device_detail, device_category, \
     dev_rep_apply, dev_repair, device_add, mobile_dev_cate, mobile_del, mb_rep_apply, device_rep_detail, mb_get_reps, \
     mb_outs, device_out_detail, mb_get_plans, mb_get_rep_record, mb_get_rep_record_ok, mb_plan_apply, \
     device_plan_detail, mb_get_plans_ok, mb_device_edit, mb_device_rep_apply, mb_dev_edit_success, \
-    mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs
+    mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs, mb_index
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -54,7 +54,8 @@ urlpatterns = [
     url('^mobile_login/$', MobileLoginView.as_view(), name='mobile_login'),
     url('^mobile_logout/$', user_logout, name='mobile_logout'),
 
-    url('^mobile_index/$', TemplateView.as_view(template_name='mobile_index.html'), name='mobile_index'),
+    url('^mobile_index/$', mb_index, name='mobile_index'),
+    # url('^mobile_index/$', TemplateView.as_view(template_name='mobile_index.html'), name='mobile_index'),
     url(r'^mobile_add/success/', device_add, name='mobile_add_success'),
     url(r'^mobile_get_list/', mobile_dev_cate, name='mobile_get_list'),
     # url(r'^mobile_get_details/', device_detail, name='mobile_get_details'),

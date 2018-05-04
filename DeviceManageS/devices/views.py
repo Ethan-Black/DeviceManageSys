@@ -2,6 +2,7 @@
 import base64
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -15,12 +16,19 @@ from .models import DeviceMessage, DeviceCategory, DeviceOutsource, DeviceRepair
 # Create your views here.
 
 
+@login_required
+def mb_index(request):
+    return render(request, 'mobile_index.html')
+
+
+@login_required
 @choose_template('list.html')
 def device_category(request, template_name=''):
     all_categories = DeviceCategory.objects.values('cate_id', 'cate_name')
     return render(request, template_name, {'categories': all_categories})
 
 
+@login_required
 @choose_template('message.html')
 def device_message(request, template_name=''):
     if request.GET.get("dev_id"):
@@ -46,6 +54,7 @@ def device_message(request, template_name=''):
     return render(request, template_name, {'devices': devices, 'categories': categories})
 
 
+@login_required
 def device_detail(request):
     dev_id = request.GET.get('dev_id', '')
     user_flag = request.session.get('flag')
@@ -59,6 +68,7 @@ def device_detail(request):
         return render(request, 'mobile_dev_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
 
 
+@login_required
 def device_rep_detail(request):
     apply_id = request.GET.get('apply_id', '')
     user_flag = request.session.get('flag')
@@ -72,6 +82,7 @@ def device_rep_detail(request):
         return render(request, 'mobile_rep_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
 
 
+@login_required
 def device_edit(request):
     dev_id = request.GET.get('dev_id', '')
     dev_detail = DeviceMessage.objects.filter(device_id=dev_id)[0]
@@ -80,6 +91,7 @@ def device_edit(request):
     return render(request, 'edit.html', {'dev_detail': dev_detail, 'categories': categories})
 
 
+@login_required
 def mb_device_edit(request):
     dev_id = request.GET.get('dev_id', '')
     dev_detail = DeviceMessage.objects.get(device_id=dev_id)
@@ -88,6 +100,7 @@ def mb_device_edit(request):
     return render(request, 'mobile_dev_edit.html', {'dev_detail': dev_detail})
 
 
+@login_required
 def mb_device_rep_apply(request):
     dev_id = request.GET.get('dev_id', '')
     dev_detail = DeviceMessage.objects.get(device_id=dev_id)
@@ -96,6 +109,7 @@ def mb_device_rep_apply(request):
     return render(request, 'mobile_rep_apply.html', {'dev_detail': dev_detail})
 
 
+@login_required
 def device_status_details(request):
     status_dic = {'repair', u'维修', 'normal', u'正常', 'check', u'检查'}
     status_parm = request.GET.get('status', '')
@@ -106,11 +120,13 @@ def device_status_details(request):
     return render(request, 'status_details.html', {'sta_details': dev_sta_detail})
 
 
+@login_required
 def device_outsource(request):
     all_outsources = DeviceOutsource.objects.all()
     return render(request, 'outsource.html', {'outsources': all_outsources})
 
 
+@login_required
 def ajax_dev_del(request):
     if request.method == "GET":
         dev_id = request.GET.get('dev_id')
@@ -125,6 +141,7 @@ def ajax_dev_del(request):
             return render(request, 'message.html', {'devices': devices, 'categories': categories})
 
 
+@login_required
 def edit_success(request):
     device_id = request.POST.get('device_id')
     device_name = request.POST.get('device_name')
@@ -149,6 +166,7 @@ def edit_success(request):
     return render(request, 'details.html', {'dev_detail': dev_detail, 'flag': user_flag, 'categories': categories})
 
 
+@login_required
 def mb_dev_edit_success(request):
     device_id = request.POST.get('device_id')
     device_name = request.POST.get('device_name')
@@ -173,6 +191,7 @@ def mb_dev_edit_success(request):
     return render(request, 'mobile_dev_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
 
 
+@login_required
 def mb_out_edit_success(request):
     change_id = request.POST.get('change_id')
     parts_name = request.POST.get('parts_name')
@@ -204,6 +223,7 @@ def mb_out_edit_success(request):
     return render(request, 'mobile_out_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
 
 
+@login_required
 def dev_rep_apply(request):
     dev_id = request.GET.get('dev_id', '')
     if dev_id:
@@ -214,6 +234,7 @@ def dev_rep_apply(request):
         return render(request, 'repair_apply.html', {'dev_detail': dev_detail})
 
 
+@login_required
 def dev_repair(request):
     if request.method == 'POST':
         device_id = request.POST.get('device_id', '')
@@ -237,17 +258,17 @@ def dev_repair(request):
     elif request.method == 'GET':
         dev_rep = DeviceRepair.objects.all()[0]
 
-        # 此处实现有问题，值传递了一个设备的信息，应该传递所有，在前端全部展示
-
         return render(request, 'repair.html', {'dev_rep': dev_rep})
 
 
+@login_required
 def device_normal(request):
     status = request.GET.get('status')
     all_devices = DeviceMessage.objects.filter(device_status=status)
     return render(request, 'message.html', {'all_devices': all_devices})
 
 
+@login_required
 def device_add(request):
     # device_id = request.POST.get('device_id')
     device_name = request.POST.get('device_name', '')
@@ -274,12 +295,14 @@ def device_add(request):
     return render(request, 'mobile_message.html', {'devices': devices})
 
 
+@login_required
 def mobile_dev_cate(request):
     if request.is_ajax():
         all_categories = DeviceCategory.objects.all()
         return JsonResponse(serializers.serialize('json', all_categories), content_type="application/json", safe=False)
 
 
+@login_required
 def mobile_del(request):
     dev_id = request.GET.get('dev_id')
     dev = DeviceMessage.objects.get(device_id=dev_id)
@@ -290,6 +313,7 @@ def mobile_del(request):
     return render(request, 'mobile_message.html', {'devices': devices})
 
 
+@login_required
 def mb_rep_apply(request):
     # device_id = request.POST.get('device_id')
     device_name = request.POST.get('device_name', '')
@@ -316,6 +340,7 @@ def mb_rep_apply(request):
     return render(request, 'mobile_pending.html', {'devices_rep': devices_rep})
 
 
+@login_required
 def mb_get_reps(request):
     apply_id = request.GET.get('apply_id', '')
     if apply_id:
@@ -336,6 +361,7 @@ def mb_get_reps(request):
         return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
 
 
+@login_required
 def mb_outs(request):
     if request.GET.get("change_id"):
         ch_id = request.GET.get("change_id")
@@ -344,6 +370,7 @@ def mb_outs(request):
     return render(request, 'mobile_outsource.html', {'outs': all_outs})
 
 
+@login_required
 def device_out_detail(request):
     change_id = request.GET.get('change_id', '')
     user_flag = request.session.get('flag')
@@ -357,6 +384,7 @@ def device_out_detail(request):
         return render(request, 'mobile_out_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
 
 
+@login_required
 def mb_out_edit(request):
     change_id = request.GET.get('change_id', '')
     out_detail = DeviceOutsource.objects.get(change_id=change_id)
@@ -365,6 +393,7 @@ def mb_out_edit(request):
     return render(request, 'mobile_out_edit.html', {'dev_detail': out_detail})
 
 
+@login_required
 def mb_get_plans(request):
     # plan_id = request.GET.get('plan_id', '')
     # if plan_id:
@@ -382,24 +411,28 @@ def mb_get_plans(request):
     })
 
 
+@login_required
 def mb_get_plans_ok(request):
     devices_plan = DeviceBuyPlan.objects.filter(plan_model='ok')\
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     return render(request, 'mobile_plan_ok.html', {'devices_plan': devices_plan})
 
 
+@login_required
 def mb_get_rep_record(request):
     rep_records = DeviceRepair.objects.filter(rep_status='wait')\
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason')
     return render(request, 'mobile_rep_record.html', {'rep_records': rep_records})
 
 
+@login_required
 def mb_get_rep_record_ok(request):
     rep_records = DeviceRepair.objects.filter(rep_status='ok')\
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason')
     return render(request, 'mobile_rep_record_ok.html', {'rep_records': rep_records})
 
 
+@login_required
 def mb_plan_apply(request):
     # device_id = request.POST.get('device_id')
     parts_name = request.POST.get('parts_name', '')
@@ -426,6 +459,7 @@ def mb_plan_apply(request):
     return render(request, 'mobile_plan.html', {'devices_plan': devices_plan})
 
 
+@login_required
 def device_plan_detail(request):
     plan_id = request.GET.get('plan_id', '')
     user_flag = request.session.get('flag')
@@ -439,12 +473,14 @@ def device_plan_detail(request):
         return render(request, 'mobile_plan_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
 
 
+@login_required
 def mb_all_devs(request):
     all_lift_devs = DeviceMessage.objects.filter(category_name='lift_dev').values('device_id', 'device_name')
     all_car_devs = DeviceMessage.objects.filter(category_name='car').values('device_id', 'device_name')
     return render(request, 'mobile_dev_query.html', {'all_lift_devs': all_lift_devs, 'all_car_devs': all_car_devs})
 
 
+@login_required
 def mb_qcode(request):
     img_data = request.POST.get('img')
     # scanner = zbar.ImageScanner()

@@ -1,4 +1,5 @@
 # _*_encoding:utf-8 _*_
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -87,6 +88,7 @@ def user_logout(request):
     return redirect('/mobile_login/')
 
 
+@login_required
 def mb_userinfo(request):
     user_id = request.session.get('user_id', '')
     if user_id:
@@ -99,6 +101,7 @@ def mb_userinfo(request):
         return render(request, 'mobile_login.html', {'login_form': login_form})
 
 
+@login_required
 def mb_userinfo_edit(request):
     # name = request.GET.get('username', '')
     user_id = request.session.get('user_id', '')
@@ -108,6 +111,7 @@ def mb_userinfo_edit(request):
     return render(request, 'mobile_me_edit.html', {'user': user})
 
 
+@login_required
 def mb_me_edit_success(request):
     user_id = request.session.get('user_id', '')
     username = request.POST.get('username')
