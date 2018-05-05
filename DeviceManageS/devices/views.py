@@ -477,6 +477,22 @@ def device_plan_detail(request):
 
 
 @login_required
+def device_plan_agree(request):
+    plan_id = request.GET.get('plan_id', '')
+    # user_flag = request.session.get('flag')
+    dev_detail = DeviceBuyPlan.objects.get(plan_id=plan_id)
+    dev_detail.plan_model = 'ok'
+    dev_detail.save()
+    # categories = DeviceCategory.objects.all()
+
+    # if request.is_ajax():
+    #     return JsonResponse(serializers.serialize('json', dev_plan_detail), content_type="application/json", safe=False)
+    # else:
+    # dev_detail = dev_plan_detail[0]
+    return render(request, 'mobile_plan_msg.html', {'dev_detail': dev_detail})
+
+
+@login_required
 def mb_all_devs(request):
     all_lift_devs = DeviceMessage.objects.filter(category_name='lift_dev').values('device_id', 'device_name')
     all_car_devs = DeviceMessage.objects.filter(category_name='car').values('device_id', 'device_name')

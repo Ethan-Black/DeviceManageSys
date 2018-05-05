@@ -121,7 +121,8 @@
 	<div data-role="content" id="main3Content" >
 		
 		<ul data-role="listview" data-inset="true">
-
+            <li data-role="list-divider" >设备维护</li>
+        <br>
             {% for dev_rep in devices_rep %}
 {#                {% ifequal dev_rep.rep_status 'wait' %}#}
                   <li data-role="list-divider">{{ dev_rep.apply_time }}<span class="ui-li-count">{{ dev_rep.apply_id }}</span></li>
@@ -139,6 +140,8 @@
 {#                {% endifequal %}#}
             {% endfor %}
 
+        <li data-role="list-divider" >计划审批</li>
+        <br>
         {% ifequal flag '0' %}
             {% for plan in devices_plan %}
     {#                {% ifequal dev_rep.rep_status 'wait' %}#}
