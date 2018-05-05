@@ -17,8 +17,13 @@
 			</div>
 
 			<div data-role="content">
-			  <form id="add" action="/mobile_me_edit/success/" method="post" data-ajax="false">
-
+			  <form id="add" action="/mobile_me_edit/success/" method="post" data-ajax="false"  enctype="multipart/form-data">
+                <p>
+                    <label for="img">头像：</label>
+                    <img width="120" height="120" src="/media/{{ user.image }}" width="80%" />
+                    <input type="file" name="img" id="img">
+                {#                <button type="submit">上传图片</button>#}
+                </p>
                   <p>
 			    <label for="username">姓名:</label>
 			    <input type="text" name="username" id="username" value={{ user.username }} data-theme="d"/>
@@ -33,7 +38,7 @@
 				</p>
                   <p>
 				<label for="birthday">生日:</label>
-					<input type="date" name="birthday" id="birthday" value={{ user.birthday }} >
+					<input type="date" name="birthday" id="birthday" value={{ user.birthday }} de>
 				</p>
 
 				<p>

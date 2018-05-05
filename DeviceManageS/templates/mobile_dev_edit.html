@@ -17,8 +17,14 @@
 			</div>
 
 			<div data-role="content">
-			  <form id="add" action="/mobile_dev_edit/success/" method="post" data-ajax="false">
+			  <form id="add" action="/mobile_dev_edit/success/" method="post" data-ajax="false"  enctype="multipart/form-data">
 
+                  <p>
+                    <label for="img">设备图片：</label>
+                    <img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" />
+                    <input type="file" name="img" id="img">
+                {#                <button type="submit">上传图片</button>#}
+                </p>
                   <p>
 			    <label for="device_name">设备名称:</label>
 			    <input type="text" name="device_name" id="device_name" value={{ dev_detail.device_name }} data-theme="d"/>

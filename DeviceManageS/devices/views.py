@@ -173,16 +173,19 @@ def mb_dev_edit_success(request):
     device_model = request.POST.get('device_model')
     category = request.POST.get('category')
     status = request.POST.get('status')
+    image = request.FILES.get('img')
 
     dev = DeviceMessage.objects.get(device_id=device_id)
-    if dev.device_name == device_name and dev.device_model == device_model and \
-            dev.category_name == category and dev.device_status == status:
+    if dev.device_name == device_name and dev.device_model == device_model \
+            and dev.category_name == category and dev.device_status == status \
+            and dev.image == image:
         pass
     else:
         dev.device_name = device_name
         dev.device_status = status
         dev.category_name = category
         dev.device_model = device_model
+        dev.image = image
         dev.save()
 
     dev_detail = dev

@@ -107,7 +107,7 @@ def mb_userinfo_edit(request):
     user_id = request.session.get('user_id', '')
     user = UserProfile.objects.values('username', 'birthday', 'gender', 'mobile', 'email', 'flag', 'image')\
         .get(id=user_id)
-        # print(user)
+    # print(user)
     return render(request, 'mobile_me_edit.html', {'user': user})
 
 
@@ -115,6 +115,8 @@ def mb_userinfo_edit(request):
 def mb_me_edit_success(request):
     user_id = request.session.get('user_id', '')
     username = request.POST.get('username')
+    # image = request.POST.get('img')
+    image = request.FILES.get('img')
     gender = request.POST.get('gender')
     flag = request.POST.get('flag')
     birthday = request.POST.get('birthday')
@@ -124,10 +126,11 @@ def mb_me_edit_success(request):
     dev = UserProfile.objects.get(id=user_id)
     if dev.username == username and dev.gender == gender and \
             dev.flag == flag and dev.birthday == birthday and dev.mobile == mobile \
-            and dev.email == email:
+            and dev.email == email and dev.image == image:
         pass
     else:
         dev.username = username
+        dev.image = image
         dev.gender = gender
         dev.flag = flag
         dev.birthday = birthday
