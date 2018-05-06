@@ -30,7 +30,7 @@ from devices.views import device_message, device_detail, device_category, \
     mb_outs, device_out_detail, mb_get_plans, mb_get_rep_record, mb_get_rep_record_ok, mb_plan_apply, \
     device_plan_detail, mb_get_plans_ok, mb_device_edit, mb_device_rep_apply, mb_dev_edit_success, \
     mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs, mb_index, device_plan_agree, mb_pending_plan, \
-    device_plan_do_detail, device_rep_do_detail
+    device_plan_do_detail, device_rep_do_detail, mb_excel
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -54,6 +54,7 @@ urlpatterns = [
     url('^mobile_message/$', device_message, name='mobile_message'),
     url('^mobile_index/$', mb_index, name='mobile_index'),
     url('^mobile_dev_query/$', mb_all_devs, name='mobile_dev_query'),
+    url('^mobile_excel/$', mb_excel, name='mobile_excel'),
 
     url('^mobile_login/$', MobileLoginView.as_view(), name='mobile_login'),
     url('^mobile_logout/$', user_logout, name='mobile_logout'),
