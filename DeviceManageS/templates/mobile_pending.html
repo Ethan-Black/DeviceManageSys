@@ -114,15 +114,21 @@
 <body>
 
     <div data-role="page" id="pending" style="background-image: url(img/beijing_.png);">
-    <div data-role="header" data-position="fixed" data-theme="a">
-    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="slidedown">首页</a>
+    <div data-role="header" data-position="fixed" data-theme="a" >
+    	<a href="/mobile_index/" rel="external" data-role="button" data-icon="home" data-transition="fade">首页</a>
 			<h1>待处理事项</h1>
+        <div data-role="navbar">
+            <ul>
+              <li><a href="/mobile_pending/" class="ui-btn-active ui-state-persist" data-transition="flip" data-icon="home">设备维护</a></li>
+              <li><a href="/mobile_pending_plan/" data-transition="flip" data-icon="home">计划审批</a></li>
+            </ul>
+      </div>
 	</div>
 	<div data-role="content" id="main3Content" >
 		
 		<ul data-role="listview" data-inset="true">
-            <li data-role="list-divider" >设备维护</li>
-        <br>
+{#            <li data-role="list-divider" >设备维护</li>#}
+{#        <br>#}
             {% for dev_rep in devices_rep %}
 {#                {% ifequal dev_rep.rep_status 'wait' %}#}
                   <li data-role="list-divider">{{ dev_rep.apply_time }}<span class="ui-li-count">{{ dev_rep.apply_id }}</span></li>
@@ -140,26 +146,26 @@
 {#                {% endifequal %}#}
             {% endfor %}
 
-        <li data-role="list-divider" >计划审批</li>
-        <br>
-        {% ifequal flag '0' %}
-            {% for plan in devices_plan %}
+{#        <li data-role="list-divider" >计划审批</li>#}
+{#        <br>#}
+{#        {% ifequal flag '0' %}#}
+{#            {% for plan in devices_plan %}#}
     {#                {% ifequal dev_rep.rep_status 'wait' %}#}
-                      <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param_p">{{ plan.plan_id }}</span></li>
-                      <li><a href="/mobile_plan_do_msg/?plan_id={{ plan.plan_id }}" rel="external">
-                        <h2>{{ plan.parts_name }}</h2>
-                        <p><b>数量：{{ plan.num }}</b></p>
-                        <br>
+{#                      <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param_p">{{ plan.plan_id }}</span></li>#}
+{#                      <li><a href="/mobile_plan_do_msg/?plan_id={{ plan.plan_id }}" rel="external">#}
+{#                        <h2>{{ plan.parts_name }}</h2>#}
+{#                        <p><b>数量：{{ plan.num }}</b></p>#}
+{#                        <br>#}
 {#                        <p>设备类别: {{ dev_rep.category_name }}</p>#}
     {#                      <p id="get_param">{{ dev_rep.apply_id }}</p>#}
-                        <p>规格型号: {{ plan.spec_model }}</p>
-                        <p class="ui-li-aside">申请部门: {{ plan.apply_unit }}</p></a>
-                      </li>
-                        <hr>
-                        <br>
+{#                        <p>规格型号: {{ plan.spec_model }}</p>#}
+{#                        <p class="ui-li-aside">申请部门: {{ plan.apply_unit }}</p></a>#}
+{#                      </li>#}
+{#                        <hr>#}
+{#                        <br>#}
     {#                {% endifequal %}#}
-                {% endfor %}
-        {% endifequal %}
+{#                {% endfor %}#}
+{#        {% endifequal %}#}
 
 {#      <li><a href="#">#}
 {#        <h2>设备A</h2>#}

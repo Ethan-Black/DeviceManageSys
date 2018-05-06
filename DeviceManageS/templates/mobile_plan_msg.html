@@ -70,7 +70,7 @@
 
     <div data-role="page" id="mobile_dev_msg" >
 			<div data-role="header" data-position="fixed" data-theme="a">
-{#				<a href="#exit" data-transition="flow" >返回</a>#}
+				<a href="/mobile_pending_plan/" data-role="button" data-icon="home" data-transition="flow" >返回</a>
 				<h1>计划详情</h1>
 			</div>
 
@@ -98,10 +98,10 @@
 {##}
 {#				</ul>#}
 
-                {% ifequal '0' flag %}
-                    <a href="/mobile_plan_agree/?plan_id={{ dev_detail.plan_id }}" data-transition="slide">
-                            <button>审批同意</button>
-                        </a>
+{#                {% ifequal '0' flag %}#}
+{#                    <a href="/mobile_plan_agree/?plan_id={{ dev_detail.plan_id }}" data-transition="slide">#}
+{#                            <button>审批同意</button>#}
+{#                        </a>#}
 
 {#                    <a href="#mobile_delete" data-transition="flow">#}
 {#                        <button>删除</button>#}
@@ -109,7 +109,7 @@
 {#                    <a href="/mobile_rep_apply/?dev_id={{ dev_detail.device_id }}" data-transition="slide">#}
 {#                        <button>设备维护申请</button>#}
 {#                        </a>#}
-            {% endifequal %}
+{#            {% endifequal %}#}
 
 			</div>
 

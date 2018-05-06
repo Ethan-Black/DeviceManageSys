@@ -83,6 +83,20 @@ def device_rep_detail(request):
 
 
 @login_required
+def device_rep_do_detail(request):
+    apply_id = request.GET.get('apply_id', '')
+    user_flag = request.session.get('flag')
+    dev_rep_details = DeviceRepair.objects.filter(apply_id=apply_id)
+    # categories = DeviceCategory.objects.all()
+
+    # if request.is_ajax():
+    #     return JsonResponse(serializers.serialize('json', dev_rep_details), content_type="application/json", safe=False)
+    # else:
+    dev_detail = dev_rep_details[0]
+    return render(request, 'mobile_rep_do_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
+
+
+@login_required
 def device_edit(request):
     dev_id = request.GET.get('dev_id', '')
     dev_detail = DeviceMessage.objects.filter(device_id=dev_id)[0]
@@ -348,20 +362,37 @@ def mb_get_reps(request):
     apply_id = request.GET.get('apply_id', '')
     if apply_id:
         DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
+    # plan_id = request.GET.get('plan_id', '')
+    # if plan_id:
+    #     DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='ok')
+    user_flag = request.session.get('flag')
+    # if user_flag == '0':
+    #     devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+    #         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    #     devices_rep = DeviceRepair.objects.filter(rep_status='wait')
+    #     return render(request, 'mobile_pending.html',
+    #                   {'devices_rep': devices_rep, 'devices_plan': devices_plan, 'flag': user_flag})
+    # else:
+    devices_rep = DeviceRepair.objects.filter(rep_status='wait')\
+        .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'category_name')
+    return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
+
+
+@login_required
+def mb_pending_plan(request):
+    # apply_id = request.GET.get('apply_id', '')
+    # if apply_id:
+    #     DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
     plan_id = request.GET.get('plan_id', '')
     if plan_id:
         DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='ok')
     user_flag = request.session.get('flag')
-    if user_flag == '0':
-        devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
-            .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-        devices_rep = DeviceRepair.objects.filter(rep_status='wait')
-        return render(request, 'mobile_pending.html',
-                      {'devices_rep': devices_rep, 'devices_plan': devices_plan, 'flag': user_flag})
-    else:
-        devices_rep = DeviceRepair.objects.filter(rep_status='wait')\
-            .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'category_name')
-        return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
+    # if user_flag == '0':
+    devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+        # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
+    return render(request, 'mobile_pending_plan.html',
+                  {'devices_plan': devices_plan, 'flag': user_flag})
 
 
 @login_required
@@ -474,6 +505,21 @@ def device_plan_detail(request):
     else:
         dev_detail = dev_plan_detail[0]
         return render(request, 'mobile_plan_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
+
+
+@login_required
+def device_plan_do_detail(request):
+    plan_id = request.GET.get('plan_id', '')
+    user_flag = request.session.get('flag')
+    dev_plan_detail = DeviceBuyPlan.objects.filter(plan_id=plan_id)
+    # categories = DeviceCategory.objects.all()
+
+    # if request.is_ajax():
+    #     return JsonResponse(serializers.serialize('json', dev_plan_detail), content_type="application/json", safe=False)
+    # else:
+    dev_detail = dev_plan_detail[0]
+    return render(request, 'mobile_plan_do_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
+
 
 
 @login_required

@@ -29,7 +29,8 @@ from devices.views import device_message, device_detail, device_category, \
     dev_rep_apply, dev_repair, device_add, mobile_dev_cate, mobile_del, mb_rep_apply, device_rep_detail, mb_get_reps, \
     mb_outs, device_out_detail, mb_get_plans, mb_get_rep_record, mb_get_rep_record_ok, mb_plan_apply, \
     device_plan_detail, mb_get_plans_ok, mb_device_edit, mb_device_rep_apply, mb_dev_edit_success, \
-    mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs, mb_index, device_plan_agree
+    mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs, mb_index, device_plan_agree, mb_pending_plan, \
+    device_plan_do_detail, device_rep_do_detail
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -62,13 +63,16 @@ urlpatterns = [
     url(r'^mobile_dev_del/', mobile_del, name='mobile_add_success'),
     url(r'^mobile_rep_apply/success/', mb_rep_apply, name='mobile_rep_apply_success'),
     url(r'^mobile_get_rep_details/', device_rep_detail, name='mobile_get_rep_details'),
+    url(r'^mobile_pending_plan/$', mb_pending_plan, name='mobile_pending_plan'),
     url(r'^mobile_pending/$', mb_get_reps, name='mobile_pending'),
 
     url(r'^mobile_get_out_details/', device_out_detail, name='mobile_get_out_details'),
     url(r'^mobile_plan/', mb_get_plans, name='mobile_plan'),
     url(r'^mobile_plan_ok/', mb_get_plans_ok, name='mobile_plan_ok'),
+
     url(r'^mobile_rep_record/$', mb_get_rep_record, name='mobile_rep_record'),
     url(r'^mobile_rep_record_ok/$', mb_get_rep_record_ok, name='mobile_rep_record_ok'),
+
     url(r'^mobile_plan_apply/', mb_plan_apply, name='mobile_plan_apply'),
     url(r'^mobile_get_plan_details/', device_plan_detail, name='mobile_get_rep_details'),
 
@@ -83,11 +87,11 @@ urlpatterns = [
     url(r'^mobile_out_edit/success/', mb_out_edit_success, name='mobile_out_edit_success'),
 
     url(r'^mobile_rep_msg/', device_rep_detail, name='mobile_rep_msg'),
-    url(r'^mobile_rep_do_msg/', device_rep_detail, name='mobile_rep_do_msg'),
+    url(r'^mobile_rep_do_msg/', device_rep_do_detail, name='mobile_rep_do_msg'),
 
     url(r'^mobile_plan_msg/', device_plan_detail, name='mobile_plan_msg'),
-    url(r'^mobile_plan_do_msg/', device_plan_detail, name='mobile_plan_do_msg'),
-    url(r'^mobile_plan_agree/', device_plan_agree, name='mobile_plan_agree'),
+    url(r'^mobile_plan_do_msg/', device_plan_do_detail, name='mobile_plan_do_msg'),
+    # url(r'^mobile_plan_agree/', device_plan_agree, name='mobile_plan_agree'),
 
     url('^mobile_dev_query/$', mb_all_devs, name='mobile_dev_query'),
 
