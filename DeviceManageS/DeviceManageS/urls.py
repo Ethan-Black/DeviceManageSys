@@ -52,48 +52,47 @@ urlpatterns = [
 
     url('^mobile_list/$', device_category, name='mobile_list'),
     url('^mobile_message/$', device_message, name='mobile_message'),
+    url('^mobile_index/$', mb_index, name='mobile_index'),
+    url('^mobile_dev_query/$', mb_all_devs, name='mobile_dev_query'),
+
     url('^mobile_login/$', MobileLoginView.as_view(), name='mobile_login'),
     url('^mobile_logout/$', user_logout, name='mobile_logout'),
 
-    url('^mobile_index/$', mb_index, name='mobile_index'),
     # url('^mobile_index/$', TemplateView.as_view(template_name='mobile_index.html'), name='mobile_index'),
     url(r'^mobile_add/success/', device_add, name='mobile_add_success'),
     url(r'^mobile_get_list/', mobile_dev_cate, name='mobile_get_list'),
     # url(r'^mobile_get_details/', device_detail, name='mobile_get_details'),
-    url(r'^mobile_dev_del/', mobile_del, name='mobile_add_success'),
     url(r'^mobile_rep_apply/success/', mb_rep_apply, name='mobile_rep_apply_success'),
-    url(r'^mobile_get_rep_details/', device_rep_detail, name='mobile_get_rep_details'),
+
     url(r'^mobile_pending_plan/$', mb_pending_plan, name='mobile_pending_plan'),
     url(r'^mobile_pending/$', mb_get_reps, name='mobile_pending'),
 
-    url(r'^mobile_get_out_details/', device_out_detail, name='mobile_get_out_details'),
     url(r'^mobile_plan/', mb_get_plans, name='mobile_plan'),
     url(r'^mobile_plan_ok/', mb_get_plans_ok, name='mobile_plan_ok'),
+    url(r'^mobile_plan_apply/', mb_plan_apply, name='mobile_plan_apply'),
+    url(r'^mobile_get_plan_details/', device_plan_detail, name='mobile_get_rep_details'),
+    url(r'^mobile_plan_msg/', device_plan_detail, name='mobile_plan_msg'),
+    url(r'^mobile_plan_do_msg/', device_plan_do_detail, name='mobile_plan_do_msg'),
 
     url(r'^mobile_rep_record/$', mb_get_rep_record, name='mobile_rep_record'),
     url(r'^mobile_rep_record_ok/$', mb_get_rep_record_ok, name='mobile_rep_record_ok'),
-
-    url(r'^mobile_plan_apply/', mb_plan_apply, name='mobile_plan_apply'),
-    url(r'^mobile_get_plan_details/', device_plan_detail, name='mobile_get_rep_details'),
+    url(r'^mobile_rep_apply/', mb_device_rep_apply, name='mobile_rep_apply'),
+    url(r'^mobile_rep_msg/', device_rep_detail, name='mobile_rep_msg'),
+    url(r'^mobile_rep_do_msg/', device_rep_do_detail, name='mobile_rep_do_msg'),
+    url(r'^mobile_get_rep_details/', device_rep_detail, name='mobile_get_rep_details'),
 
     url(r'^mobile_dev_msg/', device_detail, name='mobile_dev_msg'),
     url('^mobile_dev_edit/$', mb_device_edit, name='mobile_dev_edit'),
     url(r'^mobile_dev_edit/success/', mb_dev_edit_success, name='mobile_dev_edit_success'),
-    url(r'^mobile_rep_apply/', mb_device_rep_apply, name='mobile_rep_apply'),
+    url(r'^mobile_dev_del/', mobile_del, name='mobile_add_success'),
 
     url('^mobile_outsource/$', mb_outs, name='mobile_outsource'),
     url(r'^mobile_out_msg/', device_out_detail, name='mobile_out_msg'),
     url('^mobile_out_edit/$', mb_out_edit, name='mobile_out_edit'),
     url(r'^mobile_out_edit/success/', mb_out_edit_success, name='mobile_out_edit_success'),
+    url(r'^mobile_get_out_details/', device_out_detail, name='mobile_get_out_details'),
 
-    url(r'^mobile_rep_msg/', device_rep_detail, name='mobile_rep_msg'),
-    url(r'^mobile_rep_do_msg/', device_rep_do_detail, name='mobile_rep_do_msg'),
-
-    url(r'^mobile_plan_msg/', device_plan_detail, name='mobile_plan_msg'),
-    url(r'^mobile_plan_do_msg/', device_plan_do_detail, name='mobile_plan_do_msg'),
     # url(r'^mobile_plan_agree/', device_plan_agree, name='mobile_plan_agree'),
-
-    url('^mobile_dev_query/$', mb_all_devs, name='mobile_dev_query'),
 
     url('^mobile_me_edit/$', mb_userinfo_edit, name='mobile_me_edit'),
     url('^mobile_me/$', mb_userinfo, name='mobile_me'),
