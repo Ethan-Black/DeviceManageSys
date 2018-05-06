@@ -117,8 +117,8 @@
     <div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="a">
 			<h3>设备购置</h3>
 			<ul data-role="listview" data-inset="true">
-                {% for plan in devices_plan %}
-                    {% ifequal plan.plan_class 'buy' %}
+                {% for plan in devices_buy_plan %}
+{#                    {% ifequal plan.plan_class 'buy' %}#}
 {#                        {% ifequal plan.plan_model 'ok' %}#}
                           <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param">{{ plan.plan_id }}</span></li>
                           <li><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" rel="external">
@@ -130,7 +130,7 @@
                                 <p class="ui-li-aside">申请部门: {{ plan.apply_unit }}</p></a>
                           </li>
 {#                        {% endifequal %}#}
-                    {% endifequal %}
+{#                    {% endifequal %}#}
 
                 {% endfor %}
 			</ul>
@@ -142,8 +142,8 @@
 		<div data-role="collapsible" data-theme="b" data-content-theme="a">
 			<h3>更新升级</h3>
 			<ul data-role="listview" data-inset="true">
-                {% for plan in devices_plan %}
-                    {% ifequal plan.plan_class 'update' %}
+                {% for plan in devices_update_plan %}
+{#                    {% ifequal plan.plan_class 'update' %}#}
 {#                        {% ifequal plan.plan_model 'ok' %}#}
                           <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param">{{ plan.plan_id }}</span></li>
                           <li><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" rel="external">
@@ -155,7 +155,7 @@
                                 <p class="ui-li-aside">申请部门: {{ plan.apply_unit }}</p></a>
                           </li>
 {#                            {% endifequal %}#}
-                    {% endifequal %}
+{#                    {% endifequal %}#}
 
                 {% endfor %}
             </ul>
@@ -167,8 +167,8 @@
 		<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="a">
 			<h3>废物回收</h3>
 			<ul data-role="listview" data-inset="true">
-				{% for plan in devices_plan %}
-                    {% ifequal plan.plan_class 'recycle' %}
+				{% for plan in devices_recycle_plan %}
+{#                    {% ifequal plan.plan_class 'recycle' %}#}
 {#                        {% ifequal plan.plan_model 'ok' %}#}
                           <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param">{{ plan.plan_id }}</span></li>
                           <li><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" rel="external">
@@ -180,7 +180,7 @@
                                 <p class="ui-li-aside">申请部门: {{ plan.apply_unit }}</p></a>
                           </li>
 {#                            {% endifequal %}#}
-                    {% endifequal %}
+{#                    {% endifequal %}#}
 
                 {% endfor %}
 			</ul>

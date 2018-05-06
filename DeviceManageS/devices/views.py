@@ -447,9 +447,17 @@ def mb_get_plans(request):
 
 @login_required
 def mb_get_plans_ok(request):
-    devices_plan = DeviceBuyPlan.objects.filter(plan_model='ok')\
+    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='buy') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    return render(request, 'mobile_plan_ok.html', {'devices_plan': devices_plan})
+    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='update') \
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='recycle') \
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    return render(request, 'mobile_plan_ok.html', {
+        'devices_buy_plan': devices_buy_plan,
+        'devices_update_plan': devices_update_plan,
+        'devices_recycle_plan': devices_recycle_plan
+    })
 
 
 @login_required
