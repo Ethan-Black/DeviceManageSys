@@ -64,7 +64,7 @@
 		<ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-filter="true" >
 			{% for out in outs %}
                 <li>
-                    <a href="/mobile_out_msg/?change_id={{ out.change_id }}" rel="external">
+                    <a href="/mobile_out_msg/?change_id={{ out.change_id }}" data-ajax='false'>
                         <img src="/static/images/album-bb.jpg" />
                         <h3>{{ out.parts_name }}</h3>
                         <p>数量 : {{ out.num }}</p>

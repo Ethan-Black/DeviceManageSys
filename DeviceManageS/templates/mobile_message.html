@@ -78,7 +78,7 @@
 		<ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-filter="true" >
 			{% for device in devices %}
                 <li>
-                    <a href="/mobile_dev_msg/?dev_id={{ device.device_id }}" rel="external">
+                    <a href="/mobile_dev_msg/?dev_id={{ device.device_id }}" data-ajax='false'>
                         <img src="/static/images/album-bb.jpg" />
                         <h3>{{ device.device_name }}</h3>
                         <p id="get_param">{{ device.device_id }}</p>

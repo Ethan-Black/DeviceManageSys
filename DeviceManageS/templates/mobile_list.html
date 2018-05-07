@@ -98,7 +98,7 @@
             {% for category in categories %}
 
                 <div class="ui-block-b">
-                    <a href="/message/?category={{ category.cate_name }}" rel="external" id="ss"><img src="/static/images/1.png" width="80%" /></a>
+                    <a href="/message/?category={{ category.cate_name }}" data-ajax='false' id="ss"><img src="/static/images/1.png" width="80%" /></a>
                     <div class="title">
 {#                        <a href="/message/?category={{ category.cate_name }}" rel="external">{{ category.cate_name }}</a>#}
                         <p>{{ category.cate_name }}</p>

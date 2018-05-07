@@ -123,7 +123,7 @@
             {% for plan in devices_plan %}
     {#                {% ifequal dev_rep.rep_status 'wait' %}#}
                       <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param_p">{{ plan.plan_id }}</span></li>
-                      <li><a href="/mobile_plan_do_msg/?plan_id={{ plan.plan_id }}" rel="external">
+                      <li><a href="/mobile_plan_do_msg/?plan_id={{ plan.plan_id }}" data-ajax='false'>
                         <h2>{{ plan.parts_name }}</h2>
                         <p><b>数量：{{ plan.num }}</b></p>
                         <br>

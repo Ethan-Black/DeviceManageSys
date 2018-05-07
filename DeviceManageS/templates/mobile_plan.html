@@ -171,7 +171,7 @@
 {#                    {% ifequal plan.plan_class 'recycle' %}#}
 {#                        {% ifequal plan.plan_model 'wait' %}#}
                           <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" >{{ plan.plan_id }}</span></li>
-                          <li><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" rel="external">
+                          <li><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" data-ajax='false'>
                                 <h2>{{ plan.parts_name }}</h2>
                                 <p><b>数量：{{ plan.num }}</b></p>
         {#                        <br>#}

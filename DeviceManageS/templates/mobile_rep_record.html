@@ -72,7 +72,7 @@
             {% for dev_rep in rep_records %}
 {#                {% ifequal dev_rep.rep_status 'wait' %}#}
                       <li data-role="list-divider">{{ dev_rep.apply_time }}<span class="ui-li-count" >{{ dev_rep.apply_id }}</span></li>
-                      <li><a href="/mobile_rep_msg/?apply_id={{ dev_rep.apply_id }}" rel="external">
+                      <li><a href="/mobile_rep_msg/?apply_id={{ dev_rep.apply_id }}" data-ajax='false'>
                         <h2>{{ dev_rep.device_name }}</h2>
                         <p><b>{{ dev_rep.reason }}</b></p>
                         <br>
