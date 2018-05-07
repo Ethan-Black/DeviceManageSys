@@ -23,6 +23,7 @@ import xadmin
 from django.views.static import serve
 
 from DeviceManageS.settings import MEDIA_ROOT
+from tools.views import generate_qrcode
 from users.views import LoginView, MobileLoginView, mb_userinfo, user_logout, mb_userinfo_edit, mb_me_edit_success
 from devices.views import device_message, device_detail, device_category, \
     device_status_details, device_edit, ajax_dev_del, edit_success, \
@@ -55,6 +56,7 @@ urlpatterns = [
     url('^mobile_index/$', mb_index, name='mobile_index'),
     url('^mobile_dev_query/$', mb_all_devs, name='mobile_dev_query'),
     url('^mobile_excel/$', mb_excel, name='mobile_excel'),
+    url('^mobile_qrcode/$', generate_qrcode, name='mobile_qrcode'),
 
     url('^mobile_login/$', MobileLoginView.as_view(), name='mobile_login'),
     url('^mobile_logout/$', user_logout, name='mobile_logout'),
