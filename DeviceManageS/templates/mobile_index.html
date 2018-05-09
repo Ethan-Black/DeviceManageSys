@@ -6,7 +6,9 @@
         <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
         <title>设备管理系统</title>
-		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+         <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+
+{#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 {#        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>  #}
 		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
@@ -115,40 +117,67 @@
 		
 {#		<div data-role="page" id="index" style="background-image: url(/static/images/beijing_.png);"> #}
 		<div class="ui-page" data-role="page" id="index" data-next="device">
-            <div data-role="header" data-position="fixed" data-theme="a" class="ui-mini ui-shadow">
+            <link rel="stylesheet" href="/static/css/like_toast.css" />
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("snackbar")
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+            </script>
+            <div data-role="panel" id="panel" data-position="left" data-theme="b" data-display="push"></div>
+            <div data-role="header" data-position="fixed" data-theme="b" class="ui-shadow">
+{#                <a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>#}
 {#                <p>&nbsp设备管理系统&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp服务电话：<span>33333333</span></p>#}
-                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp设备管理系统 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>&nbsp</p>
-
+{#                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp设备管理系统 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>&nbsp</p>#}
+                <a data-iconpos="notext" href="#panel" data-role="button" data-icon="home"></a>
+                <h1>设备管理系统</h1>
+                <a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>
             </div>
 			
-			<div data-role="content" >
-				
-				<ul data-role="listview" >
+			<div data-role="content" data-theme="c">
+				<div id="snackbar">数据导出成功！</div>
+				<ul data-role="listview" class="ui-nodisc-icon ui-alt-icon">
 {#					<li><a data-transition="slide" id="dev_list"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>#}
                     <li><a href="/list/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>
                     <li><a href="#adddevice" data-transition="flip" ><img src="/static/images/plus_alt.png"  class="ui-li-icon">添加设备</a></li>
-					<li><a href="#rep_apply" data-transition="pop"><img src="/static/images/x_alt.png"  class="ui-li-icon">维护申请</a></li>
+					<li><a href="#rep_apply" data-transition="pop"><img src="/static/images/plus_alt.png"  class="ui-li-icon">维护申请</a></li>
 {#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修派工</a></li>#}
                     <li><a href="/mobile_rep_record/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备维护记录</a></li>
 					<li><a href="/mobile_outsource/" data-transition="slideup"><img src="/static/images/list_28.png"  class="ui-li-icon">设备委外记录</a></li>
 {#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修验证</a></li>#}
 					<li><a href="#plan_apply" data-transition="slidefade"><img src="/static/images/list_28.png"  class="ui-li-icon">计划申请</a></li>
 					<li><a href="/mobile_dev_query/" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon">部件列表</a></li>
-                    <li><a href="/mobile_excel/" rel="external" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon">导出设备信息到Excel</a></li>
+                    <li><a href="/mobile_excel/" rel="external" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon" onclick="myFunction()">导出设备信息到Excel</a></li>
 
 				</ul>
 				
-			</div> 
+			</div>
+
+{#            <div data-role="collapsible-set" data-theme="b" data-content-theme="b">#}
+{#        <div data-role="collapsible" data-collapsed-icon="flat-time" data-expanded-icon="flat-cross" data-collapsed="false">#}
+{#          <h3>Section 1</h3>#}
+{#          <p>I'm the collapsible content for section 1</p>#}
+{#        </div>#}
+{#        <div data-role="collapsible" data-collapsed-icon="flat-calendar" data-expanded-icon="flat-cross">#}
+{#          <h3>Section 2</h3>#}
+{#          <p>I'm the collapsible content for section 2</p>#}
+{#        </div>#}
+{#        <div data-role="collapsible" data-collapsed-icon="flat-settings" data-expanded-icon="flat-cross">#}
+{#          <h3>Section 3</h3>#}
+{#          <p>I'm the collapsible content for section 3</p>#}
+{#        </div>#}
+{#      </div>#}
 			
 			
-			<div data-role="footer" data-position="fixed" data-theme="a">
+			<div data-role="footer" data-position="fixed" data-theme="b">
 				<div data-role = "navbar">
 					<ul>
-						<li><a href="/mobile_pending/" data-icon="star" data-transition="pop">工单</a></li>
+						<li><a href="/mobile_pending/" data-icon="info" data-transition="pop">工单</a></li>
 {#						<li><a href="#" data-icon="gear">备件管理</a></li>#}
 						<li><a href="#" data-icon="grid" data-transition="slide">设备管理</a></li>
-						<li><a href="/mobile_plan/" data-icon="plus" data-transition="slide">购置计划</a></li>
-						<li><a href="/mobile_me/" data-icon="home" data-transition="slide">我的</a></li>
+						<li><a href="/mobile_plan/" data-icon="star" data-transition="slide">计划</a></li>
+						<li><a href="/mobile_me/" data-icon="user" data-transition="slide">个人中心</a></li>
 					</ul>
 				</div>
 			</div>
@@ -269,7 +298,7 @@
 			</div> 
 			
 			<div data-role="content">
-                <div id="snackbar">添加成功</div>
+                <div id="snackbar">添加成功！</div>
 				<form id="add" action="/mobile_add/success/" method="post" data-ajax="false">
 
                   <p>

@@ -5,7 +5,8 @@
     <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
-	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+{#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 
     <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
@@ -114,25 +115,26 @@
 <body>
 
     <div data-role="page" id="pending" style="background-image: url(img/beijing_.png);">
-    <div data-role="header" data-position="fixed" data-theme="a" >
-    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
+    <div data-role="header" data-position="fixed" data-theme="b" >
+    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow"></a>
 			<h1>待处理事项</h1>
         <div data-role="navbar">
-            <ul>
-              <li><a href="/mobile_pending/" class="ui-btn-active ui-state-persist" data-transition="flip" data-icon="home">设备维护</a></li>
-              <li><a href="/mobile_pending_plan/" data-transition="flip" data-icon="home">计划审批</a></li>
+            <ul >
+              <li><a href="/mobile_pending/" class="ui-btn-active ui-state-persist" data-transition="flip" data-icon="shop">设备维护</a></li>
+              <li><a href="/mobile_pending_plan/" data-transition="flip" data-icon="eye">计划审批</a></li>
             </ul>
       </div>
 	</div>
+
 	<div data-role="content" id="main3Content" >
 		
-		<ul data-role="listview" data-inset="true">
+		<ul data-role="listview" data-inset="true" class="ui-nodisc-icon ui-alt-icon">
 {#            <li data-role="list-divider" >设备维护</li>#}
 {#        <br>#}
             {% for dev_rep in devices_rep %}
 {#                {% ifequal dev_rep.rep_status 'wait' %}#}
-                  <li data-role="list-divider">{{ dev_rep.apply_time }}<span class="ui-li-count">{{ dev_rep.apply_id }}</span></li>
-                  <li><a href="/mobile_rep_do_msg/?apply_id={{ dev_rep.apply_id }}" data-ajax='false'>
+                  <li data-role="list-divider" data-theme="a">{{ dev_rep.apply_time }}<span class="ui-li-count">{{ dev_rep.apply_id }}</span></li>
+                  <li data-theme="c"><a href="/mobile_rep_do_msg/?apply_id={{ dev_rep.apply_id }}" data-ajax='false'>
                     <h2>{{ dev_rep.device_name }}</h2>
                     <p><b>{{ dev_rep.reason }}</b></p>
                     <br>
@@ -195,14 +197,14 @@
 			</li> -->
 		<!-- </ul> -->
 	</div>
-	<div data-role="footer" data-position="fixed" data-theme="a">
+	<div data-role="footer" data-position="fixed" data-theme="b">
 				<div data-role = "navbar">
 					<ul>
-						<li><a href="#" data-icon="star" data-transition="slide">工单</a></li>
+						<li><a href="#" data-icon="info" data-transition="slide">工单</a></li>
 {#						<li><a href="#" data-icon="gear">备件管理</a></li>#}
 						<li><a href="/mobile_index/" data-icon="grid" data-transition="slide">设备管理</a></li>
-						<li><a href="/mobile_plan/" data-icon="plus" data-transition="slide">购置计划</a></li>
-						<li><a href="/mobile_me/" data-icon="home" data-transition="slide">我的</a></li>
+						<li><a href="/mobile_plan/" data-icon="star" data-transition="slide">计划</a></li>
+						<li><a href="/mobile_me/" data-icon="user" data-transition="slide">个人中心</a></li>
 					</ul>
 				</div>
 			</div>
