@@ -5,8 +5,8 @@
     <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
-	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
-
+{#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
     <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
@@ -59,7 +59,7 @@
 <body>
 
     <div data-role="page" id="pending_plan" style="background-image: url(img/beijing_.png);">
-    <div data-role="header" data-position="fixed" data-theme="a" >
+    <div data-role="header" data-position="fixed" data-theme="f" >
     	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
 			<h1>待处理事项</h1>
         <div data-role="navbar">
@@ -122,8 +122,8 @@
 {#        {% ifequal flag '0' %}#}
             {% for plan in devices_plan %}
     {#                {% ifequal dev_rep.rep_status 'wait' %}#}
-                      <li data-role="list-divider">{{ plan.plan_time }}<span class="ui-li-count" id="get_param_p">{{ plan.plan_id }}</span></li>
-                      <li><a href="/mobile_plan_do_msg/?plan_id={{ plan.plan_id }}" data-ajax='false'>
+                      <li data-role="list-divider" data-theme="a">{{ plan.plan_time }}<span class="ui-li-count" id="get_param_p">{{ plan.plan_id }}</span></li>
+                      <li data-theme="c"><a href="/mobile_plan_do_msg/?plan_id={{ plan.plan_id }}" data-ajax='false'>
                         <h2>{{ plan.parts_name }}</h2>
                         <p><b>数量：{{ plan.num }}</b></p>
                         <br>
@@ -192,7 +192,7 @@
 
 {#	</div>#}
 
-	<div data-role="footer" data-position="fixed" data-theme="a">
+	<div data-role="footer" data-position="fixed" data-theme="f">
 				<div data-role = "navbar">
 					<ul>
 						<li><a href="#" data-icon="star" data-transition="slideup">工单</a></li>

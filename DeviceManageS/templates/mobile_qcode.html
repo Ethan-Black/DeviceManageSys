@@ -3,7 +3,8 @@
 	<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
-		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
+{#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
     <script src="/static/js/jquery.min.js"></script>
 		<style>
 		
@@ -181,18 +182,18 @@ function CatchCode() {
 
 	</head>
 	<body>
-		<div data-role="page" data-theme="a">
-			<div data-role="header">
+		<div data-role="page">
+			<div data-role="header" data-theme="f">
 				<h1>添加设备</h1>
 			</div>
 
-			<div data-role="content">
+			<div data-role="content" >
 
                 <video id="video" width="320" height="320" autoplay>
                 </video>
                 <canvas style="display:none; background-color:#F00;" id="canvas" width="320" height="320">
                 </canvas> <br/>
-                <button id="snap" style="display:none; height:50px; width:120px;">开始扫描</button>
+                <button id="snap" style="display:none;">开始扫描</button>
 
 			</div>
 		</div>

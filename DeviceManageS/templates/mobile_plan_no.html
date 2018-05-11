@@ -61,7 +61,7 @@
 <body>
 
     <div class="ui-page" data-prev="index" data-role="page" id="plan" style="background-image: url(img/beijing_.png);">
-    <div data-role="header" data-position="fixed" data-theme="b" >
+    <div data-role="header" data-position="fixed" data-theme="f" >
     	<a href="/mobile_index/" rel="external" data-role="button" data-icon="home" data-transition="fade">首页</a>
 			<h1>计划</h1>
         <div data-role="navbar">
@@ -123,7 +123,7 @@
                 {% for plan in devices_buy_plan %}
 {#                    {% ifequal plan.plan_class 'buy' %}#}
 {#                        {% ifequal plan.plan_model 'wait' %}#}
-                          <li data-role="list-divider" data-theme="c">{{ plan.plan_time }}<span class="ui-li-count">{{ plan.plan_id }}</span></li>
+                          <li data-role="list-divider" data-theme="a">{{ plan.plan_time }}<span class="ui-li-count">{{ plan.plan_id }}</span></li>
                           <li data-theme="c"><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" rel="external">
                                 <h2>{{ plan.parts_name }}</h2>
                                 <p><b>数量：{{ plan.num }}</b></p>
@@ -148,7 +148,7 @@
                 {% for plan in devices_update_plan %}
 {#                    {% ifequal plan.plan_class 'update' %}#}
 {#                        {% ifequal plan.plan_model 'wait' %}#}
-                          <li data-role="list-divider" data-theme="c">{{ plan.plan_time }}<span class="ui-li-count" >{{ plan.plan_id }}</span></li>
+                          <li data-role="list-divider" data-theme="a">{{ plan.plan_time }}<span class="ui-li-count" >{{ plan.plan_id }}</span></li>
                           <li data-theme="c"><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" rel="external">
                                 <h2>{{ plan.parts_name }}</h2>
                                 <p><b>数量：{{ plan.num }}</b></p>
@@ -173,7 +173,7 @@
 				{% for plan in devices_recycle_plan %}
 {#                    {% ifequal plan.plan_class 'recycle' %}#}
 {#                        {% ifequal plan.plan_model 'wait' %}#}
-                          <li data-role="list-divider" data-theme="c">{{ plan.plan_time }}<span class="ui-li-count" >{{ plan.plan_id }}</span></li>
+                          <li data-role="list-divider" data-theme="a">{{ plan.plan_time }}<span class="ui-li-count" >{{ plan.plan_id }}</span></li>
                           <li data-theme="c"><a href="/mobile_plan_msg/?plan_id={{ plan.plan_id }}" data-ajax='false'>
                                 <h2>{{ plan.parts_name }}</h2>
                                 <p><b>数量：{{ plan.num }}</b></p>
@@ -191,7 +191,7 @@
 
 	</div>
 
-	<div data-role="footer" data-position="fixed" data-theme="b">
+	<div data-role="footer" data-position="fixed" data-theme="f">
 				<div data-role = "navbar">
 					<ul>
 						<li><a href="/mobile_pending/" data-icon="star" data-transition="pop">工单</a></li>

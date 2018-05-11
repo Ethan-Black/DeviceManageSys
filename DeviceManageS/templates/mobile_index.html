@@ -126,7 +126,7 @@
                 }
             </script>
             <div data-role="panel" id="panel" data-position="left" data-theme="b" data-display="push"></div>
-            <div data-role="header" data-position="fixed" data-theme="b" class="ui-shadow">
+            <div data-role="header" data-position="fixed" data-theme="f" class="ui-shadow">
 {#                <a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>#}
 {#                <p>&nbsp设备管理系统&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp服务电话：<span>33333333</span></p>#}
 {#                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp设备管理系统 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>&nbsp</p>#}
@@ -170,7 +170,7 @@
 {#      </div>#}
 			
 			
-			<div data-role="footer" data-position="fixed" data-theme="b">
+			<div data-role="footer" data-position="fixed" data-theme="f">
 				<div data-role = "navbar">
 					<ul>
 						<li><a href="/mobile_pending/" data-icon="info" data-transition="pop">工单</a></li>
@@ -186,7 +186,7 @@
 		
 		
 		<div data-role="page" id="devicelists">
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 				<a href="#index" data-transition="flow" >返回</a>
 				<h1>设备类别</h1>
 			</div> 
@@ -234,7 +234,7 @@
 		
 
 		<div data-role="page" id="device" class="ui-page" data-prev="index" >
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 				
 				<h1>设备检索</h1>
 				<a href="#index" data-transition="flow" >返回</a>
@@ -246,23 +246,23 @@
 {#                        <li><a href="#" >{{ dev.device_name }}</a></li>#}
 {#                    {% endfor %}#}
 {#                   <li data-role="list-divider" >汽车</li>#}
-					<li><a href="#">BMW</a></li>
-					<li><a href="#">AFBC</a></li>
-					<li><a href="#">ASDSD</a></li>
-					<li><a href="#">BYD</a></li>
-                    <li><a href="#">benz</a></li>
+					<li data-theme="c"><a href="#">BMW</a></li>
+					<li data-theme="c"><a href="#">AFBC</a></li>
+					<li data-theme="c"><a href="#">ASDSD</a></li>
+					<li data-theme="c"><a href="#">BYD</a></li>
+                    <li data-theme="c"><a href="#">benz</a></li>
 {#                    <li data-role="list-divider" >起重机械</li>#}
-					<li><a href="#">CA</a></li>
-					<li><a href="#">CD</a></li>
-					<li><a href="#">CBA</a></li>
-					<li><a href="#">D</a></li>
-					<li><a href="#">H</a></li>
+					<li data-theme="c"><a href="#">CA</a></li>
+					<li data-theme="c"><a href="#">CD</a></li>
+					<li data-theme="c"><a href="#">CBA</a></li>
+					<li data-theme="c"><a href="#">D</a></li>
+					<li data-theme="c"><a href="#">H</a></li>
 				</ul>	
 			</div> 
 		</div> 
 		
 		<div data-role="dialog" id="exit">
-			<div data-role="content" data-theme="b">
+			<div data-role="content" data-theme="c">
 				<span class="tittle">还未编辑完，你确定离开吗?</span>
 				
 				<a href="#index" data-role="button" data-theme="b">非常确定</a>
@@ -292,7 +292,7 @@
                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             </script>
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 				<a href="#exit" data-transition="flow" >返回</a>
 				<h1>添加设备</h1>
 			</div> 
@@ -372,7 +372,7 @@
                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             </script>
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 				<a href="#exit" data-transition="flow" >返回</a>
 				<h1>维护申请</h1>
 			</div>
@@ -453,7 +453,7 @@
                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             </script>
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 				<a href="#exit" data-transition="flow" >返回</a>
 				<h1>计划申请</h1>
 			</div>
@@ -517,7 +517,7 @@
 			
 		
 		<div data-role="page" id="comments"> 
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 				<a href="#adddevice" data-transition="flow" >返回</a>
 				<h1>设备添加</h1>
 				

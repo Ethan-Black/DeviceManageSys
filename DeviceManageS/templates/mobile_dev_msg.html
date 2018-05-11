@@ -5,8 +5,8 @@
     <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
-	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
-	
+{#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
 	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
@@ -69,12 +69,21 @@
 <body>
 
     <div data-role="page" id="mobile_dev_msg" >
-			<div data-role="header" data-position="fixed" data-theme="a">
+            <link rel="stylesheet" href="/static/css/like_toast.css" />
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("snackbar")
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+            </script>
+			<div data-role="header" data-position="fixed" data-theme="f">
 				<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
 				<h1>设备详情</h1>
 			</div>
 
 			<div data-role="content">
+                <div id="snackbar">生成二维码成功！</div>
                 <p >设备图片：<img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></p>
                 <div id="dev_img"></div>
                 <p>设备名称: {{ dev_detail.device_name }} </p>
@@ -101,7 +110,7 @@
 {#				</ul>#}
 
             <a href="/mobile_qrcode/?dev_id={{ dev_detail.device_id }}" data-transition="slide" data-ajax='false'>
-                        <button>生成设备信息二维码</button>
+                        <button onclick="myFunction()">生成设备信息二维码</button>
             </a>
             <a href="/mobile_rep_apply/?dev_id={{ dev_detail.device_id }}" data-transition="slide">
                         <button>设备维护申请</button>
@@ -123,7 +132,7 @@
 
 
         <div data-role="dialog" id="mobile_delete">
-			<div data-role="content" data-theme="b">
+			<div data-role="content" data-theme="c">
 				<span class="tittle" id="title">确认删除此设备信息吗?</span>
 
 				<a href="/message/?dev_id={{ dev_detail.device_id }}" data-role="button" data-theme="b">确定</a>

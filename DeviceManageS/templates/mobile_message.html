@@ -5,8 +5,9 @@
     <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
-	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
-	
+{#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
 	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
@@ -69,15 +70,15 @@
 <body>
 
     <div data-role="page" id="index" style="background-image: url(img/beijing_.png);">
-    <div data-role="header" data-position="fixed" data-theme="a">
+    <div data-role="header" data-position="fixed" data-theme="f">
     	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
 			<h1>设备列表</h1>
 	</div>
 	<div data-role="content" id="main3Content" >
 		
-		<ul data-role="listview" data-split-icon="gear" data-split-theme="d" data-filter="true" >
+		<ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-filter="true" >
 			{% for device in devices %}
-                <li>
+                <li data-theme="c">
                     <a href="/mobile_dev_msg/?dev_id={{ device.device_id }}" data-ajax='false'>
                         <img src="/static/images/album-bb.jpg" />
                         <h3>{{ device.device_name }}</h3>
@@ -112,7 +113,7 @@
 			</li> -->
 		</ul>
 	</div>
-	<div data-role="footer" data-position="fixed" data-theme="a">
+	<div data-role="footer" data-position="fixed" data-theme="f">
 				<div data-role = "navbar">
 					<ul>
 						<li><a href="/mobile_pending/" data-icon="star">工单</a></li>

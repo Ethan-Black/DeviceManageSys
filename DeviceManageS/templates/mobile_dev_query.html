@@ -6,8 +6,9 @@
         <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
 		<title>设备管理系统</title>
-		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
-		<style>
+{#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+		<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+        <style>
 			p {
 		font-size: 1.5em;
 		font-weight: bold;
@@ -21,7 +22,7 @@
 	<body>
 		
 		<div data-role="page" id="device" class="ui-page" data-prev="index" >
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
 
 				<h1>设备检索</h1>
 				<a href="/mobile_index/" data-transition="flow" >返回</a>
@@ -29,16 +30,16 @@
 
 			<div data-role="content">
 				<ul data-role="listview"  data-autodividers="false"  data-filter="true" data-insert = "true">
-					<li data-role="list-divider" >起重机械</li>
+					<li data-role="list-divider" data-theme="a">起重机械</li>
                     {% for dev in all_lift_devs %}
 {#                        {% ifequal dev.category_name 'lift_dev' %}#}
-                            <li><a href="/mobile_dev_msg/?dev_id={{ dev.device_id }}" rel="external">{{ dev.device_name }}</a></li>
+                            <li data-theme="c"><a href="/mobile_dev_msg/?dev_id={{ dev.device_id }}" rel="external">{{ dev.device_name }}</a></li>
 {#                        {% endifequal %}#}
                     {% endfor %}
-                    <li data-role="list-divider" >汽车</li>
+                    <li data-role="list-divider" data-theme="a">汽车</li>
                     {% for dev in all_car_devs %}
 {#                        {% ifequal dev.category_name 'car' %}#}
-                            <li><a href="/mobile_dev_msg/?dev_id={{ dev.device_id }}" rel="external">{{ dev.device_name }}</a></li>
+                            <li data-theme="c"><a href="/mobile_dev_msg/?dev_id={{ dev.device_id }}" rel="external">{{ dev.device_name }}</a></li>
 {#                        {% endifequal %}#}
                     {% endfor %}
 {#					<li><a href="#">AMB</a></li>#}

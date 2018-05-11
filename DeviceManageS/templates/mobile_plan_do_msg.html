@@ -5,8 +5,8 @@
     <!--自适应界面,如果出现,在某些设备出现界面偏小的话,检查一下有没有加入这句 -->
     <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
 
-	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
-	
+{#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
 	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
@@ -69,7 +69,7 @@
 <body>
 
     <div data-role="page" id="mobile_dev_msg" >
-			<div data-role="header" data-position="fixed" data-theme="a">
+			<div data-role="header" data-position="fixed" data-theme="f">
                 <a href="/mobile_pending_plan/" data-role="button" data-icon="home" data-transition="flow" >返回</a>
 				<h1>计划详情</h1>
 			</div>
@@ -120,7 +120,7 @@
 
 
         <div data-role="dialog" id="mobile_plan_no">
-			<div data-role="content" data-theme="b">
+			<div data-role="content" data-theme="a">
                 <form id="no" action="/mobile_plan_do_no/" method="post" data-ajax="false">
                    <p>
 			    <label for="plan_id">计划编号:</label>
