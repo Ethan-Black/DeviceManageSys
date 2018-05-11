@@ -122,8 +122,9 @@ class DeviceBuyPlan(models.Model):
                                   max_length=10, verbose_name=u'申请部门', null=True, blank=True)
     plan_class = models.CharField(choices=(('buy', u'购置'), ('update', u'更新'), ('recycle', u'回收')),
                                   max_length=20, verbose_name=u'计划类别', null=True, blank=True)
-    plan_model = models.CharField(choices=(('ok', u'已审批'), ('wait', u'待审批')),
+    plan_model = models.CharField(choices=(('ok', u'审批通过'), ('no', u'审批未通过'), ('wait', u'待审批')),
                                   max_length=20, verbose_name=u'计划状态', null=True, blank=True, default='wait')
+    plan_no = models.CharField(max_length=30, verbose_name=u'未通过原因', null=True, blank=True)
 
     class Meta:
         verbose_name = u'计划'

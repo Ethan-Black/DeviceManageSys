@@ -102,6 +102,9 @@
                     <a href="/mobile_pending_plan/?plan_id={{ dev_detail.plan_id }}" data-transition="slide">
                             <button>审批同意</button>
                         </a>
+                <a href="#mobile_plan_no" data-transition="slide">
+                            <button>审批不同意</button>
+                        </a>
 
 {#                    <a href="#mobile_delete" data-transition="flow">#}
 {#                        <button>删除</button>#}
@@ -116,12 +119,23 @@
 		</div>
 
 
-        <div data-role="dialog" id="mobile_delete">
+        <div data-role="dialog" id="mobile_plan_no">
 			<div data-role="content" data-theme="b">
-				<span class="tittle" id="title">确认删除此设备信息吗?</span>
-
-				<a href="/message/?dev_id={{ dev_detail.device_id }}" data-role="button" data-theme="b">确定</a>
-				<a href="#" data-role="button" data-theme="c" data-rel="back">取消</a>
+                <form id="no" action="/mobile_plan_do_no/" method="post" data-ajax="false">
+                   <p>
+			    <label for="plan_id">计划编号:</label>
+			    <input type="text" name="plan_id" id="plan_id" value={{ dev_detail.plan_id }} readonly="readonly" data-theme="d"/>
+			    </p>
+                    <p>
+                    <label for="advice">审批意见:</label>
+                    <textarea cols="40" rows="8" name="advice" id="advice" placeholder="计划不通过原因" data-theme="d"></textarea>
+                    </p>
+                    <p>
+                      <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
+                      </p>
+                      <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+                        {% csrf_token %}
+                </form>
 			</div>
 		</div>
 

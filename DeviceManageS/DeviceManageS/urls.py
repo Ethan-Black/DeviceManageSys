@@ -31,7 +31,7 @@ from devices.views import device_message, device_detail, device_category, \
     mb_outs, device_out_detail, mb_get_plans, mb_get_rep_record, mb_get_rep_record_ok, mb_plan_apply, \
     device_plan_detail, mb_get_plans_ok, mb_device_edit, mb_device_rep_apply, mb_dev_edit_success, \
     mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs, mb_index, device_plan_agree, mb_pending_plan, \
-    device_plan_do_detail, device_rep_do_detail, mb_excel
+    device_plan_do_detail, device_rep_do_detail, mb_excel, mb_get_plans_no, mb_pending_plan_no
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -72,10 +72,12 @@ urlpatterns = [
 
     url(r'^mobile_plan/', mb_get_plans, name='mobile_plan'),
     url(r'^mobile_plan_ok/', mb_get_plans_ok, name='mobile_plan_ok'),
+    url(r'^mobile_plan_no/', mb_get_plans_no, name='mobile_plan_no'),
     url(r'^mobile_plan_apply/', mb_plan_apply, name='mobile_plan_apply'),
     url(r'^mobile_get_plan_details/', device_plan_detail, name='mobile_get_rep_details'),
     url(r'^mobile_plan_msg/', device_plan_detail, name='mobile_plan_msg'),
     url(r'^mobile_plan_do_msg/', device_plan_do_detail, name='mobile_plan_do_msg'),
+    url(r'^mobile_plan_do_no/', mb_pending_plan_no, name='mobile_plan_do_no'),
 
     url(r'^mobile_rep_record/$', mb_get_rep_record, name='mobile_rep_record'),
     url(r'^mobile_rep_record_ok/$', mb_get_rep_record_ok, name='mobile_rep_record_ok'),

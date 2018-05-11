@@ -89,6 +89,10 @@
                 <hr align="right" width="80%"/>
                 <p>计划状态: {{ dev_detail.plan_model }} </p>
                 <hr align="right" width="80%"/>
+                {% ifequal 'no' {{ dev_detail.plan_model }} %}
+                    <p>审批未通过原因: {{ dev_detail.plan_no }} </p>
+                    <hr align="right" width="80%"/>
+                {% endifequal %}
                 <p>备注: {{ dev_detail.remark }} </p>
                 <hr align="right" width="80%"/>
 

@@ -394,7 +394,26 @@ def mb_pending_plan(request):
     # if user_flag == '0':
     devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-        # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
+    # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
+    return render(request, 'mobile_pending_plan.html',
+                  {'devices_plan': devices_plan, 'flag': user_flag})
+
+
+@login_required
+def mb_pending_plan_no(request):
+    # apply_id = request.GET.get('apply_id', '')
+    # if apply_id:
+    #     DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
+    plan_id = request.POST.get('plan_id', '')
+    advice = request.POST.get('advice', '')
+    if plan_id and advice:
+        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='no')
+        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_no=advice)
+    user_flag = request.session.get('flag')
+    # if user_flag == '0':
+    devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
     return render(request, 'mobile_pending_plan.html',
                   {'devices_plan': devices_plan, 'flag': user_flag})
 
@@ -458,6 +477,21 @@ def mb_get_plans_ok(request):
     devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='recycle') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     return render(request, 'mobile_plan_ok.html', {
+        'devices_buy_plan': devices_buy_plan,
+        'devices_update_plan': devices_update_plan,
+        'devices_recycle_plan': devices_recycle_plan
+    })
+
+
+@login_required
+def mb_get_plans_no(request):
+    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='no').filter(plan_class='buy') \
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='no').filter(plan_class='update') \
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='no').filter(plan_class='recycle') \
+        .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    return render(request, 'mobile_plan_no.html', {
         'devices_buy_plan': devices_buy_plan,
         'devices_update_plan': devices_update_plan,
         'devices_recycle_plan': devices_recycle_plan
