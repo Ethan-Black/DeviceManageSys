@@ -23,15 +23,16 @@ import xadmin
 from django.views.static import serve
 
 from DeviceManageS.settings import MEDIA_ROOT
-from tools.views import generate_qrcode
+from outsource.views import mb_outs, device_out_detail, mb_out_edit, mb_out_edit_success
+from plans.views import mb_pending_plan, mb_get_plans, mb_get_plans_ok, mb_plan_apply, device_plan_detail, \
+    device_plan_do_detail, mb_pending_plan_no, mb_get_plans_no
+from repair.views import dev_repair, mb_rep_apply, mb_get_reps, mb_get_rep_record, mb_get_rep_record_ok, \
+    mb_device_rep_apply, device_rep_detail, device_rep_do_detail
+from tools.views import generate_qrcode, mb_excel, mb_qcode
 from users.views import LoginView, MobileLoginView, mb_userinfo, user_logout, mb_userinfo_edit, mb_me_edit_success
 from devices.views import device_message, device_detail, device_category, \
     device_status_details, device_edit, ajax_dev_del, edit_success, \
-    dev_rep_apply, dev_repair, device_add, mobile_dev_cate, mobile_del, mb_rep_apply, device_rep_detail, mb_get_reps, \
-    mb_outs, device_out_detail, mb_get_plans, mb_get_rep_record, mb_get_rep_record_ok, mb_plan_apply, \
-    device_plan_detail, mb_get_plans_ok, mb_device_edit, mb_device_rep_apply, mb_dev_edit_success, \
-    mb_out_edit, mb_out_edit_success, mb_qcode, mb_all_devs, mb_index, device_plan_agree, mb_pending_plan, \
-    device_plan_do_detail, device_rep_do_detail, mb_excel, mb_get_plans_no, mb_pending_plan_no
+    dev_rep_apply, device_add, mobile_dev_cate, mobile_del, mb_device_edit, mb_dev_edit_success, mb_all_devs, mb_index
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),

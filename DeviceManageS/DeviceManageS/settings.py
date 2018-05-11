@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'devices',
     'xadmin',
     'crispy_forms',
+    'tools',
+    'plans',
+    'repair',
+    'outsource',
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
