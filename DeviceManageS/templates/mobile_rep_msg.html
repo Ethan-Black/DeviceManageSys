@@ -7,7 +7,20 @@
 
 {#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 	<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
-	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+	<style>
+        #dev_img{
+            background-color: #3388cc;
+            height: 12rem;
+        }
+        #userr{
+            padding-left: 30%;
+            padding-top: 12%;
+        }
+        .p_left{float:left; width: 40%; text-align: right; color: grey}
+        .p_right{float:right; width: 60%; text-align: left; color: black; font-weight:bold}
+    </style>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
 
@@ -75,26 +88,56 @@
 			</div>
 
 			<div data-role="content">
-                <p >设备图片：<img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></p>
-                <div id="dev_img"></div>
-                <p>设备名称: {{ dev_detail.device_name }} </p>
-                <hr align="right" width="80%"/>
-                <p>设备编号: {{ dev_detail.device_id }} </p>
-                <hr align="right" width="80%"/>
-                <p>设备类别: {{ dev_detail.category_name }} </p>
-                <hr align="right" width="80%"/>
-                <p>申请编号: {{ dev_detail.apply_id }} </p>
-                <hr align="right" width="80%"/>
-                <p>申请原因: {{ dev_detail.reason }} </p>
-                <hr align="right" width="80%"/>
-                <p>设备状态: {{ dev_detail.device_status }} </p>
-                <hr align="right" width="80%"/>
-                <p>申请部门: {{ dev_detail.apply_unit }} </p>
-                <hr align="right" width="80%"/>
-                <p>维修状态: {{ dev_detail.rep_status }} </p>
-                <hr align="right" width="80%"/>
-                <p>备注: {{ dev_detail.ps }} </p>
-                <hr align="right" width="80%"/>
+{#                <p >设备图片：<img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></p>#}
+{#                <div id="dev_img"></div>#}
+{#                <p>设备名称: {{ dev_detail.device_name }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>设备编号: {{ dev_detail.device_id }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>设备类别: {{ dev_detail.category_name }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>申请编号: {{ dev_detail.apply_id }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>申请原因: {{ dev_detail.reason }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>设备状态: {{ dev_detail.device_status }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>申请部门: {{ dev_detail.apply_unit }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>维修状态: {{ dev_detail.rep_status }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>备注: {{ dev_detail.ps }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+
+                <div id="dev_img"><img id="userr" width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></div>
+                <br>
+                <p class="p_left">设备名称&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.device_name }}</p>
+                <hr/>
+                <p class="p_left">设备编号&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.device_id }}</p>
+                <hr/>
+                <p class="p_left">设备类别&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.category_name }}</p>
+                <hr/>
+                <p class="p_left">申请编号&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.apply_id }}</p>
+                <hr/>
+                <p class="p_left">申请原因&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.reason }}</p>
+                <hr/>
+                <p class="p_left">设备状态&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.device_status }}</p>
+                <hr/>
+                <p class="p_left">申请部门&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.apply_unit }}</p>
+                <hr/>
+                <p class="p_left">维修状态&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.rep_status }}</p>
+                <hr/>
+                <p class="p_left">备注&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.ps }}</p>
+                <hr/>
 
 				<br />
 {#				<ul data-role="listview" >#}

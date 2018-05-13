@@ -90,24 +90,25 @@ def dev_repair(request):
 @login_required
 def mb_rep_apply(request):
     # device_id = request.POST.get('device_id')
-    device_name = request.POST.get('device_name', '')
-    apply_id = request.POST.get('apply_id', '')
-    category = request.POST.get('category', '')
-    status = request.POST.get('status', '')
-    reason = request.POST.get('reason', '')
-    device_id = request.POST.get('device_id', '')
-    apply_unit = request.POST.get('apply_unit', '')
+    device_id = request.POST.get('device_id')
+    if device_id:
+        device_name = request.POST.get('device_name', '')
+        apply_id = request.POST.get('apply_id', '')
+        category = request.POST.get('category', '')
+        status = request.POST.get('status', '')
+        reason = request.POST.get('reason', '')
+        apply_unit = request.POST.get('apply_unit', '')
 
-    dev_rep = DeviceRepair()
-    dev_rep.device_name = device_name
-    # dev_add.device_id = device_id
-    dev_rep.apply_id = apply_id
-    dev_rep.category_name = category
-    dev_rep.device_status = status
-    dev_rep.apply_unit = apply_unit
-    dev_rep.reason = reason
-    dev_rep.device_id = device_id
-    dev_rep.save()
+        dev_rep = DeviceRepair()
+        dev_rep.device_name = device_name
+        # dev_add.device_id = device_id
+        dev_rep.apply_id = apply_id
+        dev_rep.category_name = category
+        dev_rep.device_status = status
+        dev_rep.apply_unit = apply_unit
+        dev_rep.reason = reason
+        dev_rep.device_id = device_id
+        dev_rep.save()
 
     devices_rep = DeviceRepair.objects.all()
 

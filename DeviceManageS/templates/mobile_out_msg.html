@@ -7,6 +7,19 @@
 
 {#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 	<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+    <style>
+        #dev_img{
+            background-color: #3388cc;
+            height: 12rem;
+        }
+        #userr{
+            padding-left: 30%;
+            padding-top: 12%;
+        }
+        .p_left{float:left; width: 40%; text-align: right; color: grey}
+        .p_right{float:right; width: 60%; text-align: left; color: black; font-weight:bold}
+    </style>
+
 	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
@@ -75,24 +88,51 @@
 			</div>
 
 			<div data-role="content">
-                <p >设备图片：<img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></p>
+{#                <p >设备图片：<img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></p>#}
+{#                <div id="dev_img"></div>#}
+{#                <p>配件名称: {{ dev_detail.parts_name }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>变更编号: {{ dev_detail.change_id }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>数量: {{ dev_detail.num }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>规格型号: {{ dev_detail.spec_model }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>含税价格: {{ dev_detail.tax_price }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>税率: {{ dev_detail.tax_rate }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>不含税价格: {{ dev_detail.no_tax_price }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+{#                <p>备注: {{ dev_detail.remark }} </p>#}
+{#                <hr align="right" width="80%"/>#}
+
                 <div id="dev_img"></div>
-                <p>配件名称: {{ dev_detail.parts_name }} </p>
-                <hr align="right" width="80%"/>
-                <p>变更编号: {{ dev_detail.change_id }} </p>
-                <hr align="right" width="80%"/>
-                <p>数量: {{ dev_detail.num }} </p>
-                <hr align="right" width="80%"/>
-                <p>规格型号: {{ dev_detail.spec_model }} </p>
-                <hr align="right" width="80%"/>
-                <p>含税价格: {{ dev_detail.tax_price }} </p>
-                <hr align="right" width="80%"/>
-                <p>税率: {{ dev_detail.tax_rate }} </p>
-                <hr align="right" width="80%"/>
-                <p>不含税价格: {{ dev_detail.no_tax_price }} </p>
-                <hr align="right" width="80%"/>
-                <p>备注: {{ dev_detail.remark }} </p>
-                <hr align="right" width="80%"/>
+                <br>
+                <p class="p_left">配件名称&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.parts_name }}</p>
+                <hr/>
+                <p class="p_left">变更编号&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.change_id }}</p>
+                <hr/>
+                <p class="p_left">数量&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.num }}</p>
+                <hr/>
+                <p class="p_left">规格型号&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.spec_model }}</p>
+                <hr/>
+                <p class="p_left">含税价格&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.tax_price }}</p>
+                <hr/>
+                <p class="p_left">税率&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.tax_rate }}</p>
+                <hr/>
+                <p class="p_left">不含税价格&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.no_tax_price }}</p>
+                <hr/>
+                <p class="p_left">备注&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.remark }}</p>
+                <hr/>
 
 				<br />
 {#				<ul data-role="listview" >#}

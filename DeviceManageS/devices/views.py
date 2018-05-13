@@ -292,24 +292,26 @@ def device_normal(request):
 @login_required
 def device_add(request):
     # device_id = request.POST.get('device_id')
-    device_name = request.POST.get('device_name', '')
-    device_model = request.POST.get('device_model', '')
-    category = request.POST.get('category', '')
-    status = request.POST.get('status', '')
-    value = request.POST.get('value', '')
-    device_id = request.POST.get('device_id', '')
+    device_id = request.POST.get('device_id')
+    if device_id:
+        device_name = request.POST.get('device_name', '')
+        device_model = request.POST.get('device_model', '')
+        category = request.POST.get('category', '')
+        status = request.POST.get('status', '')
+        value = request.POST.get('value', '')
+
     # add_time = request.POST.get('add_time', '')
 
-    dev_add = DeviceMessage()
-    dev_add.device_name = device_name
-    # dev_add.device_id = device_id
-    dev_add.device_model = device_model
-    dev_add.category_name = category
-    dev_add.device_status = status
-    # dev_add.enter_time = add_time
-    dev_add.value = value
-    dev_add.device_id = device_id
-    dev_add.save()
+        dev_add = DeviceMessage()
+        dev_add.device_name = device_name
+        # dev_add.device_id = device_id
+        dev_add.device_model = device_model
+        dev_add.category_name = category
+        dev_add.device_status = status
+        # dev_add.enter_time = add_time
+        dev_add.value = value
+        dev_add.device_id = device_id
+        dev_add.save()
 
     devices = DeviceMessage.objects.filter(category_name=category)
 

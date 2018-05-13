@@ -7,7 +7,20 @@
 
 {#	<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 	<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
-	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+	<style>
+        #dev_img{
+            background-color: #3388cc;
+            height: 12rem;
+        }
+        #userr{
+            padding-left: 30%;
+            padding-top: 12%;
+        }
+        .p_left{float:left; width: 40%; text-align: right; color: grey}
+        .p_right{float:right; width: 60%; text-align: left; color: black; font-weight:bold}
+    </style>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	<script src="/static/js/cordova-1.5.0.js"></script>
 
@@ -74,26 +87,43 @@
 
     <div data-role="page" id="mobile_dev_msg" >
 			<div data-role="header" data-position="fixed" data-theme="f">
-				<a href="/mobile_index/" data-transition="flow" >返回</a>
+				<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow" >返回</a>
 				<h1>个人中心</h1>
                 <a href="/mobile_logout/" data-transition="pop" >退出</a>
 			</div>
 
 			<div data-role="content">
-                <p ><img width="120" height="120" src="/media/{{ user.image }}" width="80%" /></p>
-                <div id="dev_img"></div>
-                <p>姓名: {{ user.username }} </p>
-                <hr align="right" width="90%"/>
-                <p>性别: {{ user.gender }} </p>
-                <hr align="right" width="90%"/>
-                <p>职位: {{ user.flag }} </p>
-                <hr align="right" width="90%"/>
-                <p>生日: {{ user.birthday }} </p>
-                <hr align="right" width="90%"/>
-                <p>电话: {{ user.mobile }} </p>
-                <hr align="right" width="90%"/>
-                <p>邮箱: {{ user.email }} </p>
-                <hr align="right" width="90%"/>
+{#                <p ><img width="120" height="120" src="/media/{{ user.image }}" width="80%" /></p>#}
+                <div id="dev_img"><img id="userr" width="120" height="120" src="/media/{{ user.image }}" width="80%" /></div>
+                <br>
+                <p class="p_left">姓名&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ user.username }}</p>
+                <hr/>
+                <p class="p_left">性别&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ user.gender }}</p>
+                <hr/>
+                <p class="p_left">职位&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ user.flag }}</p>
+                <hr/>
+                <p class="p_left">生日&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ user.birthday }}</p>
+                <hr/>
+                <p class="p_left">电话&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ user.mobile }}</p>
+                <hr/>
+                <p class="p_left">邮箱&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ user.email }}</p>
+                <hr/>
+{#                <p>性别: {{ user.gender }} </p>#}
+{#                <hr align="right" width="90%"/>#}
+{#                <p>职位: {{ user.flag }} </p>#}
+{#                <hr align="right" width="90%"/>#}
+{#                <p>生日: {{ user.birthday }} </p>#}
+{#                <hr align="right" width="90%"/>#}
+{#                <p>电话: {{ user.mobile }} </p>#}
+{#                <hr align="right" width="90%"/>#}
+{#                <p>邮箱: {{ user.email }} </p>#}
+{#                <hr align="right" width="90%"/>#}
 
 				<br />
 {#				<ul data-role="listview" >#}

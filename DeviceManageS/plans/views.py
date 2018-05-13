@@ -95,24 +95,25 @@ def mb_pending_plan_no(request):
 @login_required
 def mb_plan_apply(request):
     # device_id = request.POST.get('device_id')
-    parts_name = request.POST.get('parts_name', '')
-    plan_id = request.POST.get('plan_id', '')
-    num = request.POST.get('num', '')
-    spec_model = request.POST.get('spec_model', '')
-    plan_class = request.POST.get('plan_class', '')
-    remark = request.POST.get('remark', '')
-    apply_unit = request.POST.get('apply_unit', '')
+    plan_id = request.POST.get('plan_id')
+    if plan_id:
+        parts_name = request.POST.get('parts_name', '')
+        num = request.POST.get('num', '')
+        spec_model = request.POST.get('spec_model', '')
+        plan_class = request.POST.get('plan_class', '')
+        remark = request.POST.get('remark', '')
+        apply_unit = request.POST.get('apply_unit', '')
 
-    dev_plan = DeviceBuyPlan()
-    dev_plan.parts_name = parts_name
-    # dev_add.device_id = device_id
-    dev_plan.plan_id = plan_id
-    dev_plan.num = num
-    dev_plan.spec_model = spec_model
-    dev_plan.apply_unit = apply_unit
-    dev_plan.plan_class = plan_class
-    dev_plan.remark = remark
-    dev_plan.save()
+        dev_plan = DeviceBuyPlan()
+        dev_plan.parts_name = parts_name
+        # dev_add.device_id = device_id
+        dev_plan.plan_id = plan_id
+        dev_plan.num = num
+        dev_plan.spec_model = spec_model
+        dev_plan.apply_unit = apply_unit
+        dev_plan.plan_class = plan_class
+        dev_plan.remark = remark
+        dev_plan.save()
 
     devices_plan = DeviceBuyPlan.objects.all()
 
@@ -130,7 +131,11 @@ def device_plan_detail(request):
         return JsonResponse(serializers.serialize('json', dev_plan_detail), content_type="application/json", safe=False)
     else:
         dev_detail = dev_plan_detail[0]
-        return render(request, 'mobile_plan_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
+        if dev_detail.plan_model == 'no':
+            tag = 1
+        else:
+            tag = 0
+        return render(request, 'mobile_plan_msg.html', {'dev_detail': dev_detail, 'flag': user_flag, 'tag': tag})
 
 
 @login_required
@@ -144,7 +149,11 @@ def device_plan_do_detail(request):
     # return JsonResponse(serializers.serialize('json', dev_plan_detail), content_type="application/json", safe=False)
     # else:
     dev_detail = dev_plan_detail[0]
-    return render(request, 'mobile_plan_do_msg.html', {'dev_detail': dev_detail, 'flag': user_flag})
+    if dev_detail.plan_model == 'no':
+        tag = 1
+    else:
+        tag = 0
+    return render(request, 'mobile_plan_do_msg.html', {'dev_detail': dev_detail, 'flag': user_flag, 'tag': tag})
 
 
 @login_required
