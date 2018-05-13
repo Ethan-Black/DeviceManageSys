@@ -3,79 +3,159 @@
 	<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
-		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />
-		<style>
-		
+{#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/slick.css"/>
+{#    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.9.0/slick/slick-theme.css"/>#}
+    <style>
+		a{text-decoration:none}
+        {#a{text-underline-color: #1b1b1b}#}
 	</style>
+        <style>
+            {#.ui-block-a,#}
+            .ui-block-b,
+            .ui-block-c,
+            .ui-block-d,
+            .ui-block-e,
+            .ui-block-f,
+            .ui-block-g
+            {
+            background-color: goldenrod;
+            border: 5px solid snow;
+            height: 150px;
+            font-weight: bold;
+            text-align: center;
+            padding: 52px;
+            }
+    </style>
+     <style>
+            #xxx,
+            {#.ui-block-b,#}
+            .ui-block-c,
+            .ui-block-d,
+            .ui-block-e,
+            .ui-block-f,
+            .ui-block-g
+            {
+            background-color: darkolivegreen;
+            border: 5px solid snow;
+            height: 150px;
+            font-weight: bold;
+            text-align: center;
+            padding: 52px;
+            }
+    </style>
 		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
-	</head>
+	    <script type="text/javascript" src="/static/js/slick.min.js"></script>
+    <script>
+        $(function(){
+            $('.slick').slick({
+                dots: true,
+                 {#slidesToShow: 3,#}
+  {#slidesToScroll: 3,#}
+              autoplay: true,
+              autoplaySpeed: 2500,
+                {#fade: true,#}
+            });
+        });
+    </script>
+    </head>
 	<body>
-		<div data-role="page" data-theme="a">
-			<div data-role="header">
+		<div data-role="page">
+			<div data-role="header" data-theme="f">
 				<h1>添加设备</h1>
 			</div>
 
 			<div data-role="content">
-			  <form id="add" action="/mobile_add/success/" method="post" data-ajax="false">
 
-                  <p>
-			    <label for="device_name">设备名称:</label>
-			    <input type="text" name="device_name" id="device_name" value="" data-theme="d"/>
-			    </p>
-                  <p>
-			    <label for="device_id">设备编号:</label>
-			    <input type="text" name="device_id" id="device_id" value="" data-theme="d"/>
-			    </p>
-				<p>
-				<label for="category">设备类别:</label>
-					<select name="category" id="category">
-					  <option value="lift_dev">起重机械</option>
-					  <option value="car">汽车</option>
-					</select>	
-				</p>
-                  <p>
-				<label for="status">设备状态:</label>
-					<select name="status" id="status">
-					  <option value="normal">正常</option>
-					  <option value="repair">维修</option>
-                        <option value="check">检查</option>
-					</select>
-				</p>
+<div class="slick">
+    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>
+    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>
+{#    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>#}
+{#    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>#}
+{#    <div><a href="http://www.jq22.com"><img src="images/5.jpg" alt=""></a></div>#}
+</div>
 
-				<p>
-				<label for="device_model">设备型号:</label>
-		        <input type="text" name="device_model" id="device_model" value="" data-theme="d" />
-				</p>
-                  <p>
-				<label for="value">本币原值:</label>
-		        <input type="text" name="value" id="value" value="" data-theme="d" />
-				</p>
+                <p>三列样式布局：</p>
+               <div class="ui-grid-a">
+                 <div class="ui-block-a"><a href="#" data-role="button"><span>第一个列</span></a></div>
+                 <div class="ui-block-b"><span>第二个列</span></div>
+{#                 <div class="ui-block-c"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-d"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-e"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-f"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-g"><span>第三个列</span></div>#}
+{#                   <div class="ui-block-c"><span>第三个列</span></div>#}
+               </div>
+                <div class="ui-grid-a">
+                 <div class="ui-block-a" id="xxx"><a style="COLOR: black" href="#"><span>第一个列</span></a></div>
+                 <div class="ui-block-b"><span>第二个列</span></div>
+               </div>
+                <div class="ui-grid-a">
+                 <div class="ui-block-a"><span>第一个列</span></div>
+                 <div class="ui-block-b"><span>第二个列</span></div>
+               </div>
 
-                  <p>
-				<label for="delivery">所属部门编号:</label>
-					<select name="delivery" id="delivery">
-					  <option value="barcode">G0</option>
-					  <option value="nfc">G1</option>
-					</select>
-				</p>
-                  <p>
-				<label for="delivery">设备等级:</label>
-					<select name="delivery" id="delivery">
-					  <option value="barcode">特种设备</option>
-					  <option value="nfc">一般设备</option>
-					</select>
-				</p>
-				<p>				 
-				<label for="textarea">备注:</label>
-				<textarea cols="40" rows="8" name="textarea" id="textarea" placeholder="Textarea" data-theme="d"></textarea>	
-				</p>
-                  <p>
-                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />
-                  </p>
-                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
-				    {% csrf_token %}
-			  </form>	
+{#			  <form id="add" action="/mobile_add/success/" method="post" data-ajax="false">#}
+{##}
+{#                  <p>#}
+{#			    <label for="device_name">设备名称:</label>#}
+{#			    <input type="text" name="device_name" id="device_name" value="" data-theme="d"/>#}
+{#			    </p>#}
+{#                  <p>#}
+{#			    <label for="device_id">设备编号:</label>#}
+{#			    <input type="text" name="device_id" id="device_id" value="" data-theme="d"/>#}
+{#			    </p>#}
+{#				<p>#}
+{#				<label for="category">设备类别:</label>#}
+{#					<select name="category" id="category">#}
+{#					  <option value="lift_dev">起重机械</option>#}
+{#					  <option value="car">汽车</option>#}
+{#					</select>	#}
+{#				</p>#}
+{#                  <p>#}
+{#				<label for="status">设备状态:</label>#}
+{#					<select name="status" id="status">#}
+{#					  <option value="normal">正常</option>#}
+{#					  <option value="repair">维修</option>#}
+{#                        <option value="check">检查</option>#}
+{#					</select>#}
+{#				</p>#}
+{##}
+{#				<p>#}
+{#				<label for="device_model">设备型号:</label>#}
+{#		        <input type="text" name="device_model" id="device_model" value="" data-theme="d" />#}
+{#				</p>#}
+{#                  <p>#}
+{#				<label for="value">本币原值:</label>#}
+{#		        <input type="text" name="value" id="value" value="" data-theme="d" />#}
+{#				</p>#}
+{##}
+{#                  <p>#}
+{#				<label for="delivery">所属部门编号:</label>#}
+{#					<select name="delivery" id="delivery">#}
+{#					  <option value="barcode">G0</option>#}
+{#					  <option value="nfc">G1</option>#}
+{#					</select>#}
+{#				</p>#}
+{#                  <p>#}
+{#				<label for="delivery">设备等级:</label>#}
+{#					<select name="delivery" id="delivery">#}
+{#					  <option value="barcode">特种设备</option>#}
+{#					  <option value="nfc">一般设备</option>#}
+{#					</select>#}
+{#				</p>#}
+{#				<p>				 #}
+{#				<label for="textarea">备注:</label>#}
+{#				<textarea cols="40" rows="8" name="textarea" id="textarea" placeholder="Textarea" data-theme="d"></textarea>	#}
+{#				</p>#}
+{#                  <p>#}
+{#                  <input class="btn btn-green" id="addbtn" type="submit" value="提交" />#}
+{#                  </p>#}
+{#                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />#}
+{#				    {% csrf_token %}#}
+{#			  </form>	#}
 			</div>
 		</div>
 		

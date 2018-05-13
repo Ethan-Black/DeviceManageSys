@@ -8,63 +8,95 @@
 		<title>设备管理系统</title>
 {#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 		<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/paeticles_style.css"/>
+        <link rel="stylesheet" href="/static/css/mb_login.css" />
+
         <style>
 			p {
 		font-size: 1.5em;
 		font-weight: bold;
 	}
-		
 		</style>
+
+        <style>
+            #lll{
+                position: absolute;
+              left: 2%;
+              top: 2%;
+            }
+        </style>
+
 		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
-	</head>
+{#	    <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>#}
+    </head>
 	
 	<body>
-		
-		<div data-role="page" style="background-image: url(/static/images/);">
-	<div data-role="header" data-theme="f">
-		<h1 role="heading">欢迎登陆</h1>
-		
-	</div>
 
-	<div data-role="content">
-		
-		<br>
-		<br>
+    <div id="particles-js">
+
+
+
+{#		<div data-role="page" style="background-image: url(/static/images/);">#}
+{#	<div data-role="header" data-theme="f">#}
+{#		<h1 role="heading">欢迎登陆</h1>#}
+{#		#}
+{#	</div>#}
+{##}
+{#	<div data-role="content">#}
+{#		#}
+{#		<br>#}
+{#		<br>#}
+{##}
+    <div id="lll">
+        <div class="welcome"><img src="/static/images/welcome.png"></div>
 
 	  <form id="mobile_login" action="/mobile_login/" method="post" autocomplete="off">
           <input type='hidden' name='csrfmiddlewaretoken' value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5' />
-{#	  	 <p style="backg"><font color="#2EB1E8" >用户管理系统</font></p>#}
+{#	  	 <p><font color="#2EB1E8" >用户管理系统</font></p>#}
 {#          <p style="margin-bottom:8px;"></p>#}
-		<div class="form-group marb20 {% if login_form.errors.username %} errorput {% endif %}">
-              <p>
-                  <label for="username"><b>用户名:</b></label>
-            <input type="text" name="username" id="username" value="" placeholder="请输入用户名" data-theme="a"/>
-            </p>
-        </div>
-      <br>
-          <div class="form-group marb8 {% if login_form.errors.password %} errorput {% endif %}">
+{#        <div class="login-inp">#}
+            <div class="login-inp form-group marb20 {% if login_form.errors.username %} errorput {% endif %}">
             <p>
-                <label for="password"><b>密码:</b></label>
-            <input type="password" name="password" id="password" value="" placeholder="请输入密码" data-theme="a" />
+{#                <label for="username"><b>用户名:</b></label>#}
+                <input type="text" name="username" id="username" value="" placeholder="请输入用户名" data-theme="a"/>
             </p>
-          </div>
+{#            </div>#}
+        </div>
+{#       <div class="">#}
+              <div class="login-inp form-group marb8 {% if login_form.errors.password %} errorput {% endif %}">
+                <p>
+{#                    <label for="password"><b>密码:</b></label>#}
+                <input type="password" name="password" id="password" value="" placeholder="请输入密码" data-theme="a" />
+              </p>
+              </div>
           <div class="error btns login-form-tips" id="jsLoginTips">{% for key, error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
-{#		<br>#}
+{#		</div>#}
+           <br>
+       <div class="login-inp">
 {#		<a data-role="button" id="submit" data-theme="a">登录</a>#}
           <input data-role="button" id="jsLoginBtn" type="submit" value="立即登录" />
           <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
           {% csrf_token %}
-	  </form>	
-	</div>
+       </div>
+	  </form>
 
-        <footer data-role="footer" data-position="fixed" data-theme="a" class="ui-mini">
-            <h3>©武汉理工大学</h3>
-        </footer>
+    </div>
+    </div>
+{#    </div>#}
 
-</div>
+{#        <footer data-role="footer" data-position="fixed" data-theme="a" class="ui-mini">#}
+{#            <h3>©武汉理工大学</h3>#}
+{#        </footer>#}
+
+{#</div>#}
 
 	</body>
+
+<!-- scripts -->
+<script type="text/javascript" src="/static/js/particles.js" ></script>
+<script type="text/javascript" src="/static/js/app.js" ></script>
+
 </html>
 
 

@@ -10,9 +10,134 @@
 
 {#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 {#        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>  #}
-		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/slick.css"/>
+
+        <style>
+		    a{text-decoration:none}
+            {#a{text-underline-color: #1b1b1b}#}
+	    </style>
+{#        <li><a data-transition="slide" id="dev_list"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>#}
+
+{#        <style>#}
+{#            #index_1,#}
+{#            #index_2,#}
+{#            #index_3,#}
+{#            #index_4,#}
+{#            #index_5,#}
+{#            #index_6,#}
+{#            #index_7,#}
+{#            #index_8#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+            {#background-color: goldenrod;#}
+{#            border: 5px solid snow;#}
+{#            height: 120px;#}
+{#            font-weight: bold;#}
+{#            text-align: center;#}
+{#            padding: 40px;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_1#}
+{#            {#}
+{#            background-color: darkolivegreen;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_2#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: goldenrod;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_3#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: saddlebrown;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_4#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: darkcyan;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_5#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: #c0504d;#}
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_6#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: darkslategray;#}
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_7#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: #2E2D3C;#}
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+{#            }#}
+{#    </style>#}
+{#        <style>#}
+{#            #index_8#}
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+{#            {#}
+{#            background-color: darkkhaki;#}
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+{#            }#}
+{#    </style>#}
+
+
+        <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
         <script src="/static/js/cordova-1.5.0.js"></script>
+        <script type="text/javascript" src="/static/js/slick.min.js"></script>
+        <script>
+        $(function(){
+            $('.slick').slick({
+                dots: true,
+                 {#slidesToShow: 3,#}
+  {#slidesToScroll: 3,#}
+              autoplay: true,
+              autoplaySpeed: 2500,
+                {#fade: true,#}
+            });
+        });
+    </script>
 
 {#        <script type="text/javascript">#}
 {#        $(document).ready(function () {#}
@@ -94,6 +219,14 @@
                 });
         </script>
 
+        <script>
+                function myFunction() {
+                    var x = document.getElementById("snackbar")
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                }
+            </script>
+
 	</head>
 	
 	<body>
@@ -117,7 +250,124 @@
 		
 {#		<div data-role="page" id="index" style="background-image: url(/static/images/beijing_.png);"> #}
 		<div class="ui-page" data-role="page" id="index" data-next="device">
+
             <link rel="stylesheet" href="/static/css/like_toast.css" />
+            <style>
+            #index_1,
+            #index_2,
+            #index_3,
+            #index_4,
+            #index_5,
+            #index_6,
+            #index_7,
+            #index_8
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            {#background-color: goldenrod;#}
+            border: 5px solid snow;
+            height: 120px;
+            font-weight: bold;
+            text-align: center;
+            padding: 40px;
+            }
+    </style>
+        <style>
+            #index_1
+            {
+            background-color: darkolivegreen;
+            }
+    </style>
+        <style>
+            #index_2
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: goldenrod;
+            }
+    </style>
+        <style>
+            #index_3
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: saddlebrown;
+            }
+    </style>
+        <style>
+            #index_4
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: darkcyan;
+            }
+    </style>
+        <style>
+            #index_5
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: #c0504d;
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+            }
+    </style>
+        <style>
+            #index_6
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: darkslategray;
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+            }
+    </style>
+        <style>
+            #index_7
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: #2E2D3C;
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+            }
+    </style>
+        <style>
+            #index_8
+            {#.ui-block-a#}
+            {#.ui-block-b,#}
+            {
+            background-color: darkkhaki;
+            {#border: 5px solid snow;#}
+            {#height: 150px;#}
+            {#font-weight: bold;#}
+            {#text-align: center;#}
+            {#padding: 52px;#}
+            }
+    </style>
+
+{#            <style>#}
+{#            #xxx#}
+            {#.ui-block-b#}
+{#            {#}
+{#            background-color: darkolivegreen;#}
+{#            border: 5px solid snow;#}
+{#            height: 150px;#}
+{#            font-weight: bold;#}
+{#            text-align: center;#}
+{#            padding: 52px;#}
+{#            }#}
+{#    </style>#}
+
             <script>
                 function myFunction() {
                     var x = document.getElementById("snackbar")
@@ -135,22 +385,52 @@
                 <a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>
             </div>
 			
-			<div data-role="content" data-theme="c">
-				<div id="snackbar">数据导出成功！</div>
-				<ul data-role="listview" class="ui-nodisc-icon ui-alt-icon">
-{#					<li><a data-transition="slide" id="dev_list"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>#}
-                    <li><a href="/list/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>
-                    <li><a href="#adddevice" data-transition="flip" ><img src="/static/images/plus_alt.png"  class="ui-li-icon">添加设备</a></li>
-					<li><a href="#rep_apply" data-transition="pop"><img src="/static/images/plus_alt.png"  class="ui-li-icon">维护申请</a></li>
-{#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修派工</a></li>#}
-                    <li><a href="/mobile_rep_record/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备维护记录</a></li>
-					<li><a href="/mobile_outsource/" data-transition="slideup"><img src="/static/images/list_28.png"  class="ui-li-icon">设备委外记录</a></li>
-{#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修验证</a></li>#}
-					<li><a href="#plan_apply" data-transition="slidefade"><img src="/static/images/list_28.png"  class="ui-li-icon">计划申请</a></li>
-					<li><a href="/mobile_dev_query/" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon">部件列表</a></li>
-                    <li><a href="/mobile_excel/" rel="external" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon" onclick="myFunction()">导出设备信息到Excel</a></li>
+			<div data-role="content" >
+                <div class="slick">
+                    <div><a href="#"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>
+                    <div><a href="#"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>
+                </div>
 
-				</ul>
+				<div id="snackbar">数据导出成功！</div>
+
+                <div class="ui-grid-a">
+                 <div class="ui-block-a" id="index_1"><a style="COLOR: black" href="/list/" data-transition="slide"><span>设备列表</span></a></div>
+                 <div class="ui-block-b" id="index_2"><a style="COLOR: black" href="#adddevice" data-transition="flip" ><span>添加设备</span></a></div>
+{#                    <div class="ui-block-c" id="index_7"><span>第二个列</span></div>#}
+{#                 <div class="ui-block-c"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-d"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-e"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-f"><span>第三个列</span></div>#}
+{#                 <div class="ui-block-g"><span>第三个列</span></div>#}
+{#                   <div class="ui-block-c"><span>第三个列</span></div>#}
+               </div>
+                <div class="ui-grid-a">
+                 <div class="ui-block-a" id="index_3"><a style="COLOR: black" href="#rep_apply" data-transition="pop"><span>维护申请</span></a></div>
+                 <div class="ui-block-b" id="index_4"><a style="COLOR: black" href="/mobile_rep_record/" data-transition="slide"><span>设备维护记录</span></a></div>
+               </div>
+                <div class="ui-grid-a">
+                 <div class="ui-block-a" id="index_5"><a style="COLOR: black" href="/mobile_outsource/" data-transition="slideup"><span>设备委外记录</span></a></div>
+                 <div class="ui-block-b" id="index_6"><a style="COLOR: black" href="#plan_apply" data-transition="slidefade"><span>计划申请</span></a></div>
+               </div>
+                <div class="ui-grid-a">
+                 <div class="ui-block-a" id="index_7"><a style="COLOR: black" href="/mobile_dev_query/" data-transition="slidedown"><span>部件列表</span></a></div>
+                 <div class="ui-block-b" id="index_8"><a style="COLOR: black" href="/mobile_excel/" rel="external" data-transition="slidedown" onclick="myFunction()"><span>导出设备信息到Excel</span></a></div>
+               </div>
+
+{#				<ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-theme="c">#}
+{#					<li><a data-transition="slide" id="dev_list"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>#}
+{#                    <li><a href="/list/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备列表</a></li>#}
+{#                    <li><a href="#adddevice" data-transition="flip" ><img src="/static/images/plus_alt.png"  class="ui-li-icon">添加设备</a></li>#}
+{#					<li><a href="#rep_apply" data-transition="pop"><img src="/static/images/plus_alt.png"  class="ui-li-icon">维护申请</a></li>#}
+{#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修派工</a></li>#}
+{#                    <li><a href="/mobile_rep_record/" data-transition="slide"><img src="/static/images/list_28.png"  class="ui-li-icon">设备维护记录</a></li>#}
+{#					<li><a href="/mobile_outsource/" data-transition="slideup"><img src="/static/images/list_28.png"  class="ui-li-icon">设备委外记录</a></li>#}
+{#					<li><a href="#"><img src="/static/images/list_28.png"  class="ui-li-icon">维修验证</a></li>#}
+{#					<li><a href="#plan_apply" data-transition="slidefade"><img src="/static/images/list_28.png"  class="ui-li-icon">计划申请</a></li>#}
+{#					<li><a href="/mobile_dev_query/" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon">部件列表</a></li>#}
+{#                    <li><a href="/mobile_excel/" rel="external" data-transition="slidedown"><img src="/static/images/list_28.png"  class="ui-li-icon" onclick="myFunction()">导出设备信息到Excel</a></li>#}
+{##}
+{#				</ul>#}
 				
 			</div>
 
