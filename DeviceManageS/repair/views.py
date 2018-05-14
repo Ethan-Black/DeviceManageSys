@@ -90,10 +90,10 @@ def dev_repair(request):
 @login_required
 def mb_rep_apply(request):
     # device_id = request.POST.get('device_id')
-    device_id = request.POST.get('device_id')
-    if device_id:
+    apply_id = request.POST.get('apply_id')
+    if apply_id:
         device_name = request.POST.get('device_name', '')
-        apply_id = request.POST.get('apply_id', '')
+        # apply_id = request.POST.get('apply_id', '')
         category = request.POST.get('category', '')
         status = request.POST.get('status', '')
         reason = request.POST.get('reason', '')
@@ -107,8 +107,10 @@ def mb_rep_apply(request):
         dev_rep.device_status = status
         dev_rep.apply_unit = apply_unit
         dev_rep.reason = reason
-        dev_rep.device_id = device_id
+        # dev_rep.device_id = device_id
         dev_rep.save()
+
+        DeviceMessage.objects.filter(device_name=device_name).update(device_status=status)
 
     devices_rep = DeviceRepair.objects.all()
 
