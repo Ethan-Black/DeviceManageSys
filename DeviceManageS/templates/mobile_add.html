@@ -45,9 +45,11 @@
             padding: 52px;
             }
     </style>
+
 		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	    <script type="text/javascript" src="/static/js/slick.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.grid-a-licious.min.js"></script>
     <script>
         $(function(){
             $('.slick').slick({
@@ -60,6 +62,25 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+                $(function(){
+                   $("#gridA").gridalicious({
+                       selector: '.item',　　//设置瀑布流中每一项的类名
+                        width: 225,　　　　　　//设置等宽列的宽度，默认225，注意后面不要加"px"
+                        gutter: 20,　　　　　　//设置瀑布流中没项的间隔，默认20，注意后面不要加"px"
+                        animate: true,      //设置生成瀑布流的动画效果，默认无动画效果
+                        animationOptions: {  //动画效果控制选项
+                            speed: 200,　　　　　　　　　　
+                            duration: 300,　　　　　　　　
+                            effect: 'fadeInOnAppear',　 //目前就这一种动画效果
+                            queue: true,
+                            complete: function () {}　　//动画完成后的回调
+                        }
+                                   });
+                                 })()
+                </script>
+
     </head>
 	<body>
 		<div data-role="page">
@@ -69,33 +90,42 @@
 
 			<div data-role="content">
 
-<div class="slick">
-    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>
-    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>
-{#    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>#}
-{#    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>#}
-{#    <div><a href="http://www.jq22.com"><img src="images/5.jpg" alt=""></a></div>#}
-</div>
 
-                <p>三列样式布局：</p>
-               <div class="ui-grid-a">
-                 <div class="ui-block-a"><a href="#" data-role="button"><span>第一个列</span></a></div>
-                 <div class="ui-block-b"><span>第二个列</span></div>
-{#                 <div class="ui-block-c"><span>第三个列</span></div>#}
-{#                 <div class="ui-block-d"><span>第三个列</span></div>#}
-{#                 <div class="ui-block-e"><span>第三个列</span></div>#}
-{#                 <div class="ui-block-f"><span>第三个列</span></div>#}
-{#                 <div class="ui-block-g"><span>第三个列</span></div>#}
-{#                   <div class="ui-block-c"><span>第三个列</span></div>#}
-               </div>
-                <div class="ui-grid-a">
-                 <div class="ui-block-a" id="xxx"><a style="COLOR: black" href="#"><span>第一个列</span></a></div>
-                 <div class="ui-block-b"><span>第二个列</span></div>
-               </div>
-                <div class="ui-grid-a">
-                 <div class="ui-block-a"><span>第一个列</span></div>
-                 <div class="ui-block-b"><span>第二个列</span></div>
-               </div>
+
+                <div class="slick">
+                    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>
+                    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>
+                {#    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>#}
+                {#    <div><a href="http://www.jq22.com"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>#}
+                {#    <div><a href="http://www.jq22.com"><img src="images/5.jpg" alt=""></a></div>#}
+                </div>
+
+                <div id="gridA">
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+            <div class="item">这是瀑布流中的一项</div>
+        </div>
+
+{#                <p>三列样式布局：</p>#}
+{#               <div class="ui-grid-a">#}
+{#                 <div class="ui-block-a"><a href="#" data-role="button"><span>第一个列</span></a></div>#}
+{#                 <div class="ui-block-b"><span>第二个列</span></div>#}
+
+{#                <div class="ui-grid-a">#}
+{#                 <div class="ui-block-a" id="xxx"><a style="COLOR: black" href="#"><span>第一个列</span></a></div>#}
+{#                 <div class="ui-block-b"><span>第二个列</span></div>#}
+{#               </div>#}
+{#                <div class="ui-grid-a">#}
+{#                 <div class="ui-block-a"><span>第一个列</span></div>#}
+{#                 <div class="ui-block-b"><span>第二个列</span></div>#}
+{#               </div>#}
 
 {#			  <form id="add" action="/mobile_add/success/" method="post" data-ajax="false">#}
 {##}

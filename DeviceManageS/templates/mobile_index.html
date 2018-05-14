@@ -227,26 +227,46 @@
                 }
             </script>
 
+{#         <script type="text/javascript" src="/static/js/jquery.grid-a-licious.min.js"></script>#}
+
+{#        <script type="text/javascript">#}
+{#                $(function(){#}
+{#                   $(".ui-grid-a").gridalicious({#}
+{#                       selector: '.item',　　//设置瀑布流中每一项的类名#}
+{#                        width: 225,　　　　　　//设置等宽列的宽度，默认225，注意后面不要加"px"#}
+{#                        gutter: 20,　　　　　　//设置瀑布流中没项的间隔，默认20，注意后面不要加"px"#}
+{#                        animate: true,      //设置生成瀑布流的动画效果，默认无动画效果#}
+{#                        animationOptions: {  //动画效果控制选项#}
+{#                            speed: 200,　　　　　　　　　　#}
+{#                            duration: 300,　　　　　　　　#}
+{#                            effect: 'fadeInOnAppear',　 //目前就这一种动画效果#}
+{#                            queue: true,#}
+{#                            complete: function () {}　　//动画完成后的回调#}
+{#                        }#}
+{#                                   });#}
+{#                                 })()#}
+{#                </script>#}
+
 	</head>
 	
 	<body>
 
         <script>
-    $(document).on("swipeleft", ".ui-page", function () {
-        var thePage = $(this),
-                next = thePage.jqmData("next");
-        if (next) {
-            $(":mobile-pagecontainer").pagecontainer("change", "#" + next, {transition: "slide"});
-        }
-    });
-    $(document).on("swiperight", ".ui-page", function () {
-        var thePage = $(this),
-                prev = thePage.jqmData("prev");
-        if (prev) {
-            $(":mobile-pagecontainer").pagecontainer("change", "#" + prev, {transition: "slide", reverse: true});
-        }
-    });
-</script>
+            $(document).on("swipeleft", ".ui-page", function () {
+                var thePage = $(this),
+                        next = thePage.jqmData("next");
+                if (next) {
+                    $(":mobile-pagecontainer").pagecontainer("change", "#" + next, {transition: "slide"});
+                }
+            });
+            $(document).on("swiperight", ".ui-page", function () {
+                var thePage = $(this),
+                        prev = thePage.jqmData("prev");
+                if (prev) {
+                    $(":mobile-pagecontainer").pagecontainer("change", "#" + prev, {transition: "slide", reverse: true});
+                }
+            });
+        </script>
 		
 {#		<div data-role="page" id="index" style="background-image: url(/static/images/beijing_.png);"> #}
 		<div class="ui-page" data-role="page" id="index" data-next="device">
@@ -254,9 +274,16 @@
             <link rel="stylesheet" href="/static/css/like_toast.css" />
             <link rel="stylesheet" type="text/css" href="/static/css/slick.css"/>
             <style>
-		    a{text-decoration:none}
-            {#a{text-underline-color: #1b1b1b}#}
-	    </style>
+                a{text-decoration:none}
+                {#a{text-underline-color: #1b1b1b}#}
+                .ui-grid-a{
+                    -webkit-border-radius: 2rem;
+                    -moz-border-radius: 2rem;
+                    border-radius: 1.5rem;
+                    box-shadow: 8px 8px 5px #4b555b;
+                }
+            </style>
+
             <style>
             #index_1,
             #index_2,
@@ -270,12 +297,25 @@
             {#.ui-block-b,#}
             {
             {#background-color: goldenrod;#}
-            border: 5px solid snow;
-            height: 120px;
+            border: 3px solid lavenderblush;
+            height: 130px;
             font-weight: bold;
             text-align: center;
-            padding: 40px;
+            padding: 2px;
+                {#margin-left: 1px;#}
             }
+            .pic {
+                padding-left: 40px;
+                padding-top: 10px;
+                width: 4.5rem;
+                    height: 4.5rem;
+                transition: all 0.5s ease 0s;
+                overflow: hidden;
+                }
+                .pic{
+                    -webkit-animation: swing .4s .2s ease both;
+                -moz-animation: swing .4s .2s ease both;
+                }
     </style>
         <style>
             #index_1
@@ -360,6 +400,19 @@
             }
     </style>
 
+            <style>
+                #dev_img{
+                    background-color: #3388cc;
+                    height: 12rem;
+                }
+                #userr{
+                    padding-left: 30%;
+                    padding-top: 12%;
+                }
+                .p_left{float:left; width: 40%; text-align: right; color: grey}
+                .p_right{float:right; width: 60%; text-align: left; color: black; font-weight:bold}
+            </style>
+
 {#            <style>#}
 {#            #xxx#}
             {#.ui-block-b#}
@@ -380,7 +433,30 @@
                     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             </script>
-            <div data-role="panel" id="panel" data-position="left" data-theme="b" data-display="push"></div>
+
+            <div data-role="panel" id="panel" data-position="left" data-theme="b" data-display="push">
+                <div id="dev_img"><img id="userr" width="120" height="120" src="/static/img/name.png" width="80%" /></div>
+                <br>
+                <p class="p_left">公司名称&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">WHUT</p>
+                <hr/>
+                <p class="p_left">联系电话&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">111</p>
+                <hr/>
+                <p class="p_left">邮箱&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">1@1.com</p>
+                <hr/>
+                <p class="p_left">主营业务&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">机械电子</p>
+                <hr/>
+                <p class="p_left">价值观&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">富强民主...</p>
+                <hr/>
+                <p class="p_left">地址&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">武汉市</p>
+                <hr/>
+            </div>
+
             <div data-role="header" data-position="fixed" data-theme="f" class="ui-shadow">
 {#                <a data-iconpos="notext" href="#panel" data-role="button" data-icon="flat-menu"></a>#}
 {#                <p>&nbsp设备管理系统&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp服务电话：<span>33333333</span></p>#}
@@ -392,15 +468,15 @@
 			
 			<div data-role="content" >
                 <div class="slick">
-                    <div><a href="#"><img width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>
-                    <div><a href="#"><img width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>
+                    <div><a href="#"><img class="ban" width="325" height="200" src="/static/images/album-bb.jpg" alt=""></a></div>
+                    <div><a href="#"><img class="ban" width="325" height="200" src="/static/images/mayun.png" alt=""></a></div>
                 </div>
 
 				<div id="snackbar">数据导出成功！</div>
 
                 <div class="ui-grid-a">
-                 <div class="ui-block-a" id="index_1"><a style="COLOR: black" href="/list/" data-transition="slide"><span>设备列表</span></a></div>
-                 <div class="ui-block-b" id="index_2"><a style="COLOR: black" href="#adddevice" data-transition="flip" ><span>添加设备</span></a></div>
+                 <div class="ui-block-a" id="index_1"><a style="COLOR: black" href="/list/" data-transition="slide"><img class="pic" src="/static/img/list.png"><span>&emsp;&emsp;设备列表</span></a></div>
+                 <div class="ui-block-b" id="index_2"><a style="COLOR: black" href="#adddevice" data-transition="flip" ><img class="pic" src="/static/img/apply2.png"><span>&emsp;&emsp;添加设备</span></a></div>
 {#                    <div class="ui-block-c" id="index_7"><span>第二个列</span></div>#}
 {#                 <div class="ui-block-c"><span>第三个列</span></div>#}
 {#                 <div class="ui-block-d"><span>第三个列</span></div>#}
@@ -410,16 +486,16 @@
 {#                   <div class="ui-block-c"><span>第三个列</span></div>#}
                </div>
                 <div class="ui-grid-a">
-                 <div class="ui-block-a" id="index_3"><a style="COLOR: black" href="#rep_apply" data-transition="pop"><span>维护申请</span></a></div>
-                 <div class="ui-block-b" id="index_4"><a style="COLOR: black" href="/mobile_rep_record/" data-transition="slide"><span>设备维护记录</span></a></div>
+                 <div class="ui-block-a" id="index_3"><a style="COLOR: black" href="#rep_apply" data-transition="pop"><img class="pic" src="/static/img/apply.png"><span>&emsp;&emsp;维护申请</span></a></div>
+                 <div class="ui-block-b" id="index_4"><a style="COLOR: black" href="/mobile_rep_record/" data-transition="slide"><img class="pic" src="/static/img/history.png"><span>&emsp;&emsp;设备维护记录</span></a></div>
                </div>
                 <div class="ui-grid-a">
-                 <div class="ui-block-a" id="index_5"><a style="COLOR: black" href="/mobile_outsource/" data-transition="slideup"><span>设备委外记录</span></a></div>
-                 <div class="ui-block-b" id="index_6"><a style="COLOR: black" href="#plan_apply" data-transition="slidefade"><span>计划申请</span></a></div>
+                 <div class="ui-block-a" id="index_5"><a style="COLOR: black" href="/mobile_outsource/" data-transition="slideup"><img class="pic" src="/static/img/hhh.png"><span>&emsp;&emsp;设备委外记录</span></a></div>
+                 <div class="ui-block-b" id="index_6"><a style="COLOR: black" href="#plan_apply" data-transition="slidefade"><img class="pic" src="/static/img/record.png"><span>&emsp;&emsp;计划申请</span></a></div>
                </div>
                 <div class="ui-grid-a">
-                 <div class="ui-block-a" id="index_7"><a style="COLOR: black" href="/mobile_dev_query/" data-transition="slidedown"><span>部件列表</span></a></div>
-                 <div class="ui-block-b" id="index_8"><a style="COLOR: black" href="/mobile_excel/" rel="external" data-transition="slidedown" onclick="myFunction()"><span>导出设备信息到Excel</span></a></div>
+                 <div class="ui-block-a" id="index_7"><a style="COLOR: black" href="/mobile_dev_query/" data-transition="slidedown"><img class="pic" src="/static/img/qqq.png"><span>&emsp;&emsp;部件列表</span></a></div>
+                 <div class="ui-block-b" id="index_8"><a style="COLOR: black" href="/mobile_excel/" rel="external" data-transition="slidedown" onclick="myFunction()"><img class="pic" src="/static/img/xls.png"><span>&emsp;&emsp;导出设备信息</span></a></div>
                </div>
 
 {#				<ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-theme="c">#}
@@ -673,12 +749,32 @@
 
                   <p>
 			    <label for="device_name">设备名称:</label>
-			    <input type="text" name="device_name" id="device_name" value="" data-theme="d" required="required"/>
+                      <select name="device_name" id="device_name" data-native-menu="true">
+                          <optgroup label=起重机械>
+                              {% for dev in all_lift_devs %}
+                                <option>{{ dev.device_name }}</option>
+{#                         <option value="tue">星期二</option>#}
+                              {% endfor %}
+                          </optgroup>
+                              <optgroup label=汽车>
+                              {% for dev in all_car_devs %}
+                                <option>{{ dev.device_name }}</option>
+{#                         <option value="tue">星期二</option>#}
+                              {% endfor %}
+                              </optgroup>
+{#                         <option value="wed">星期三</option>#}
+{#                         <option value="thu">星期四</option>#}
+{#                         <option value="fri">星期五</option>#}
+{#                              <optgroup label="工作日">#}
+{#                         <option value="sat">星期六</option>#}
+{#                         <option value="sun">星期日</option>#}
+                        </select>
+{#			    <input type="text" name="device_name" id="device_name" value="" data-theme="d" required="required"/>#}
 			    </p>
-                  <p>
-			    <label for="device_id">设备编号:</label>
-			    <input type="text" name="device_id" id="device_id" value="" data-theme="d" required="required"/>
-			    </p>
+{#                  <p>#}
+{#			    <label for="device_id">设备编号:</label>#}
+{#			    <input type="text" name="device_id" id="device_id" value="" data-theme="d" required="required"/>#}
+{#			    </p>#}
 				<p>
 				<label for="category">设备类别:</label>
 					<select name="category" id="category">
@@ -689,7 +785,7 @@
                   <p>
 				<label for="status">申请设备状态:</label>
 					<select name="status" id="status">
-					  <option value="normal">正常</option>
+{#					  <option value="normal">正常</option>#}
 					  <option value="repair">维修</option>
                         <option value="check">检查</option>
 					</select>
