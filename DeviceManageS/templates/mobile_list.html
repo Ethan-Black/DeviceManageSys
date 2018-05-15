@@ -9,6 +9,21 @@
 {#        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>  #}
     <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/animations.css"/>
+{#    <style>#}
+{#        .ui-block-b{#}
+            {#background-color: grey;#}
+{#            text-align: center;#}
+{#            border: 1px solid lightgray;#}
+{#            background-color: white;#}
+{#            padding-top: 8px;#}
+{#        }#}
+{#        .title{#}
+{#            text-align: center;#}
+{#            text-overflow:ellipsis;#}
+{#            font-family: "微软雅黑";#}
+{#	        font-weight: normal;#}
+{#        }#}
+{#    </style>#}
 	
 	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
     <script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
@@ -32,6 +47,23 @@
 <body>
 
     <div data-role="page" id="mlist" style="background-image: url(img/beijing_.png);">
+
+    <style>
+        .ui-block-b{
+            {#background-color: grey;#}
+            text-align: center;
+            border: 1px solid lightgray;
+            background-color: white;
+            padding-top: 8px;
+        }
+        .title{
+            text-align: center;
+            text-overflow:ellipsis;
+            font-family: "微软雅黑";
+	        font-weight: normal;
+        }
+    </style>
+
     <div data-role="header" data-position="fixed" data-theme="f">
     	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
 			<h1>设备类别</h1>
@@ -99,7 +131,7 @@
             {% for category in categories %}
 
                 <div class="ui-block-b">
-                    <a href="/message/?category={{ category.cate_name }}" data-ajax='false' id="ss"><img src="/static/images/1.png" width="80%" /></a>
+                    <a href="/message/?category={{ category.cate_name }}" data-ajax='false' id="ss"><img src="/static/img/list.png" width="80%" /></a>
                     <div class="title">
 {#                        <a href="/message/?category={{ category.cate_name }}" rel="external">{{ category.cate_name }}</a>#}
                         <p>{{ category.cate_name }}</p>
