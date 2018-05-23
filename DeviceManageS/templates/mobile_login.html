@@ -59,7 +59,7 @@
             <div class="login-inp form-group marb20 {% if login_form.errors.username %} errorput {% endif %}">
             <p>
 {#                <label for="username"><b>用户名:</b></label>#}
-                <input type="text" name="username" id="username" value="" placeholder="请输入用户名" data-theme="a"/>
+                <input type="text" name="username" id="username" value="" placeholder="请输入用户名" data-theme="a" required="required"/>
             </p>
 {#            </div>#}
         </div>
@@ -67,7 +67,7 @@
               <div class="login-inp form-group marb8 {% if login_form.errors.password %} errorput {% endif %}">
                 <p>
 {#                    <label for="password"><b>密码:</b></label>#}
-                <input type="password" name="password" id="password" value="" placeholder="请输入密码" data-theme="a" />
+                <input type="password" name="password" id="password" value="" placeholder="请输入密码" data-theme="a" required="required"/>
               </p>
               </div>
           <div class="error btns login-form-tips" id="jsLoginTips">{% for key, error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>

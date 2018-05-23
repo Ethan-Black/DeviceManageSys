@@ -7,9 +7,9 @@ from django.db import models
 
 
 class DeviceRepair(models.Model):
-    apply_id = models.CharField(max_length=20, verbose_name=u'申请编号')
-    device_id = models.CharField(max_length=20, verbose_name=u'设备编号')
-    device_name = models.CharField(max_length=10, verbose_name=u'设备名称')
+    apply_id = models.CharField(max_length=20, verbose_name=u'申请编号', null=True, blank=True)
+    device_id = models.CharField(max_length=20, verbose_name=u'设备编号', null=True, blank=True)
+    device_name = models.CharField(max_length=10, verbose_name=u'设备名称', null=True, blank=True)
     category_name = models.CharField(choices=(('lift_dev', u'起重机械'), ('car', u'汽车')),
                                      max_length=30, verbose_name=u'类别名称', default='car')
     reason = models.CharField(max_length=40, verbose_name=u'申请原因', null=True, blank=True)
@@ -20,6 +20,8 @@ class DeviceRepair(models.Model):
     apply_time = models.DateField(verbose_name=u'申请时间', null=True, blank=True, auto_now=True)
     rep_status = models.CharField(choices=(('wait', u'待维护'), ('ok', u'已修复')),
                                   max_length=20, verbose_name=u'设备状态', default='wait')
+    belong_man = models.CharField(choices=(('liu', u'liu'), ('-', u'-')),
+                                  max_length=20, verbose_name=u'负责人', default='-')
 
     class Meta:
         verbose_name = u'设备维修记录'

@@ -2,6 +2,7 @@
 import StringIO
 import base64
 import json
+import logging
 
 import os
 import xlwt
@@ -19,10 +20,17 @@ from .models import DeviceMessage, DeviceCategory
 
 # Create your views here.
 
+# Get an instance of a logger
+logger = logging.getLogger('django')
+
 
 @login_required
 def mb_index(request):
-    return render(request, 'mobile_index.html')
+    logger.info('Login Success!')
+
+    all_lift_devs = DeviceMessage.objects.values('device_name').filter(category_name='lift_dev')
+    all_car_devs = DeviceMessage.objects.values('device_name').filter(category_name='car')
+    return render(request, 'mobile_index.html', {'all_lift_devs': all_lift_devs, 'all_car_devs': all_car_devs})
 
 
 @login_required
@@ -291,6 +299,8 @@ def device_normal(request):
 
 @login_required
 def device_add(request):
+    logger.info('Add device success!')
+
     # device_id = request.POST.get('device_id')
     device_id = request.POST.get('device_id')
     if device_id:

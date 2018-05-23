@@ -1,12 +1,18 @@
 # _*_encoding:utf-8 _*_
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
 
-# Create your views here.
 from devices.models import DeviceMessage
 from repair.models import DeviceRepair
+
+# Create your views here.
+
+# Get an instance of a logger
+logger = logging.getLogger('django')
 
 
 @login_required
@@ -89,6 +95,8 @@ def dev_repair(request):
 
 @login_required
 def mb_rep_apply(request):
+    logger.info('Success to repair apply!')
+
     # device_id = request.POST.get('device_id')
     apply_id = request.POST.get('apply_id')
     if apply_id:
@@ -119,6 +127,8 @@ def mb_rep_apply(request):
 
 @login_required
 def mb_get_reps(request):
+    logger.info('Check the work order now!')
+
     apply_id = request.GET.get('apply_id', '')
     if apply_id:
         DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')

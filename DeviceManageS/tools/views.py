@@ -1,22 +1,31 @@
 # _*_encoding:utf-8 _*_
+# import StringIO
 import base64
+import logging
 import os
 import qrcode
+import xlwt
+import StringIO
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.utils.six import BytesIO, StringIO
+from django.utils.six import BytesIO
 
 from PIL import Image
-import xlwt
 from xlwt import Workbook
 
 from devices.models import DeviceMessage
 
 # Create your views here.
 
+# Get an instance of a logger
+logger = logging.getLogger('django')
+
 
 def generate_qrcode(request):
+
+    logger.info('Generate the device qrcode!')
+
     dev_id = request.GET.get('dev_id')
     dev = DeviceMessage.objects.get(device_id=dev_id)
     data = u'设备编号：' + dev.device_id + '\n' + u'设备名称：' + dev.device_name
@@ -33,6 +42,9 @@ def generate_qrcode(request):
 
 @login_required
 def mb_excel(request):
+
+    logger.info('Export devices data to test.xls!')
+
     # response = HttpResponse(mimetype='application/vnd.ms-excel')
     # response['Content-Disposition'] = 'attachment;filename=export_dev_msg.xls'
     # wb = xlwt.Workbook(encoding='utf-8')
