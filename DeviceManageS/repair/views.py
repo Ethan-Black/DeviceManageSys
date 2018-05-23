@@ -134,5 +134,64 @@ def mb_get_reps(request):
     #                   {'devices_rep': devices_rep, 'devices_plan': devices_plan, 'flag': user_flag})
     # else:
     devices_rep = DeviceRepair.objects.filter(rep_status='wait')\
-        .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'category_name')
+        .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
+    return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
+
+
+@login_required
+def mb_get_reps_me(request):
+    apply_id = request.GET.get('apply_id', '')
+    if apply_id:
+        DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
+    # plan_id = request.GET.get('plan_id', '')
+    # if plan_id:
+    #     DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='ok')
+    user_flag = request.session.get('flag')
+    user = request.session.get('username', '-')
+    # if user_flag == '0':
+    #     devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+    #         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
+    #     devices_rep = DeviceRepair.objects.filter(rep_status='wait')
+    #     return render(request, 'mobile_pending.html',
+    #                   {'devices_rep': devices_rep, 'devices_plan': devices_plan, 'flag': user_flag})
+    # else:
+    devices_rep = DeviceRepair.objects.filter(rep_status='wait', belong_man=user)\
+        .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
+    return render(request, 'mobile_pending_me.html', {'devices_rep': devices_rep, 'flag': user_flag})
+
+
+def mb_robbing(request):
+    apply_id = request.GET.get('apply_id', '')
+    user_flag = request.session.get('flag')
+    if apply_id:
+        man = DeviceRepair.objects.filter(apply_id=apply_id)[0].belong_man
+        if man == '-':
+            user = request.session.get('username', '-')
+            DeviceRepair.objects.filter(apply_id=apply_id).update(belong_man=user)
+            devices_rep = DeviceRepair.objects.filter(rep_status='wait', belong_man=user) \
+                .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
+            return render(request, 'mobile_pending_me.html', {'devices_rep': devices_rep, 'flag': user_flag})
+        else:
+            devices_rep = DeviceRepair.objects.filter(rep_status='wait') \
+                .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
+            return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
+
+    # devices_rep = DeviceRepair.objects.filter(rep_status='wait', belong_man=user)\
+    #     .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'category_name')
+    else:
+        devices_rep = DeviceRepair.objects.filter(rep_status='wait') \
+            .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
+        return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
+
+
+def mb_dispatch(request):
+    apply_id = request.POST.get('apply_id', '')
+    user = request.POST.get('man', '')
+    user_flag = request.session.get('flag')
+    if apply_id:
+        man = DeviceRepair.objects.filter(apply_id=apply_id)[0].belong_man
+        if man == '-':
+            DeviceRepair.objects.filter(apply_id=apply_id).update(belong_man=user)
+    devices_rep = DeviceRepair.objects.filter(rep_status='wait') \
+        .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
     return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})

@@ -27,7 +27,7 @@ from outsource.views import mb_outs, device_out_detail, mb_out_edit, mb_out_edit
 from plans.views import mb_pending_plan, mb_get_plans, mb_get_plans_ok, mb_plan_apply, device_plan_detail, \
     device_plan_do_detail, mb_pending_plan_no, mb_get_plans_no
 from repair.views import dev_repair, mb_rep_apply, mb_get_reps, mb_get_rep_record, mb_get_rep_record_ok, \
-    mb_device_rep_apply, device_rep_detail, device_rep_do_detail
+    mb_device_rep_apply, device_rep_detail, device_rep_do_detail, mb_get_reps_me, mb_robbing, mb_dispatch
 from tools.views import generate_qrcode, mb_excel, mb_qcode
 from users.views import LoginView, MobileLoginView, mb_userinfo, user_logout, mb_userinfo_edit, mb_me_edit_success
 from devices.views import device_message, device_detail, device_category, \
@@ -70,6 +70,11 @@ urlpatterns = [
 
     url(r'^mobile_pending_plan/$', mb_pending_plan, name='mobile_pending_plan'),
     url(r'^mobile_pending/$', mb_get_reps, name='mobile_pending'),
+    url(r'^mobile_pending_me/$', mb_get_reps_me, name='mobile_pending_me'),
+
+    url(r'^mobile_robbing/$', mb_robbing, name='mobile_robbing'),
+    # url(r'^mobile_robbing_res/$', TemplateView.as_view(template_name='mobile_robbing.html'), name='mobile_robbing_res'),
+    url(r'^mobile_dispatch/$', mb_dispatch, name='mobile_dispatch'),
 
     url(r'^mobile_plan/', mb_get_plans, name='mobile_plan'),
     url(r'^mobile_plan_ok/', mb_get_plans_ok, name='mobile_plan_ok'),
@@ -90,7 +95,7 @@ urlpatterns = [
     url(r'^mobile_dev_msg/', device_detail, name='mobile_dev_msg'),
     url('^mobile_dev_edit/$', mb_device_edit, name='mobile_dev_edit'),
     url(r'^mobile_dev_edit/success/', mb_dev_edit_success, name='mobile_dev_edit_success'),
-    url(r'^mobile_dev_del/', mobile_del, name='mobile_add_success'),
+    url(r'^mobile_dev_del/', mobile_del, name='mobile_dev_del'),
 
     url('^mobile_outsource/$', mb_outs, name='mobile_outsource'),
     url(r'^mobile_out_msg/', device_out_detail, name='mobile_out_msg'),
@@ -111,6 +116,7 @@ urlpatterns = [
 
     url(r'^mobile_qcode/', TemplateView.as_view(template_name='mobile_qcode.html'), name='mobile_qcode'),
     url('^mobile_add/$', mb_qcode, name='mobile_add'),
+    url('^mobile_grid/$', TemplateView.as_view(template_name='mobile_add.html'), name='mobile_grid'),
 
 ]
 

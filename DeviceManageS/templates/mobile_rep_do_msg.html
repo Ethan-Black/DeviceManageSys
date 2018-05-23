@@ -114,6 +114,9 @@
                 <p class="p_left">维修状态&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.rep_status }}</p>
                 <hr/>
+                <p class="p_left">负责人&nbsp;&nbsp;:&emsp;</p>
+                <p class="p_right">{{ dev_detail.belong_man }}</p>
+                <hr/>
                 <p class="p_left">备注&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.ps }}</p>
                 <hr/>
@@ -124,30 +127,54 @@
 {##}
 {#				</ul>#}
 
-{#                {% ifequal '0' flag %}#}
-                    <a href="/mobile_pending/?apply_id={{ dev_detail.apply_id }}" data-transition="slide">
-                            <button>已完成</button>
+                {% ifequal '0' flag %}
+                    <a href="#dispatch" data-transition="flow">
+                            <button>派遣维修工</button>
                         </a>
-{##}
+
 {#                    <a href="#mobile_delete" data-transition="flow">#}
 {#                        <button>删除</button>#}
 {#                        </a>#}
 {#                    <a href="/mobile_rep_apply/?dev_id={{ dev_detail.device_id }}" data-transition="slide">#}
 {#                        <button>设备维护申请</button>#}
 {#                        </a>#}
-{#            {% endifequal %}#}
+                {% else %}
+                    <a href="/mobile_robbing/?apply_id={{ dev_detail.apply_id }}" data-transition="slide">
+                            <button>抢单</button>
+                        </a>
+
+                    <a href="/mobile_pending/?apply_id={{ dev_detail.apply_id }}" data-transition="slide">
+                            <button>已完成</button>
+                        </a>
+                {% endifequal %}
+
 
 			</div>
 
 		</div>
 
 
-        <div data-role="dialog" id="mobile_delete">
+        <div data-role="dialog" id="dispatch">
 			<div data-role="content" data-theme="b">
-				<span class="tittle" id="title">确认删除此设备信息吗?</span>
-
-				<a href="/message/?dev_id={{ dev_detail.device_id }}" data-role="button" data-theme="b">确定</a>
-				<a href="#" data-role="button" data-theme="c" data-rel="back">取消</a>
+				<span class="tittle" id="title">派遣</span>
+                <form id="dispatch" action="/mobile_dispatch/" method="post" data-ajax="false">
+                    <p>
+				<label for="apply_id">工单编号:</label>
+		        <input type="text" name="apply_id" id="apply_id" value={{ dev_detail.apply_id }} readonly="readonly" data-theme="d" />
+				</p>
+                    <p>
+				<label for="man">选择维修工:</label>
+					<select name="man" id="man">
+					  <option value="zhang">张三</option>
+					  <option value="liu">李四</option>
+					</select>
+				</p>
+                    <p>
+                  <input class="btn btn-green" id="addbtn" type="submit" value="确定" />
+                  </p>
+                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+			  </form>
 			</div>
 		</div>
 
