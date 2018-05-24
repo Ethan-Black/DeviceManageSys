@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+{#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+    <link href="/static/css/style_nest.css" rel="stylesheet" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/static/css/slick.css"/>
+
+		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+<script src="/static/js/jquery.nested.js"></script>
+<script src="/static/js/makeboxes.js"></script>
+
+    </head>
+	<body>
+		<div data-role="page">
+			<div data-role="header" data-theme="f">
+				<h1>添加设备</h1>
+			</div>
+
+			<div data-role="content">
+                <div id="container">
+                  <div class="box size11"><a style="COLOR: black; text-align: center" href="#rep_apply" data-transition="pop"><span>维护申请</span></a></div>
+                  <div class="box size21">2</div>
+                  <div class="box size32">3</div>
+                  <div class="box size11">4</div>
+                  <div class="box size21">5</div>
+                  <div class="box size12">6</div>
+                  <div class="box size21">7</div>
+                  <div class="box size11">8</div>
+{#                    <div class="box size22">21</div>#}
+{#                    <div class="box size23">22</div>#}
+                    <div class="box size31">9</div>
+
+                </div>
+                <script type="text/javascript" >
+
+                      $(function() {
+
+                        $('#container').nested({minWidth: 78, gutter: 4});
+
+                      });
+
+                </script>
+
+			</div>
+		</div>
+		
+	</body>
+</html>
