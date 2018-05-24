@@ -8,20 +8,21 @@ from django.db import models
 
 class DeviceMessage(models.Model):
     device_id = models.CharField(max_length=20, verbose_name=u'设备编号', null=True, blank=True)
-    device_name = models.CharField(max_length=10, verbose_name=u'设备名称')
-    category_name = models.CharField(choices=(('lift_dev', u'起重机械'), ('car', u'汽车')),
-                                     max_length=30, verbose_name=u'类别名称')
+    device_name = models.CharField(max_length=10, verbose_name=u'设备名称', null=True, blank=True)
+    category_name = models.CharField(choices=(('lift_dev', u'起重机械'), ('car', u'汽车'), ('cut', u'金属切削机'),
+                                              ('cast', u'铸造及热处'), ('motive', u'动力设备'), ('office', u'办公用具')),
+                                     max_length=30, verbose_name=u'类别名称', default='car')
     device_model = models.CharField(max_length=20, verbose_name=u'设备型号', null=True, blank=True)
     im_part_name = models.CharField(max_length=10, verbose_name=u'重要配件名称', null=True, blank=True)
     im_part_num = models.CharField(max_length=10, verbose_name=u'重要配件数', null=True, blank=True)
     device_status = models.CharField(choices=(('repair', u'维修'), ('normal', u'正常'), ('check', u'检查')),
-                                     max_length=10, verbose_name=u'设备状态')
+                                     max_length=10, verbose_name=u'设备状态', default='normal')
     make_unit = models.CharField(max_length=10, verbose_name=u'制造单位', null=True, blank=True)
     make_date = models.DateField(verbose_name=u'制造日期', null=True, blank=True)
     in_date = models.DateField(verbose_name=u'进厂日期', null=True, blank=True)
     use_date = models.DateField(verbose_name=u'开用日期', null=True, blank=True)
     belong_id = models.CharField(choices=(('G0', u'G0'), ('G8', u'G8'), ('G6', u'G6')),
-                                 max_length=5, verbose_name=u'所属部门编号')
+                                 max_length=5, verbose_name=u'所属部门编号', default='G0')
     employee_id = models.CharField(max_length=20, verbose_name=u'操作工人号', null=True, blank=True)
     repair_per = models.CharField(max_length=20, verbose_name=u'检修周期', null=True, blank=True)
     change_per = models.CharField(max_length=20, verbose_name=u'更换周期', null=True, blank=True)
@@ -34,7 +35,7 @@ class DeviceMessage(models.Model):
     made_id = models.CharField(max_length=20, verbose_name=u'出厂编号', null=True, blank=True)
     place = models.CharField(max_length=20, verbose_name=u'存放地点', null=True, blank=True)
     made_time = models.DateField(verbose_name=u'出厂日期', null=True, blank=True)
-    value = models.CharField(max_length=20, verbose_name=u'本币原值')
+    value = models.CharField(max_length=20, verbose_name=u'本币原值', default='0')
     last_rep_time = models.DateField(verbose_name=u'上次检修时间', null=True, blank=True)
     next_rep_time = models.DateField(verbose_name=u'下次检修时间', null=True, blank=True)
     device_code = models.CharField(max_length=20, verbose_name=u'设备代码', null=True, blank=True)
@@ -46,7 +47,7 @@ class DeviceMessage(models.Model):
     belong_place = models.CharField(max_length=20, verbose_name=u'所属地点', null=True, blank=True)
     supplier = models.CharField(max_length=20, verbose_name=u'供应商', null=True, blank=True)
     device_rank = models.CharField(choices=(('special', u'A特种设备'), ('important', u'B重要设备'), ('normal', u'C一般设备')),
-                                   max_length=20, verbose_name=u'设备等级')
+                                   max_length=20, verbose_name=u'设备等级', default='normal')
     enter = models.CharField(max_length=20, verbose_name=u'录入人', null=True, blank=True)
     enter_time = models.DateField(verbose_name=u'录入时间', null=True, blank=True)
     leader_appr = models.CharField(max_length=20, verbose_name=u'部门领导审批', null=True, blank=True)
@@ -62,8 +63,8 @@ class DeviceMessage(models.Model):
 
 
 class DeviceCategory(models.Model):
-    cate_id = models.CharField(max_length=5, verbose_name=u'类别编号')
-    cate_name = models.CharField(max_length=30, verbose_name=u'类别名称')
+    cate_id = models.CharField(max_length=5, verbose_name=u'类别编号', null=True, blank=True)
+    cate_name = models.CharField(max_length=30, verbose_name=u'类别名称', null=True, blank=True)
     remark = models.CharField(max_length=30, verbose_name=u'备注', null=True, blank=True)
     complete_status = models.CharField(max_length=10, verbose_name=u'完成情况', null=True, blank=True)
 

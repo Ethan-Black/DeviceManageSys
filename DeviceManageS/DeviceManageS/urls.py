@@ -28,7 +28,7 @@ from plans.views import mb_pending_plan, mb_get_plans, mb_get_plans_ok, mb_plan_
     device_plan_do_detail, mb_pending_plan_no, mb_get_plans_no
 from repair.views import dev_repair, mb_rep_apply, mb_get_reps, mb_get_rep_record, mb_get_rep_record_ok, \
     mb_device_rep_apply, device_rep_detail, device_rep_do_detail, mb_get_reps_me, mb_robbing, mb_dispatch
-from tools.views import generate_qrcode, mb_excel, mb_qcode
+from tools.views import generate_qrcode, mb_excel, mb_qcode, mb_visual, mb_visual_status
 from users.views import LoginView, MobileLoginView, mb_userinfo, user_logout, mb_userinfo_edit, mb_me_edit_success
 from devices.views import device_message, device_detail, device_category, \
     device_status_details, device_edit, ajax_dev_del, edit_success, \
@@ -58,6 +58,9 @@ urlpatterns = [
     url('^mobile_dev_query/$', mb_all_devs, name='mobile_dev_query'),
     url('^mobile_excel/$', mb_excel, name='mobile_excel'),
     url('^mobile_qrcode/$', generate_qrcode, name='mobile_qrcode'),
+
+    url('^mobile_visual_status/$', mb_visual_status, name='mobile_visual_status'),
+    url('^mobile_visual/$', mb_visual, name='mobile_visual'),
 
     url('^mobile_login/$', MobileLoginView.as_view(), name='mobile_login'),
     url('^mobile_logout/$', user_logout, name='mobile_logout'),

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	   <meta charset="utf-8"><link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+
+		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+        <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+        <script src="https://img.hcharts.cn/highcharts/highcharts-3d.js"></script>
+        <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+        <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+
+    </head>
+	<body>
+		<div data-role="page">
+			<div data-role="header" data-position="fixed" data-theme="f">
+                <a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow"></a>
+				<h1>设备信息可视化</h1>
+                <div data-role="navbar">
+                    <ul >
+                         <li id="pp1"><a href="#" class="ui-btn-active ui-state-persist" data-transition="flip" data-icon="shop">类别占比</a></li>
+                         <li id="pp2"><a href="/mobile_visual_status/" data-transition="flip" data-icon="eye" data-ajax="false">设备状态</a></li>
+                    </ul>
+                </div>
+			</div>
+
+{#			<div data-role="content">#}
+                <div id="container" style="min-width:350px;height:550px"></div>
+                        <script>
+                            // 创建渐变色
+                            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                                    return {
+                                            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                                            stops: [
+                                                    [0, color],
+                                                    [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                                            ]
+                                    };
+                            });
+                            // 构建图表
+                            var chart = Highcharts.chart('container',{
+                                chart: {
+                                        type: 'pie',
+                                        options3d: {
+                                                enabled: true,
+                                                alpha: 45,
+                                                beta: 0
+                                        }
+                                },
+                                    title: {
+                                            text: '设备类别占比'
+                                    },
+                                    tooltip: {
+                                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                    },
+                                    plotOptions: {
+                                            pie: {
+                                                    allowPointSelect: true,
+                                                    cursor: 'pointer',
+                                                    depth: 35,
+                                                    dataLabels: {
+                                                            enabled: true,
+                                                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                                            style: {
+                                                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                                            },
+                                                            connectorColor: 'silver'
+                                                    },
+                                                    showInLegend: true
+                                            }
+                                    },
+                                    series: [{
+                                            type: 'pie',
+                                            name: '类别百分比',
+                                            size: '80%',
+                                            innerSize: '30%',
+                                            data: [
+                                                    ['起重机械', {{ lift }}],
+                                                    ['铸造及热处', {{ cast }}],
+                                                    ['汽车', {{ car }}],
+                                                    ['金属切削机', {{ cut }}],
+                                                    {
+                                                            name: '动力设备',
+                                                            y: {{ motive }},
+                                                            sliced: true,
+                                                            selected: true
+                                                    },
+                                                    ['办公用具', {{ office }}],
+                                            ]
+                                    }]
+                            });
+                        </script>
+            </div>
+{#        </div>#}
+		
+	</body>
+</html>

@@ -124,3 +124,36 @@ def mb_qcode(request):
     # img_file.close()
 
     return JsonResponse({'1': '1'})
+
+
+@login_required
+def mb_visual(request):
+    dev_lift = DeviceMessage.objects.filter(category_name='lift_dev').count()
+    dev_car = DeviceMessage.objects.filter(category_name='car').count()
+    dev_motive = DeviceMessage.objects.filter(category_name='motive').count()
+    dev_cut = DeviceMessage.objects.filter(category_name='cut').count()
+    dev_office = DeviceMessage.objects.filter(category_name='office').count()
+    dev_cast = DeviceMessage.objects.filter(category_name='cast').count()
+    total = (float)(dev_lift + dev_car + dev_motive + dev_cut + dev_office + dev_cast)
+    lift = dev_lift / total
+    car = dev_car / total
+    motive = dev_motive / total
+    cut = dev_cut / total
+    office = dev_office / total
+    cast = dev_cast / total
+
+    return render(request, 'mobile_visual.html', {'lift': lift, 'car': car, 'motive': motive,
+                                                  'cut': cut, 'cast': cast, 'office': office})
+
+
+@login_required
+def mb_visual_status(request):
+    dev_normal = DeviceMessage.objects.filter(device_status='normal').count()
+    dev_check = DeviceMessage.objects.filter(device_status='check').count()
+    dev_repair = DeviceMessage.objects.filter(device_status='repair').count()
+    total = (float)(dev_normal + dev_check + dev_repair)
+    normal = dev_normal / total
+    check = dev_check / total
+    repair = dev_repair / total
+
+    return render(request, 'mobile_visual_status.html', {'normal': normal, 'check': check, 'repair': repair})
