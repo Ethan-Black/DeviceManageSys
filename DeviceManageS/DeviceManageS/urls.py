@@ -28,7 +28,7 @@ from plans.views import mb_pending_plan, mb_get_plans, mb_get_plans_ok, mb_plan_
     device_plan_do_detail, mb_pending_plan_no, mb_get_plans_no
 from repair.views import dev_repair, mb_rep_apply, mb_get_reps, mb_get_rep_record, mb_get_rep_record_ok, \
     mb_device_rep_apply, device_rep_detail, device_rep_do_detail, mb_get_reps_me, mb_robbing, mb_dispatch
-from tools.views import generate_qrcode, mb_excel, mb_qcode, mb_visual, mb_visual_status
+from tools.views import generate_qrcode, mb_excel, mb_qcode, mb_visual, mb_visual_status, mb_excel_rd
 from users.views import LoginView, MobileLoginView, mb_userinfo, user_logout, mb_userinfo_edit, mb_me_edit_success
 from devices.views import device_message, device_detail, device_category, \
     device_status_details, device_edit, ajax_dev_del, edit_success, \
@@ -119,7 +119,8 @@ urlpatterns = [
 
     url(r'^mobile_qcode/', TemplateView.as_view(template_name='mobile_qcode.html'), name='mobile_qcode'),
     url('^mobile_add/$', mb_qcode, name='mobile_add'),
-    url('^mobile_grid/$', TemplateView.as_view(template_name='mobile_add.html'), name='mobile_grid'),
+    # url('^mobile_grid/$', TemplateView.as_view(template_name='mobile_index_grid.html'), name='mobile_grid'),
+    # url('^mobile_xlrd/$', mb_excel_rd, name='mobile_xlrd'),
 
 ]
 

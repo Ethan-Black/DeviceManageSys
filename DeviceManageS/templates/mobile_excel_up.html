@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+        <title>设备管理系统</title>
+         <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
+
+        <script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
+
+    </head>
+    <body>
+		<div class="ui-page" data-role="page" id="index" data-next="device">
+
+
+            <div data-role="header" data-position="fixed" data-theme="f" class="ui-shadow">
+                <h1>设备管理系统</h1>
+                <a href="/mobile_qcode/" data-role="button" data-icon="camera" data-transition="slidedown" rel="external"></a>
+            </div>
+			
+			<div data-role="content" >
+
+{#                <label for="excel">上传EXCEL文件：</label>#}
+                <form class="" action="/mobile_xlrd/" method="post" enctype="multipart/form-data" >
+{#                    {% csrf_token %}#}
+                    <input type="file" name="excel" />
+                    <input type="submit" value="上传" />
+                    <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
+				    {% csrf_token %}
+                </form>
+		</div>
+        </div>
+		
+
+	</body>
+</html>
