@@ -1,7 +1,7 @@
 # _*_encoding:utf-8 _*_
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
@@ -143,3 +143,14 @@ def mb_me_edit_success(request):
     # categories = DeviceCategory.objects.all()
     return render(request, 'mobile_me.html', {'user': user})
 
+
+def page_not_found(request):
+    response = render_to_response('404.html', {})
+    response.status_code = 404
+    return response
+
+
+def page_error(request):
+    response = render_to_response('500.html', {})
+    response.status_code = 500
+    return response

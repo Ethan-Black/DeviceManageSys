@@ -21,7 +21,7 @@ from devices.models import DeviceMessage
 # Create your views here.
 
 # Get an instance of a logger
-from tools.forms import UploadExcelForm
+# from tools.forms import UploadExcelForm
 
 logger = logging.getLogger('django')
 
@@ -163,27 +163,29 @@ def mb_visual_status(request):
     return render(request, 'mobile_visual_status.html', {'normal': normal, 'check': check, 'repair': repair})
 
 
-# @login_required
-# def mb_excel_rd(request):
-#         if request.method == 'POST':
-#             # form = UploadExcelForm(request.POST,  request.FILES)
-#             # if form.is_valid():
-#                 myFile = request.FILES.get('excel', None)
-#                 if not myFile:
-#                     return HttpResponse('no file for upload')
-#                 excelFile = open(os.path.join('logs', myFile.name), 'wb+')
-#                 for chunk in myFile.chunks():
-#                     excelFile.write(chunk)
-#                     excelFile.close()
-#
-#                 wb = xlrd.open_workbook('logs' + myFile.name)
-#                 table = wb.sheets()[0]
-#                 row = table.nrows
-#                 for i in xrange(1, row):
-#                     col = table.row_values(i)
-#                     print col
-#                 return HttpResponse('ok')
-#             # else:
-#             #     return HttpResponse('no')
-#         else:
-#             return HttpResponse('no')
+@login_required
+def mb_excel_rd(request):
+        if request.method == 'POST':
+            # form = UploadExcelForm(request.POST,  request.FILES)
+            # if form.is_valid():
+            #     myFile = request.FILES.get('excel', None)
+            #     if not myFile:
+            #         return HttpResponse('no file for upload')
+            #     excelFile = open(os.path.join('logs', myFile.name), 'wb+')
+            #     for chunk in myFile.chunks():
+            #         excelFile.write(chunk)
+            #         excelFile.close()
+
+                wb = xlrd.open_workbook(
+                    filename=None, file_contents=request.FILES['excel'].read())
+                # wb = xlrd.open_workbook('D:\\test.xls')
+                table = wb.sheets()[0]
+                row = table.nrows
+                for i in xrange(1, row):
+                    col = table.row_values(i)
+                    print col
+                return HttpResponse('ok')
+            # else:
+            #     return HttpResponse('no')
+        else:
+            return HttpResponse('no')

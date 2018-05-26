@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import handler404, handler500
 
 import xadmin
 from django.views.static import serve
@@ -119,9 +120,12 @@ urlpatterns = [
 
     url(r'^mobile_qcode/', TemplateView.as_view(template_name='mobile_qcode.html'), name='mobile_qcode'),
     url('^mobile_add/$', mb_qcode, name='mobile_add'),
-    # url('^mobile_grid/$', TemplateView.as_view(template_name='mobile_index_grid.html'), name='mobile_grid'),
-    # url('^mobile_xlrd/$', mb_excel_rd, name='mobile_xlrd'),
+    url('^mobile_grid/$', TemplateView.as_view(template_name='mobile_excel_up.html'), name='mobile_grid'),
+    url('^mobile_xlrd/$', mb_excel_rd, name='mobile_xlrd'),
 
 ]
 
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "users.views.page_not_found"
+handler500 = "users.views.page_error"
