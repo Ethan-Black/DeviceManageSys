@@ -15,10 +15,10 @@ def mb_pending_plan(request):
     #     DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
     plan_id = request.GET.get('plan_id', '')
     if plan_id:
-        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='ok')
+        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='审批通过')
     user_flag = request.session.get('flag')
     # if user_flag == '0':
-    devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+    devices_plan = DeviceBuyPlan.objects.filter(plan_model='待审批')\
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
     return render(request, 'mobile_pending_plan.html',
@@ -30,11 +30,11 @@ def mb_get_plans(request):
     # plan_id = request.GET.get('plan_id', '')
     # if plan_id:
     #     DeviceRepair.objects.filter(plan_id=plan_id).delete()
-    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='wait').filter(plan_class='buy')\
+    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='待审批').filter(plan_class='购置')\
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='wait').filter(plan_class='update') \
+    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='待审批').filter(plan_class='更新') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='wait').filter(plan_class='recycle') \
+    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='待审批').filter(plan_class='回收') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     return render(request, 'mobile_plan.html', {
         'devices_buy_plan': devices_buy_plan,
@@ -45,11 +45,11 @@ def mb_get_plans(request):
 
 @login_required
 def mb_get_plans_ok(request):
-    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='buy') \
+    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='审批通过').filter(plan_class='购置') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='update') \
+    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='审批通过').filter(plan_class='更新') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='ok').filter(plan_class='recycle') \
+    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='审批通过').filter(plan_class='回收') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     return render(request, 'mobile_plan_ok.html', {
         'devices_buy_plan': devices_buy_plan,
@@ -60,11 +60,11 @@ def mb_get_plans_ok(request):
 
 @login_required
 def mb_get_plans_no(request):
-    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='no').filter(plan_class='buy') \
+    devices_buy_plan = DeviceBuyPlan.objects.filter(plan_model='审批未通过').filter(plan_class='购置') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='no').filter(plan_class='update') \
+    devices_update_plan = DeviceBuyPlan.objects.filter(plan_model='审批未通过').filter(plan_class='更新') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
-    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='no').filter(plan_class='recycle') \
+    devices_recycle_plan = DeviceBuyPlan.objects.filter(plan_model='审批未通过').filter(plan_class='回收') \
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     return render(request, 'mobile_plan_no.html', {
         'devices_buy_plan': devices_buy_plan,
@@ -81,11 +81,11 @@ def mb_pending_plan_no(request):
     plan_id = request.POST.get('plan_id', '')
     advice = request.POST.get('advice', '')
     if plan_id and advice:
-        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='no')
+        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='审批未通过')
         DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_no=advice)
     user_flag = request.session.get('flag')
     # if user_flag == '0':
-    devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+    devices_plan = DeviceBuyPlan.objects.filter(plan_model='待审批')\
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
     return render(request, 'mobile_pending_plan.html',
@@ -131,7 +131,7 @@ def device_plan_detail(request):
         return JsonResponse(serializers.serialize('json', dev_plan_detail), content_type="application/json", safe=False)
     else:
         dev_detail = dev_plan_detail[0]
-        if dev_detail.plan_model == 'no':
+        if dev_detail.plan_model == '审批未通过':
             tag = 1
         else:
             tag = 0
@@ -149,7 +149,7 @@ def device_plan_do_detail(request):
     # return JsonResponse(serializers.serialize('json', dev_plan_detail), content_type="application/json", safe=False)
     # else:
     dev_detail = dev_plan_detail[0]
-    if dev_detail.plan_model == 'no':
+    if dev_detail.plan_model == '审批未通过':
         tag = 1
     else:
         tag = 0
@@ -164,11 +164,11 @@ def mb_pending_plan_no(request):
     plan_id = request.POST.get('plan_id', '')
     advice = request.POST.get('advice', '')
     if plan_id and advice:
-        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='no')
+        DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='审批未通过')
         DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_no=advice)
     user_flag = request.session.get('flag')
     # if user_flag == '0':
-    devices_plan = DeviceBuyPlan.objects.filter(plan_model='wait')\
+    devices_plan = DeviceBuyPlan.objects.filter(plan_model='待审批')\
         .values('plan_id', 'parts_name', 'num', 'plan_time', 'spec_model', 'apply_unit')
     # devices_rep = DeviceRepair.objects.filter(rep_status='wait')
     return render(request, 'mobile_pending_plan.html',

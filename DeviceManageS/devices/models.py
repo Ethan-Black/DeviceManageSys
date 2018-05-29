@@ -9,14 +9,14 @@ from django.db import models
 class DeviceMessage(models.Model):
     device_id = models.CharField(max_length=20, verbose_name=u'设备编号', null=True, blank=True)
     device_name = models.CharField(max_length=10, verbose_name=u'设备名称', null=True, blank=True)
-    category_name = models.CharField(choices=(('lift_dev', u'起重机械'), ('car', u'汽车'), ('cut', u'金属切削机'),
-                                              ('cast', u'铸造及热处'), ('motive', u'动力设备'), ('office', u'办公用具')),
-                                     max_length=30, verbose_name=u'类别名称', default='car')
+    category_name = models.CharField(choices=(('起重机械', u'起重机械'), ('汽车', u'汽车'), ('金属切削机', u'金属切削机'),
+                                              ('铸造及热处', u'铸造及热处'), ('动力设备', u'动力设备'), ('办公用具', u'办公用具')),
+                                     max_length=30, verbose_name=u'类别名称', default='汽车')
     device_model = models.CharField(max_length=20, verbose_name=u'设备型号', null=True, blank=True)
     im_part_name = models.CharField(max_length=10, verbose_name=u'重要配件名称', null=True, blank=True)
     im_part_num = models.CharField(max_length=10, verbose_name=u'重要配件数', null=True, blank=True)
-    device_status = models.CharField(choices=(('repair', u'维修'), ('normal', u'正常'), ('check', u'检查')),
-                                     max_length=10, verbose_name=u'设备状态', default='normal')
+    device_status = models.CharField(choices=(('维修', u'维修'), ('正常', u'正常'), ('检查', u'检查')),
+                                     max_length=10, verbose_name=u'设备状态', default='正常')
     make_unit = models.CharField(max_length=10, verbose_name=u'制造单位', null=True, blank=True)
     make_date = models.DateField(verbose_name=u'制造日期', null=True, blank=True)
     in_date = models.DateField(verbose_name=u'进厂日期', null=True, blank=True)
@@ -46,8 +46,8 @@ class DeviceMessage(models.Model):
     tech_cate = models.CharField(max_length=20, verbose_name=u'工艺类别', null=True, blank=True)
     belong_place = models.CharField(max_length=20, verbose_name=u'所属地点', null=True, blank=True)
     supplier = models.CharField(max_length=20, verbose_name=u'供应商', null=True, blank=True)
-    device_rank = models.CharField(choices=(('special', u'A特种设备'), ('important', u'B重要设备'), ('normal', u'C一般设备')),
-                                   max_length=20, verbose_name=u'设备等级', default='normal')
+    device_rank = models.CharField(choices=(('A特种设备', u'A特种设备'), ('B重要设备', u'B重要设备'), ('C一般设备', u'C一般设备')),
+                                   max_length=20, verbose_name=u'设备等级', default='C一般设备')
     enter = models.CharField(max_length=20, verbose_name=u'录入人', null=True, blank=True)
     enter_time = models.DateField(verbose_name=u'录入时间', null=True, blank=True)
     leader_appr = models.CharField(max_length=20, verbose_name=u'部门领导审批', null=True, blank=True)

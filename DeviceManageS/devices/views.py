@@ -28,8 +28,8 @@ logger = logging.getLogger('django')
 def mb_index(request):
     logger.info('Login Success!')
 
-    all_lift_devs = DeviceMessage.objects.values('device_name').filter(category_name='lift_dev')
-    all_car_devs = DeviceMessage.objects.values('device_name').filter(category_name='car')
+    all_lift_devs = DeviceMessage.objects.values('device_name').filter(category_name='起重机械')
+    all_car_devs = DeviceMessage.objects.values('device_name').filter(category_name='汽车')
     return render(request, 'mobile_index.html', {'all_lift_devs': all_lift_devs, 'all_car_devs': all_car_devs})
 
 
@@ -51,11 +51,11 @@ def device_message(request, template_name=''):
         if cate:
             devices = DeviceMessage.objects.filter(category_name=cate).values('device_name', 'device_id')
     else:
-        cate_dic = {'lift_dev': u'起重机械', 'car': u'汽车'}
+        # cate_dic = {'起重机械': u'起重机械', 'car': u'汽车'}
         cate_parm = request.GET.get('category', '')
-        category = list(cate_dic.keys())[list(cate_dic.values()).index(cate_parm)]
-        if category:
-            devices = DeviceMessage.objects.filter(category_name=category).values('device_name', 'device_id')
+        # category = list(cate_dic.keys())[list(cate_dic.values()).index(cate_parm)]
+        if cate_parm:
+            devices = DeviceMessage.objects.filter(category_name=cate_parm).values('device_name', 'device_id')
 
     # devices = None
     # if all_devices:
@@ -597,8 +597,8 @@ def mobile_del(request):
 
 @login_required
 def mb_all_devs(request):
-    all_lift_devs = DeviceMessage.objects.filter(category_name='lift_dev').values('device_id', 'device_name')
-    all_car_devs = DeviceMessage.objects.filter(category_name='car').values('device_id', 'device_name')
+    all_lift_devs = DeviceMessage.objects.filter(category_name='起重机械').values('device_id', 'device_name')
+    all_car_devs = DeviceMessage.objects.filter(category_name='汽车').values('device_id', 'device_name')
     return render(request, 'mobile_dev_query.html', {'all_lift_devs': all_lift_devs, 'all_car_devs': all_car_devs})
 
 

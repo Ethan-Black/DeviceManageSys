@@ -116,7 +116,7 @@
 
     <div data-role="page" id="pending" >
     <div data-role="header" data-position="fixed" data-theme="f" >
-    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow"></a>
+    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="slide">首页</a>
 			<h1>待处理事项</h1>
         <div data-role="navbar">
             <ul >
@@ -143,7 +143,7 @@
                     <p><b>{{ dev_rep.reason }}</b></p>
                     <br>
                     <p>负责人: {{ dev_rep.belong_man }}</p>
-                      <p id="get_param">{{ dev_rep.apply_id }}</p>
+{#                      <p id="get_param">{{ dev_rep.apply_id }}</p>#}
                     <p>维修状态: {{ dev_rep.rep_status }}</p>
 
 {#                       <p>负责人: 刘工</p>#}

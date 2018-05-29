@@ -26,38 +26,41 @@
 
     <script>
             $(document).ready(function(){
-                $("#devd").click(function(){
-                    var devid=$("#get_param").text();
-                      $.get("/mobile_get_details/",{ "dev_id": devid },
+                $("#disbut").click(function(){
+                    var apply_id=$("#apply_id").val();
+                    var man=$("#man").val();
+                      $.get("/mobile_dispatch/",{ "apply_id": apply_id, "man": man },
                           function(data,status){
                                 if(status=='success'){
-                                    $.mobile.changePage("#mobile_dev_msg", { transition:'slide' });
-                                    var dev_detail= JSON.parse(data);
+                                    $.mobile.changePage("#dis_suc", { transition:'pop' });
+                                    {#var dev_detail= JSON.parse(data);#}
                                     {#alert(dev_detail)#}
                                     {#alert(dev_detail[0].fields.device_name)#}
                                     {#for(var i=0;i<cate.length;i++){#}
                                         {#alert(cate[i].fields.cate_name);#}
-                                        $("#dev_img").append(
-                                            "<p>设备名称：" + dev_detail[0].fields.device_name +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "<p>设备编号：" + dev_detail[0].fields.device_id +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "<p>设备类别：" + dev_detail[0].fields.category_name +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "<p>设备型号：" + dev_detail[0].fields.device_model +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "                <p>设备状态：" + dev_detail[0].fields.device_status +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "                <p>所属部门编号：" + dev_detail[0].fields.belong_id +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "                <p>设备等级：" + dev_detail[0].fields.device_rank +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "                <p>备注：" + dev_detail[0].fields.ps +"</p>\n" +
-                                            "<hr align=\"right\" width=\"60%\"/>\n" +
-                                            "\n" +
-                                            "<br />"
-                                        )
-                                    }
+                                        {#$("#dev_img").append(#}
+                                        {#    "<p>设备名称：" + dev_detail[0].fields.device_name +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "<p>设备编号：" + dev_detail[0].fields.device_id +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "<p>设备类别：" + dev_detail[0].fields.category_name +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "<p>设备型号：" + dev_detail[0].fields.device_model +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "                <p>设备状态：" + dev_detail[0].fields.device_status +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "                <p>所属部门编号：" + dev_detail[0].fields.belong_id +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "                <p>设备等级：" + dev_detail[0].fields.device_rank +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "                <p>备注：" + dev_detail[0].fields.ps +"</p>\n" +#}
+                                        {#    "<hr align=\"right\" width=\"60%\"/>\n" +#}
+                                        {#    "\n" +#}
+                                        {#    "<br />"#}
+                                        {#)#}
+                                    }else {
+                                    $.mobile.changePage("#dis_fail", { transition:'pop' });
+                                }
 
                           });
                     });
@@ -154,10 +157,13 @@
 		</div>
 
 
-        <div data-role="dialog" id="dispatch">
+        <div data-role="page" data-dialog="true" id="dispatch">
+            <div data-role="header">
+                <h1>工单派遣</h1>
+              </div>
 			<div data-role="content" data-theme="f">
-				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">工单派遣</span>
-                <form id="dispatch" action="/mobile_dispatch/" method="post" data-ajax="false">
+{#				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">工单派遣</span>#}
+{#                <form id="dispatch" action="/mobile_dispatch/" method="post" data-ajax="false">#}
                     <hr>
                     <p>
 				<label for="apply_id">工单编号:</label>
@@ -172,12 +178,35 @@
 				</p>
                     <hr>
                     <p>
-                  <input class="btn btn-green" id="addbtn" type="submit" value="确定" />
+                  <input class="btn btn-green" id="disbut" type="submit" value="确定" />
                   <a href="#" data-role="button" data-theme="c" data-rel="back">取消</a>
                   </p>
-                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />
-				    {% csrf_token %}
-			  </form>
+{#                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />#}
+{#				    {% csrf_token %}#}
+{#			  </form>#}
+			</div>
+		</div>
+
+
+        <div data-role="dialog" id="dis_suc">
+            <div data-role="header">
+                <h1>提示</h1>
+              </div>
+			<div data-role="content" data-theme="f">
+				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">派遣成功！</span>
+                  <a href="#" data-role="button" data-rel="back">确定</a>
+
+			</div>
+		</div>
+
+
+        <div data-role="dialog" id="dis_fail">
+            <div data-role="header">
+                <h1>提示</h1>
+              </div>
+			<div data-role="content" data-theme="f">
+				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">派遣失败</span>
+                  <a href="#" data-role="button" data-rel="back">确定</a>
 			</div>
 		</div>
 

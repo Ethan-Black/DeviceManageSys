@@ -17,14 +17,14 @@ logger = logging.getLogger('django')
 
 @login_required
 def mb_get_rep_record(request):
-    rep_records = DeviceRepair.objects.filter(rep_status='wait')\
+    rep_records = DeviceRepair.objects.filter(rep_status='待维护')\
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason')
     return render(request, 'mobile_rep_record.html', {'rep_records': rep_records})
 
 
 @login_required
 def mb_get_rep_record_ok(request):
-    rep_records = DeviceRepair.objects.filter(rep_status='ok')\
+    rep_records = DeviceRepair.objects.filter(rep_status='已修复')\
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason')
     return render(request, 'mobile_rep_record_ok.html', {'rep_records': rep_records})
 
@@ -131,7 +131,7 @@ def mb_get_reps(request):
 
     apply_id = request.GET.get('apply_id', '')
     if apply_id:
-        DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
+        DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='已修复')
     # plan_id = request.GET.get('plan_id', '')
     # if plan_id:
     #     DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='ok')
@@ -143,7 +143,7 @@ def mb_get_reps(request):
     #     return render(request, 'mobile_pending.html',
     #                   {'devices_rep': devices_rep, 'devices_plan': devices_plan, 'flag': user_flag})
     # else:
-    devices_rep = DeviceRepair.objects.filter(rep_status='wait')\
+    devices_rep = DeviceRepair.objects.filter(rep_status='待维护')\
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
     return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
 
@@ -152,7 +152,7 @@ def mb_get_reps(request):
 def mb_get_reps_me(request):
     apply_id = request.GET.get('apply_id', '')
     if apply_id:
-        DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='ok')
+        DeviceRepair.objects.filter(apply_id=apply_id).update(rep_status='已修复')
     # plan_id = request.GET.get('plan_id', '')
     # if plan_id:
     #     DeviceBuyPlan.objects.filter(plan_id=plan_id).update(plan_model='ok')
@@ -165,7 +165,7 @@ def mb_get_reps_me(request):
     #     return render(request, 'mobile_pending.html',
     #                   {'devices_rep': devices_rep, 'devices_plan': devices_plan, 'flag': user_flag})
     # else:
-    devices_rep = DeviceRepair.objects.filter(rep_status='wait', belong_man=user)\
+    devices_rep = DeviceRepair.objects.filter(rep_status='待维护', belong_man=user)\
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
     return render(request, 'mobile_pending_me.html', {'devices_rep': devices_rep, 'flag': user_flag})
 
@@ -178,30 +178,30 @@ def mb_robbing(request):
         if man == '-':
             user = request.session.get('username', '-')
             DeviceRepair.objects.filter(apply_id=apply_id).update(belong_man=user)
-            devices_rep = DeviceRepair.objects.filter(rep_status='wait', belong_man=user) \
+            devices_rep = DeviceRepair.objects.filter(rep_status='待维护', belong_man=user) \
                 .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
             return render(request, 'mobile_pending_me.html', {'devices_rep': devices_rep, 'flag': user_flag})
         else:
-            devices_rep = DeviceRepair.objects.filter(rep_status='wait') \
+            devices_rep = DeviceRepair.objects.filter(rep_status='待维护') \
                 .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
             return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
 
     # devices_rep = DeviceRepair.objects.filter(rep_status='wait', belong_man=user)\
     #     .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'category_name')
     else:
-        devices_rep = DeviceRepair.objects.filter(rep_status='wait') \
+        devices_rep = DeviceRepair.objects.filter(rep_status='待维护') \
             .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
         return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
 
 
 def mb_dispatch(request):
-    apply_id = request.POST.get('apply_id', '')
-    user = request.POST.get('man', '')
+    apply_id = request.GET.get('apply_id', '')
+    user = request.GET.get('man', '')
     user_flag = request.session.get('flag')
     if apply_id:
         man = DeviceRepair.objects.filter(apply_id=apply_id)[0].belong_man
         if man == '-':
             DeviceRepair.objects.filter(apply_id=apply_id).update(belong_man=user)
-    devices_rep = DeviceRepair.objects.filter(rep_status='wait') \
+    devices_rep = DeviceRepair.objects.filter(rep_status='待维护') \
         .values('apply_id', 'apply_unit', 'apply_time', 'device_name', 'rep_status', 'reason', 'belong_man')
     return render(request, 'mobile_pending.html', {'devices_rep': devices_rep, 'flag': user_flag})
