@@ -116,7 +116,7 @@
 {#                <p>备注: {{ dev_detail.ps }} </p>#}
 {#                <hr align="right" width="80%"/>#}
 
-                <div id="dev_img"><img id="userr" width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></div>
+                <div id="dev_img"><img id="userr" width="150" height="120" src="/media/{{ dev_detail.image }}" width="80%" /></div>
                 <br>
                 <p class="p_left">设备名称&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.device_name }}</p>
@@ -127,12 +127,22 @@
                 <p class="p_left">设备类别&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.category_name }}</p>
                 <hr/>
+
+{#            <p class="p_left">设备类别&nbsp;&nbsp;:&emsp;</p>#}
+{#                <p class="p_right">起重机械</p>#}
+{#                <hr/>#}
+
                 <p class="p_left">设备型号&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.device_model }}</p>
                 <hr/>
                 <p class="p_left">设备状态&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.device_status }}</p>
                 <hr/>
+
+{#            <p class="p_left">设备状态&nbsp;&nbsp;:&emsp;</p>#}
+{#                <p class="p_right">正常</p>#}
+{#                <hr/>#}
+
                 <p class="p_left">所属部门编号&nbsp;&nbsp;:&emsp;</p>
                 <p class="p_right">{{ dev_detail.belong_id }}</p>
                 <hr/>
