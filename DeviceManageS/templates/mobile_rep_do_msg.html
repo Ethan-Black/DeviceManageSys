@@ -67,6 +67,24 @@
                 });
         </script>
 
+    <script>
+            $(document).ready(function(){
+                $("#robbut").click(function(){
+                    var apply_id=$("#apply_id").val();
+                    {#var man=$("#man").val();#}
+                      $.get("/mobile_robbing/",{ "apply_id": apply_id },
+                          function(data,status){
+                                if(status=='success'){
+                                    $.mobile.changePage("#dis_suc", { transition:'pop' });
+                                }else {
+                                    $.mobile.changePage("#dis_fail", { transition:'pop' });
+                                }
+
+                          });
+                    });
+                });
+        </script>
+
 {#    <script>#}
 {#            $(document).ready(function(){#}
 {#                $("#delbt").click(function(){#}
@@ -142,7 +160,10 @@
 {#                        <button>设备维护申请</button>#}
 {#                        </a>#}
                 {% else %}
-                    <a href="/mobile_robbing/?apply_id={{ dev_detail.apply_id }}" data-transition="slide">
+{#                    <a href="/mobile_robbing/?apply_id={{ dev_detail.apply_id }}" data-transition="slide">#}
+{#                            <button>抢单</button>#}
+{#                        </a>#}
+                    <a href="#robb" data-transition="pop">
                             <button>抢单</button>
                         </a>
 
@@ -154,6 +175,35 @@
 
 			</div>
 
+		</div>
+
+
+    <div data-role="page" data-dialog="true" id="robb">
+            <div data-role="header">
+                <h1>确认抢单信息</h1>
+              </div>
+			<div data-role="content" data-theme="f">
+{#				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">工单派遣</span>#}
+{#                <form id="dispatch" action="/mobile_dispatch/" method="post" data-ajax="false">#}
+                    <hr>
+                    <p>
+				<label for="apply_id">工单编号:</label>
+		        <input type="text" name="apply_id" id="apply_id" value={{ dev_detail.apply_id }} readonly="readonly" data-theme="d" />
+				</p>
+                <p>
+                    <label for="reas">申请维护原因:</label>
+                    <input type="text" name="reas" id="reas" value={{ dev_detail.reason }} readonly="readonly" data-theme="d" />
+
+				</p>
+                    <hr>
+                    <p>
+                  <input class="btn btn-green" id="robbut" type="submit" value="确定" />
+                  <a href="#" data-role="button" data-theme="c" data-rel="back">取消</a>
+                  </p>
+{#                  <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY' />#}
+{#				    {% csrf_token %}#}
+{#			  </form>#}
+			</div>
 		</div>
 
 
@@ -193,7 +243,7 @@
                 <h1>提示</h1>
               </div>
 			<div data-role="content" data-theme="f">
-				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">派遣成功！</span>
+				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">操作成功！</span>
                   <a href="#" data-role="button" data-rel="back">确定</a>
 
 			</div>
@@ -205,7 +255,7 @@
                 <h1>提示</h1>
               </div>
 			<div data-role="content" data-theme="f">
-				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">派遣失败</span>
+				<span class="tittle" id="title" style="font-size: larger; font-family: 黑体;">操作失败！</span>
                   <a href="#" data-role="button" data-rel="back">确定</a>
 			</div>
 		</div>
