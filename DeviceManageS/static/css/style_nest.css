@@ -35,9 +35,9 @@ body {	background-color:#e1e1e1;
 			
 #container { background: white;}
 
-.size12, .size11, .size22, .size23, .twocols { background: gainsboro }
-.size31, .size32, .size33, .threecols { background: lightslategray }
-.size21 { background: darkgrey }
+.size12, .size11, .size22, .size23, .twocols, .size21, .size31, .size32, .size33, .threecols { background: lightgray }
+/*.size31, .size32, .size33, .threecols { background: lightslategray }*/
+/*.size21 { background: darkgrey }*/
 
 /*a.btn {*/
   /*margin-right: 1px;*/

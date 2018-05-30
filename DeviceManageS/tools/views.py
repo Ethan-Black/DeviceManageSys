@@ -132,12 +132,12 @@ def mb_qcode(request):
 
 @login_required
 def mb_visual(request):
-    dev_lift = DeviceMessage.objects.filter(category_name='lift_dev').count()
-    dev_car = DeviceMessage.objects.filter(category_name='car').count()
-    dev_motive = DeviceMessage.objects.filter(category_name='motive').count()
-    dev_cut = DeviceMessage.objects.filter(category_name='cut').count()
-    dev_office = DeviceMessage.objects.filter(category_name='office').count()
-    dev_cast = DeviceMessage.objects.filter(category_name='cast').count()
+    dev_lift = DeviceMessage.objects.filter(category_name='起重机械').count()
+    dev_car = DeviceMessage.objects.filter(category_name='汽车').count()
+    dev_motive = DeviceMessage.objects.filter(category_name='动力设备').count()
+    dev_cut = DeviceMessage.objects.filter(category_name='金属切削机').count()
+    dev_office = DeviceMessage.objects.filter(category_name='办公用具').count()
+    dev_cast = DeviceMessage.objects.filter(category_name='铸造及热处').count()
     total = (float)(dev_lift + dev_car + dev_motive + dev_cut + dev_office + dev_cast)
     lift = dev_lift / total
     car = dev_car / total
@@ -152,9 +152,9 @@ def mb_visual(request):
 
 @login_required
 def mb_visual_status(request):
-    dev_normal = DeviceMessage.objects.filter(device_status='normal').count()
-    dev_check = DeviceMessage.objects.filter(device_status='check').count()
-    dev_repair = DeviceMessage.objects.filter(device_status='repair').count()
+    dev_normal = DeviceMessage.objects.filter(device_status='正常').count()
+    dev_check = DeviceMessage.objects.filter(device_status='检查').count()
+    dev_repair = DeviceMessage.objects.filter(device_status='维修').count()
     total = (float)(dev_normal + dev_check + dev_repair)
     normal = dev_normal / total
     check = dev_check / total
