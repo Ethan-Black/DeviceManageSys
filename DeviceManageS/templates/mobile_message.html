@@ -71,8 +71,9 @@
 
     <div data-role="page" id="index" >
     <div data-role="header" data-position="fixed" data-theme="f">
-    	<a href="/mobile_index/" data-role="button" data-icon="home" data-transition="flow">首页</a>
-			<h1>设备列表</h1>
+{#    	<a href="/mobile_index/" data-ajax="false" data-role="button" data-icon="home" data-transition="flow">首页</a>#}
+        <a href="javascript:history.back()" data-role="button" data-icon="back" data-transition="slide">返回</a>
+        <h1>设备列表</h1>
 	</div>
 	<div data-role="content" id="main3Content" >
 		
@@ -84,7 +85,7 @@
                         <h3>{{ device.device_name }}</h3>
                         <p id="get_param">{{ device.device_id }}</p>
                     </a>
-                    <a href="/mobile_dev_msg/?dev_id={{ device.device_id }}" data-rel="dialog" data-transition="slideup">动作</a>
+                    <a href="/mobile_dev_msg/?dev_id={{ device.device_id }}" data-ajax='false'></a>
                 </li>
             {% endfor %}
 {#			<li>#}
@@ -118,7 +119,7 @@
 					<ul>
 						<li><a href="/mobile_pending/" data-icon="star">工单</a></li>
 {#						<li><a href="#" data-icon="gear">备件管理</a></li>#}
-						<li><a href="/mobile_index/" data-icon="grid">设备管理</a></li>
+						<li><a href="/mobile_index/" data-ajax="false" data-icon="grid">设备管理</a></li>
 						<li><a href="/mobile_plan/" data-icon="plus">购置计划</a></li>
 						<li><a href="/mobile_me/" data-icon="home">我的</a></li>
 					</ul>

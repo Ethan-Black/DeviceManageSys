@@ -118,21 +118,21 @@ def mb_me_edit_success(request):
     # image = request.POST.get('img')
     image = request.FILES.get('img')
     gender = request.POST.get('gender')
-    flag = request.POST.get('flag')
+    # flag = request.POST.get('flag')
     birthday = request.POST.get('birthday')
     mobile = request.POST.get('mobile')
     email = request.POST.get('email')
 
     dev = UserProfile.objects.get(id=user_id)
     if dev.username == username and dev.gender == gender and \
-            dev.flag == flag and dev.birthday == birthday and dev.mobile == mobile \
+            dev.birthday == birthday and dev.mobile == mobile \
             and dev.email == email and dev.image == image:
         pass
     else:
         dev.username = username
         dev.image = image
         dev.gender = gender
-        dev.flag = flag
+        # dev.flag = flag
         dev.birthday = birthday
         dev.mobile = mobile
         dev.email = email

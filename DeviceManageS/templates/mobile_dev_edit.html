@@ -6,14 +6,19 @@
 {#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
 	<link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
     <style>
-		
+		#userr{
+            padding-left: 30%;
+            {#padding-top: 12%;#}
+        }
 	</style>
+
 		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	</head>
 	<body>
 		<div data-role="page" >
 			<div data-role="header" data-theme="f">
+                <a href="javascript:history.back()" data-role="button" data-icon="back" data-transition="slide">返回</a>
 				<h1>修改信息</h1>
 			</div>
 
@@ -22,18 +27,21 @@
 
                   <p>
                     <label for="img">设备图片：</label>
-                    <img width="120" height="120" src="/media/{{ dev_detail.image }}" width="80%" />
+                    <img id="userr" width="150" height="120" src="/media/{{ dev_detail.image }}" width="80%" />
                     <input type="file" name="img" id="img">
                 {#                <button type="submit">上传图片</button>#}
                 </p>
+                  <hr>
                   <p>
 			    <label for="device_name">设备名称:</label>
 			    <input type="text" name="device_name" id="device_name" value={{ dev_detail.device_name }} data-theme="d"/>
 			    </p>
+                  <hr>
                   <p>
 			    <label for="device_id">设备编号:</label>
 			    <input type="text" name="device_id" id="device_id" value={{ dev_detail.device_id }} readonly="readonly" data-theme="d"/>
 			    </p>
+                  <hr>
 				<p>
 				<label for="category">设备类别:</label>
 					<select name="category" id="category">
@@ -41,6 +49,7 @@
 					  <option value="car">汽车</option>
 					</select>	
 				</p>
+                  <hr>
                   <p>
 				<label for="status">设备状态:</label>
 					<select name="status" id="status">
@@ -49,16 +58,17 @@
                         <option value="check">检查</option>
 					</select>
 				</p>
-
+                  <hr>
 				<p>
 				<label for="device_model">设备型号:</label>
 		        <input type="text" name="device_model" id="device_model" value={{ dev_detail.device_model }} >
 				</p>
+                  <hr>
                   <p>
 				<label for="value">本币原值:</label>
 		        <input type="text" name="value" id="value" value="" data-theme="d" />
 				</p>
-
+                  <hr>
                   <p>
 				<label for="delivery">所属部门编号:</label>
 					<select name="delivery" id="delivery">
@@ -66,6 +76,7 @@
 					  <option value="G1">G1</option>
 					</select>
 				</p>
+                  <hr>
                   <p>
 				<label for="delivery">设备等级:</label>
 					<select name="delivery" id="delivery">
@@ -73,6 +84,7 @@
 					  <option value="nfc">一般设备</option>
 					</select>
 				</p>
+                  <hr>
 				<p>				 
 				<label for="textarea">备注:</label>
 				<textarea cols="40" rows="8" name="textarea" id="textarea" placeholder="Textarea" data-theme="d"></textarea>	

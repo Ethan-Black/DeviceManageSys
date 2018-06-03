@@ -5,15 +5,20 @@
 		<title></title>
 {#		<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.4.min.css" />#}
     <link rel="stylesheet" type="text/css" href="/static/css/jquery.mobile.flatui.css" />
-		<style>
-		
+    <style>
+		#userr{
+            padding-left: 30%;
+            {#padding-top: 12%;#}
+        }
 	</style>
+
 		<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
 		<script type="text/javascript" src="/static/js/jquery.mobile-1.4.4.min.js" ></script>
 	</head>
 	<body>
 		<div data-role="page" >
 			<div data-role="header"  data-theme="f">
+                <a href="javascript:history.back()" data-role="button" data-icon="back" data-transition="slide">返回</a>
 				<h1>修改个人信息</h1>
 			</div>
 
@@ -21,31 +26,35 @@
 			  <form id="add" action="/mobile_me_edit/success/" method="post" data-ajax="false"  enctype="multipart/form-data">
                 <p>
                     <label for="img">头像：</label>
-                    <img width="120" height="120" src="/media/{{ user.image }}" width="80%" />
+                    <img id="userr" width="120" height="120" src="/media/{{ user.image }}" width="80%" />
                     <input type="file" name="img" id="img">
                 {#                <button type="submit">上传图片</button>#}
                 </p>
+                  <hr>
                   <p>
-			    <label for="username">姓名:</label>
+			    <label for="username" width="30%">姓名:</label>
 			    <input type="text" name="username" id="username" value={{ user.username }} data-theme="d"/>
 			    </p>
+                  <hr>
                   <p>
 			    <label for="gender">性别:</label>
 			    <input type="text" name="gender" id="gender" value={{ user.gender }} readonly="readonly" data-theme="d"/>
 			    </p>
-				<p>
-				<label for="flag">职位:</label>
-					<input type="text" name="flag" id="flag" value={{ user.flag }} data-theme="d"/>
-				</p>
+                  <hr>
+{#				<p>#}
+{#				<label for="flag">职位:</label>#}
+{#					<input type="text" name="flag" id="flag" value={{ user.flag }} data-theme="d"/>#}
+{#				</p>#}
                   <p>
 				<label for="birthday">生日:</label>
 					<input type="date" name="birthday" id="birthday" value={{ user.birthday }} de>
 				</p>
-
+                  <hr>
 				<p>
 				<label for="mobile">电话:</label>
 		        <input type="text" name="mobile" id="mobile" value={{ user.mobile }} >
 				</p>
+                  <hr>
                   <p>
 				<label for="email">邮箱:</label>
 		        <input type="text" name="email" id="email" value={{ user.email }} data-theme="d" />
